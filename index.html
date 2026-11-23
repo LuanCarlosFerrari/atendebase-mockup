@@ -61,7 +61,7 @@
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
             <span>Testar no iPhone</span>
           </span>
-          <span class="text-[11px] px-2 py-0.5 rounded-full soft-primary font-semibold">Ao vivo</span>
+          <span class="text-[11px] px-2 py-0.5 rounded-full soft-primary font-semibold">Mapa + Chat</span>
         </button>
 
         <button data-view="handoff" class="nav-btn nav-idle flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-xs text-left whitespace-nowrap transition-all">
@@ -80,7 +80,7 @@
           <input id="toggleInspector" type="checkbox" class="accent-[var(--accent)] w-4 h-4 cursor-pointer" />
         </div>
         <div class="text-[11px] text-[var(--muted-foreground)] px-1 leading-relaxed">
-          Respostas exatas direto da tabela do comércio, com privacidade por cliente.
+          Respostas exatas e mapas interativos direto da tabela do comércio.
         </div>
       </div>
     </aside>
@@ -147,7 +147,7 @@
     }
 
     // =========================================================================
-    // DADOS 100% FICTÍCIOS MULTI-COMÉRCIO (LGPD)
+    // DADOS 100% FICTÍCIOS MULTI-COMÉRCIO COM COORDENADAS DE MAPA (LGPD)
     // =========================================================================
     const TENANTS = {
       imobiliaria: {
@@ -158,7 +158,17 @@
           nome: 'Imobiliária Horizonte',
           chave_pix: 'financeiro@horizonte-demo.exemplo',
           horario_atendimento: 'Seg a Sex, 08h às 18h',
-          telefone_suporte: '(11) 3000-0001'
+          telefone_suporte: '(11) 3000-0001',
+          endereco: 'Av. Paulista, 1000 — Bela Vista'
+        },
+        hqPin: {
+          id: 'hq_imob',
+          badge: 'Sede Horizonte',
+          title: 'Imobiliária Horizonte (Matriz)',
+          address: 'Av. Paulista, 1000 — Bela Vista',
+          distance: '2,1 km · 6 min de carro',
+          x: 52,
+          y: 48
         },
         authHint: '4 últimos dígitos do CPF',
         sessionTtlMin: 30,
@@ -185,15 +195,36 @@
             titleField: 'imovel',
             fields: [
               { key: 'imovel', label: 'Imóvel', type: 'text', inTemplate: true },
+              { key: 'endereco', label: 'Endereço (Mapa)', type: 'location', inTemplate: true },
               { key: 'valor_aluguel', label: 'Valor do Aluguel', type: 'currency_brl', inTemplate: true },
               { key: 'vencimento', label: 'Vencimento', type: 'date', inTemplate: true },
               { key: 'status_parcela', label: 'Situação', type: 'enum', inTemplate: true }
             ],
             records: [
-              { id: 'rec_101', customerId: 'cus_01', data: { imovel: 'Apt 302 — Ed. Ipê', valor_aluguel: 1850, vencimento: '05/12/2026', status_parcela: 'Em aberto' } },
-              { id: 'rec_102', customerId: 'cus_01', data: { imovel: 'Sala 04 — Centro', valor_aluguel: 2400, vencimento: '10/12/2026', status_parcela: 'Em aberto' } },
-              { id: 'rec_103', customerId: 'cus_02', data: { imovel: 'Casa Rua das Flores, 88', valor_aluguel: 2150, vencimento: '05/12/2026', status_parcela: 'Pago' } },
-              { id: 'rec_104', customerId: 'cus_03', data: { imovel: 'Kitnet 12 — Vila Nova', valor_aluguel: 1120, vencimento: '15/12/2026', status_parcela: 'Em aberto' } }
+              {
+                id: 'rec_101',
+                customerId: 'cus_01',
+                data: { imovel: 'Apt 302 — Ed. Ipê', endereco: 'Rua dos Ipês, 302 — Jd. Botânico', valor_aluguel: 1850, vencimento: '05/12/2026', status_parcela: 'Em aberto' },
+                pin: { id: 'pin_101', badge: 'Apt 302', title: 'Apt 302 — Ed. Ipê', address: 'Rua dos Ipês, 302 — Jd. Botânico', distance: '1,4 km · 4 min', x: 34, y: 42 }
+              },
+              {
+                id: 'rec_102',
+                customerId: 'cus_01',
+                data: { imovel: 'Sala 04 — Centro', endereco: 'Av. Central, 450 — Centro', valor_aluguel: 2400, vencimento: '10/12/2026', status_parcela: 'Em aberto' },
+                pin: { id: 'pin_102', badge: 'Sala 04', title: 'Sala 04 — Centro', address: 'Av. Central, 450 — Centro', distance: '2,8 km · 8 min', x: 68, y: 58 }
+              },
+              {
+                id: 'rec_103',
+                customerId: 'cus_02',
+                data: { imovel: 'Casa Rua das Flores, 88', endereco: 'Rua das Flores, 88 — Vila Nova', valor_aluguel: 2150, vencimento: '05/12/2026', status_parcela: 'Pago' },
+                pin: { id: 'pin_103', badge: 'Casa 88', title: 'Casa Rua das Flores, 88', address: 'Rua das Flores, 88 — Vila Nova', distance: '3,1 km · 9 min', x: 46, y: 66 }
+              },
+              {
+                id: 'rec_104',
+                customerId: 'cus_03',
+                data: { imovel: 'Kitnet 12 — Vila Nova', endereco: 'Rua Aurora, 120 — Vila Nova', valor_aluguel: 1120, vencimento: '15/12/2026', status_parcela: 'Em aberto' },
+                pin: { id: 'pin_104', badge: 'Kitnet 12', title: 'Kitnet 12 — Vila Nova', address: 'Rua Aurora, 120 — Vila Nova', distance: '1,9 km · 5 min', x: 60, y: 36 }
+              }
             ]
           },
           {
@@ -207,29 +238,74 @@
             titleField: 'titulo',
             fields: [
               { key: 'titulo', label: 'Imóvel', type: 'text', inTemplate: true },
+              { key: 'endereco', label: 'Endereço (Mapa)', type: 'location', inTemplate: true },
               { key: 'bairro', label: 'Bairro', type: 'text', inTemplate: true },
-              { key: 'valor', label: 'Aluguel mensal', type: 'currency_brl', inTemplate: true },
-              { key: 'quartos', label: 'Quartos', type: 'number', inTemplate: true }
+              { key: 'valor', label: 'Aluguel mensal', type: 'currency_brl', inTemplate: true }
             ],
             records: [
-              { id: 'pub_01', customerId: null, data: { titulo: 'Apt 2 quartos c/ garagem', bairro: 'Jardim América', valor: 1950, quartos: 2 } },
-              { id: 'pub_02', customerId: null, data: { titulo: 'Casa térrea quintal amplo', bairro: 'Vila Esperança', valor: 2300, quartos: 3 } },
-              { id: 'pub_03', customerId: null, data: { titulo: 'Sala comercial 45m²', bairro: 'Centro', valor: 1700, quartos: 0 } },
-              { id: 'pub_04', customerId: null, data: { titulo: 'Kitnet mobiliada próx. faculdade', bairro: 'Universitário', valor: 1250, quartos: 1 } }
+              {
+                id: 'pub_01',
+                customerId: null,
+                data: { titulo: 'Apt 2 quartos c/ garagem', endereco: 'Rua das Acácias, 410 — Jd. América', bairro: 'Jardim América', valor: 1950 },
+                pin: { id: 'pin_p1', badge: 'R$ 1.950', title: 'Apt 2 quartos c/ garagem', address: 'Rua das Acácias, 410 — Jd. América', distance: '1,8 km · 5 min', x: 30, y: 40 }
+              },
+              {
+                id: 'pub_02',
+                customerId: null,
+                data: { titulo: 'Casa térrea quintal amplo', endereco: 'Alameda dos Pássaros, 95 — Vila Esperança', bairro: 'Vila Esperança', valor: 2300 },
+                pin: { id: 'pin_p2', badge: 'R$ 2.300', title: 'Casa térrea quintal amplo', address: 'Alameda dos Pássaros, 95 — Vila Esperança', distance: '3,2 km · 8 min', x: 70, y: 62 }
+              },
+              {
+                id: 'pub_03',
+                customerId: null,
+                data: { titulo: 'Sala comercial 45m²', endereco: 'Rua Quinze de Novembro, 210 — Centro', bairro: 'Centro', valor: 1700 },
+                pin: { id: 'pin_p3', badge: 'R$ 1.700', title: 'Sala comercial 45m²', address: 'Rua Quinze de Novembro, 210 — Centro', distance: '1,2 km · 4 min', x: 52, y: 46 }
+              },
+              {
+                id: 'pub_04',
+                customerId: null,
+                data: { titulo: 'Kitnet mobiliada próx. faculdade', endereco: 'Av. Universitária, 800 — Universitário', bairro: 'Universitário', valor: 1250 },
+                pin: { id: 'pin_p4', badge: 'R$ 1.250', title: 'Kitnet mobiliada próx. faculdade', address: 'Av. Universitária, 800 — Universitário', distance: '4,0 km · 11 min', x: 36, y: 70 }
+              }
             ]
           }
         ],
         intents: [
           {
+            id: 'int_imoveis',
+            code: 'listar_imoveis',
+            title: 'Imóveis disponíveis',
+            subtitle: 'Lista imóveis com cartão de mini-mapa interativo e pins de preço',
+            visibility: 'PUBLIC',
+            actionType: 'PUBLIC_CATALOG_LIST',
+            collectionId: 'col_imoveis',
+            attachMap: true,
+            keywords: ['imoveis', 'catalogo', 'alugar'],
+            template: '• {{registro.titulo}} ({{registro.bairro}}) — {{registro.valor}}/mês'
+          },
+          {
             id: 'int_aluguel',
             code: 'consultar_aluguel',
             title: 'Meu aluguel',
-            subtitle: 'Informa valor, vencimento e Pix apenas ao inquilino dono do contrato',
+            subtitle: 'Informa valor, vencimento, Pix e mapa do imóvel ao inquilino',
             visibility: 'PRIVATE',
             actionType: 'CUSTOMER_RECORD_LOOKUP',
             collectionId: 'col_contratos',
+            attachMap: true,
             keywords: ['aluguel', 'valor', 'boleto'],
-            template: 'Olá, {{cliente.nome}}!\n\nImóvel: {{registro.imovel}}\nValor atual: {{registro.valor_aluguel}}\nVencimento: {{registro.vencimento}}\nSituação: {{registro.status_parcela}}\n\nChave Pix: {{comercio.chave_pix}}'
+            template: 'Olá, {{cliente.nome}}!\n\nImóvel: {{registro.imovel}}\nEndereço: {{registro.endereco}}\nValor atual: {{registro.valor_aluguel}}\nVencimento: {{registro.vencimento}}\nSituação: {{registro.status_parcela}}\n\nChave Pix: {{comercio.chave_pix}}'
+          },
+          {
+            id: 'int_local',
+            code: 'como_chegar',
+            title: 'Como chegar (Mapa)',
+            subtitle: 'Envia o cartão de mapa interativo com endereço e rota da imobiliária',
+            visibility: 'PUBLIC',
+            actionType: 'STATIC_MESSAGE',
+            collectionId: null,
+            attachMap: true,
+            keywords: ['endereco', 'mapa', 'localizacao', 'como chegar'],
+            template: 'Estamos na {{comercio.endereco}}.\nHorário: {{comercio.horario_atendimento}}.\n\nToque no mapa abaixo para traçar sua rota:'
           },
           {
             id: 'int_pix',
@@ -239,19 +315,9 @@
             visibility: 'PUBLIC',
             actionType: 'STATIC_MESSAGE',
             collectionId: null,
+            attachMap: false,
             keywords: ['pix', 'pagamento'],
             template: 'Chave Pix oficial da {{comercio.nome}}:\n\n{{comercio.chave_pix}}\n\nApós pagar, envie o comprovante por aqui ({{comercio.horario_atendimento}}).'
-          },
-          {
-            id: 'int_imoveis',
-            code: 'listar_imoveis',
-            title: 'Imóveis disponíveis',
-            subtitle: 'Mostra a vitrine pública de imóveis para qualquer interessado',
-            visibility: 'PUBLIC',
-            actionType: 'PUBLIC_CATALOG_LIST',
-            collectionId: 'col_imoveis',
-            keywords: ['imoveis', 'catalogo', 'alugar'],
-            template: '• {{registro.titulo}} ({{registro.bairro}}) — {{registro.valor}}/mês'
           },
           {
             id: 'int_humano',
@@ -261,6 +327,7 @@
             visibility: 'PUBLIC',
             actionType: 'HUMAN_HANDOFF',
             collectionId: null,
+            attachMap: false,
             keywords: ['atendente', 'humano'],
             template: 'Tudo bem! Pausei o atendimento automático e avisei nossa equipe na {{comercio.nome}}. Já vamos te responder por aqui ({{comercio.horario_atendimento}}).'
           }
@@ -279,7 +346,17 @@
           nome: 'Oficina Silva Auto',
           chave_pix: 'pix@silvaauto-demo.exemplo',
           horario_atendimento: 'Seg a Sáb, 08h às 17h',
-          telefone_suporte: '(11) 3000-0099'
+          telefone_suporte: '(11) 3000-0099',
+          endereco: 'Av. Brasil, 1520 — Centro'
+        },
+        hqPin: {
+          id: 'hq_ofic',
+          badge: 'Oficina Silva',
+          title: 'Oficina Silva Auto (Box Principal)',
+          address: 'Av. Brasil, 1520 — Centro',
+          distance: '2,4 km · 7 min de carro',
+          x: 48,
+          y: 50
         },
         authHint: '4 últimos dígitos do CPF',
         sessionTtlMin: 30,
@@ -306,8 +383,18 @@
               { key: 'previsao_entrega', label: 'Previsão de entrega', type: 'date', inTemplate: true }
             ],
             records: [
-              { id: 'os_01', customerId: 'cus_21', data: { veiculo: 'OS #412 — Sedan Prata', status_servico: 'Pronto para retirada', orcamento: 890, previsao_entrega: '23/11/2026' } },
-              { id: 'os_02', customerId: 'cus_22', data: { veiculo: 'OS #418 — Hatch Branco', status_servico: 'Aguardando peça', orcamento: 1420, previsao_entrega: '25/11/2026' } }
+              {
+                id: 'os_01',
+                customerId: 'cus_21',
+                data: { veiculo: 'OS #412 — Sedan Prata', status_servico: 'Pronto para retirada', orcamento: 890, previsao_entrega: '23/11/2026' },
+                pin: { id: 'pin_os1', badge: 'Retirada aqui', title: 'Oficina Silva Auto — Retirada de Veículo', address: 'Av. Brasil, 1520 — Centro', distance: '2,4 km · 7 min', x: 48, y: 50 }
+              },
+              {
+                id: 'os_02',
+                customerId: 'cus_22',
+                data: { veiculo: 'OS #418 — Hatch Branco', status_servico: 'Aguardando peça', orcamento: 1420, previsao_entrega: '25/11/2026' },
+                pin: { id: 'pin_os2', badge: 'Oficina Silva', title: 'Oficina Silva Auto', address: 'Av. Brasil, 1520 — Centro', distance: '2,4 km · 7 min', x: 48, y: 50 }
+              }
             ]
           },
           {
@@ -335,12 +422,25 @@
             id: 'int_os',
             code: 'status_veiculo',
             title: 'Status do meu carro',
-            subtitle: 'Mostra etapa do conserto, orçamento aprovado e previsão ao dono do veículo',
+            subtitle: 'Mostra etapa do conserto, orçamento e mapa da oficina para retirada',
             visibility: 'PRIVATE',
             actionType: 'CUSTOMER_RECORD_LOOKUP',
             collectionId: 'col_os',
+            attachMap: true,
             keywords: ['carro', 'os', 'pronto'],
             template: 'Olá, {{cliente.nome}}!\n\nVeículo: {{registro.veiculo}}\nEtapa: {{registro.status_servico}}\nOrçamento: {{registro.orcamento}}\nPrevisão: {{registro.previsao_entrega}}\n\nPix: {{comercio.chave_pix}}'
+          },
+          {
+            id: 'int_local_ofic',
+            code: 'como_chegar_ofic',
+            title: 'Como chegar (Mapa)',
+            subtitle: 'Envia o cartão de mapa interativo com a localização da oficina',
+            visibility: 'PUBLIC',
+            actionType: 'STATIC_MESSAGE',
+            collectionId: null,
+            attachMap: true,
+            keywords: ['endereco', 'mapa', 'como chegar'],
+            template: 'Nossa oficina fica na {{comercio.endereco}}.\nAtendemos {{comercio.horario_atendimento}}.\n\nVeja o mapa abaixo para traçar a rota:'
           },
           {
             id: 'int_srv',
@@ -350,6 +450,7 @@
             visibility: 'PUBLIC',
             actionType: 'PUBLIC_CATALOG_LIST',
             collectionId: 'col_servicos',
+            attachMap: false,
             keywords: ['servicos', 'preco'],
             template: '• {{registro.servico}} — a partir de {{registro.valor}}'
           },
@@ -361,6 +462,7 @@
             visibility: 'PUBLIC',
             actionType: 'HUMAN_HANDOFF',
             collectionId: null,
+            attachMap: false,
             keywords: ['atendente', 'humano'],
             template: 'Atendimento automático pausado! Nossa equipe da {{comercio.nome}} vai falar com você em instantes ({{comercio.horario_atendimento}}).'
           }
@@ -378,7 +480,7 @@
       tenantKey: 'imobiliaria',
       view: 'dashboard',
       collectionTab: 'col_contratos',
-      selectedIntentId: 'int_aluguel',
+      selectedIntentId: 'int_imoveis',
       simProfile: 'cus_01',
       inspectorOpen: false,
       sim: null
@@ -433,17 +535,132 @@
     }
 
     // =========================================================================
+    // COMPONENTE: CARD DE MINI-MAPA INTERATIVO ESTILO APPLE MAPS (Dentro do iPhone)
+    // =========================================================================
+    function renderMiniMapCard(mapData, msgIdx = 0) {
+      if (!mapData || !mapData.pins || mapData.pins.length === 0) return '';
+      const activeId = mapData.activePinId || mapData.pins[0].id;
+      const activePin = mapData.pins.find(p => p.id === activeId) || mapData.pins[0];
+      const zoom = mapData.zoom || 1;
+
+      return `
+        <div data-component="AppleMiniMapCard (Novo)" class="apple-map-card w-full mt-1.5 text-left">
+          <span class="comp-tag">AppleMiniMapCard · Novo</span>
+          <!-- Viewport Vetorial estilo Apple Maps -->
+          <div class="apple-map-viewport h-36 w-full">
+            <svg viewBox="0 0 240 130" class="w-full h-full block" style="transform: scale(${zoom}); transform-origin: ${activePin.x}% ${activePin.y}%; transition: transform 0.25s ease;">
+              <!-- Quarteirões urbanos -->
+              <rect width="240" height="130" fill="var(--map-canvas)" />
+              <rect x="10" y="10" width="55" height="36" rx="6" fill="var(--map-block)" />
+              <rect x="78" y="10" width="72" height="36" rx="6" fill="var(--map-plaza)" />
+              <rect x="162" y="10" width="68" height="36" rx="6" fill="var(--map-block)" />
+              <rect x="10" y="58" width="55" height="62" rx="6" fill="var(--map-block)" />
+              <rect x="78" y="58" width="72" height="62" rx="6" fill="var(--map-block)" />
+              <rect x="162" y="58" width="68" height="62" rx="6" fill="var(--map-plaza)" />
+
+              <!-- Avenidas e Ruas -->
+              <path d="M0 52 H240 M71 0 V130 M156 0 V130 M0 92 H240" stroke="var(--map-road-border)" stroke-width="8" fill="none" />
+              <path d="M0 52 H240 M71 0 V130 M156 0 V130 M0 92 H240" stroke="var(--map-road)" stroke-width="6" fill="none" />
+
+              <!-- Rota tracejada em Apple Blue até o pino ativo -->
+              <path d="M 24 108 Q 71 92 ${(activePin.x * 2.4).toFixed(0)} ${(activePin.y * 1.3).toFixed(0)}" stroke="var(--map-route)" stroke-width="2.5" stroke-dasharray="4 3" fill="none" stroke-linecap="round" />
+              <circle cx="24" cy="108" r="4" fill="var(--primary)" />
+            </svg>
+
+            <!-- Pins Interativos Clicáveis -->
+            ${mapData.pins.map(p => {
+              const isAct = p.id === activePin.id;
+              return `
+                <button type="button" data-map-msg="${msgIdx}" data-map-pin="${escapeHtml(p.id)}"
+                  class="apple-map-pin ${isAct ? 'apple-map-pin-active' : 'apple-map-pin-idle'}"
+                  style="left: ${p.x}%; top: ${p.y}%;"
+                  title="Tocar para ver ${escapeHtml(p.title)}">
+                  📍 ${escapeHtml(p.badge)}
+                </button>
+              `;
+            }).join('')}
+
+            <!-- Controles de Zoom (+/-) -->
+            <div class="absolute top-2 right-2 flex flex-col rounded-lg overflow-hidden shadow-sm">
+              <button type="button" data-map-zoom="in" data-map-msg="${msgIdx}" class="apple-map-ctrl w-6 h-6 text-xs font-bold flex items-center justify-center hover:opacity-80" title="Aproximar mapa">+</button>
+              <button type="button" data-map-zoom="out" data-map-msg="${msgIdx}" class="apple-map-ctrl w-6 h-6 text-xs font-bold flex items-center justify-center border-t border-[var(--border)] hover:opacity-80" title="Afastar mapa">−</button>
+            </div>
+
+            <!-- Selo Apple Maps clean -->
+            <div class="absolute bottom-1.5 left-2 px-2 py-0.5 rounded-full apple-map-ctrl text-[10px] font-semibold">
+              Mapa interativo · Toque nos pinos
+            </div>
+          </div>
+
+          <!-- Rodapé do Card do Mapa com Endereço e Botão de Rota -->
+          <div class="p-3 bg-[var(--card)] space-y-2">
+            <div class="flex items-start justify-between gap-2">
+              <div class="min-w-0">
+                <div class="text-xs font-semibold truncate">${escapeHtml(activePin.title)}</div>
+                <div class="text-[11px] text-[var(--muted-foreground)] truncate">${escapeHtml(activePin.address)}</div>
+              </div>
+              <span class="text-[10px] px-2 py-0.5 rounded-full soft-primary font-semibold shrink-0">${escapeHtml(activePin.distance)}</span>
+            </div>
+
+            <div class="flex items-center justify-between gap-2 pt-1 border-t border-[var(--border)]">
+              <button type="button" data-open-route="${escapeHtml(activePin.title)}" data-route-addr="${escapeHtml(activePin.address)}" data-route-dist="${escapeHtml(activePin.distance)}" class="text-xs font-semibold apple-link flex items-center gap-1">
+                <span>Traçar rota no Mapa</span><span>↗</span>
+              </button>
+              ${mapData.pins.length > 1 ? `<span class="text-[10px] text-[var(--muted-foreground)]">${mapData.pins.length} locais neste mapa</span>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function openRouteDetailModal(title, address, distance) {
+      const body = `
+        <div class="apple-map-card">
+          <div class="apple-map-viewport h-48 w-full">
+            <svg viewBox="0 0 360 170" class="w-full h-full block">
+              <rect width="360" height="170" fill="var(--map-canvas)" />
+              <rect x="14" y="14" width="90" height="52" rx="8" fill="var(--map-block)" />
+              <rect x="120" y="14" width="110" height="52" rx="8" fill="var(--map-plaza)" />
+              <rect x="246" y="14" width="100" height="52" rx="8" fill="var(--map-block)" />
+              <rect x="14" y="82" width="90" height="74" rx="8" fill="var(--map-block)" />
+              <rect x="120" y="82" width="110" height="74" rx="8" fill="var(--map-block)" />
+              <rect x="246" y="82" width="100" height="74" rx="8" fill="var(--map-plaza)" />
+              <path d="M0 74 H360 M112 0 V170 M238 0 V170 M0 126 H360" stroke="var(--map-road-border)" stroke-width="10" fill="none" />
+              <path d="M0 74 H360 M112 0 V170 M238 0 V170 M0 126 H360" stroke="var(--map-road)" stroke-width="8" fill="none" />
+              <path d="M 48 138 L 112 138 L 112 74 L 220 74" stroke="var(--map-route)" stroke-width="4" stroke-dasharray="6 4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="48" cy="138" r="5" fill="var(--primary)" />
+              <circle cx="220" cy="74" r="7" fill="var(--accent)" />
+            </svg>
+            <div class="apple-map-pin apple-map-pin-active" style="left: 61%; top: 43%;">📍 ${escapeHtml(title)}</div>
+          </div>
+        </div>
+        <div class="apple-subcard p-4 space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="font-semibold text-sm">${escapeHtml(title)}</span>
+            <span class="px-2.5 py-0.5 rounded-full soft-primary font-semibold">${escapeHtml(distance)}</span>
+          </div>
+          <div class="text-[var(--muted-foreground)]">Endereço: <strong>${escapeHtml(address)}</strong></div>
+          <div class="text-[var(--muted-foreground)] pt-1">No celular real do cliente, este botão abre diretamente o <strong>Apple Maps</strong>, <strong>Google Maps</strong> ou <strong>Waze</strong> com a rota pronta.</div>
+        </div>
+      `;
+      const footer = `
+        <button type="button" onclick="closeModal()" class="apple-btn-primary text-xs px-5 py-2">Fechar mapa</button>
+      `;
+      openModal('Rota Interativa no Celular do Cliente', body, footer);
+    }
+
+    // =========================================================================
     // MOTOR DETERMINÍSTICO DO SIMULADOR
     // =========================================================================
-    function simPushBot(text, buttons = [], footer = '') {
-      uiState.sim.messages.push({ from: 'bot', text, buttons, footer });
+    function simPushBot(text, buttons = [], footer = '', mapCard = null) {
+      uiState.sim.messages.push({ from: 'bot', text, buttons, footer, mapCard });
     }
 
     function simMenuButtons(tenant) {
       return tenant.intents.map(i => ({
         id: `intent:${i.id}`,
         label: i.title,
-        tag: i.visibility === 'PRIVATE' ? '🔒' : ''
+        tag: i.visibility === 'PRIVATE' ? '🔒' : (i.attachMap ? '📍' : '')
       }));
     }
 
@@ -461,7 +678,7 @@
 
     function simExecuteIntent(intent) {
       const t = currentTenant();
-      addAuditLog('INTENT_MATCH', `intent=${intent.code} visibility=${intent.visibility}`);
+      addAuditLog('INTENT_MATCH', `intent=${intent.code} visibility=${intent.visibility} map=${Boolean(intent.attachMap)}`);
 
       if (intent.actionType === 'HUMAN_HANDOFF') {
         uiState.sim.state = 'HANDOFF_HUMAN';
@@ -475,7 +692,8 @@
         if (intent.actionType === 'STATIC_MESSAGE') {
           uiState.sim.state = 'PUBLIC_RESULT';
           const msg = renderSafeTemplate(intent.template, { tenant: t });
-          simPushBot(msg, [{ id: 'sys:menu', label: 'Voltar ao início' }]);
+          const mapCard = (intent.attachMap && t.hqPin) ? { pins: [t.hqPin], activePinId: t.hqPin.id, zoom: 1 } : null;
+          simPushBot(msg, [{ id: 'sys:menu', label: 'Voltar ao início' }], '', mapCard);
           return;
         }
         if (intent.actionType === 'PUBLIC_CATALOG_LIST') {
@@ -485,12 +703,15 @@
           const start = uiState.sim.publicPage * pageSize;
           const slice = col.records.slice(start, start + pageSize);
           const lines = slice.map(r => renderSafeTemplate(intent.template, { tenant: t, collection: col, record: r }));
+          const pins = intent.attachMap ? slice.map(r => r.pin).filter(Boolean) : [];
+          const mapCard = pins.length > 0 ? { pins, activePinId: pins[0].id, zoom: 1 } : null;
+
           const btns = [];
           if (start + pageSize < col.records.length) {
             btns.push({ id: `sys:next_pub:${intent.id}`, label: `Ver mais opções (${col.records.length - (start + pageSize)})` });
           }
           btns.push({ id: 'sys:menu', label: 'Voltar ao início' });
-          simPushBot(`${col.name}:\n\n${lines.join('\n')}`, btns, `Atualizado: ${col.lastSynced}`);
+          simPushBot(`${col.name}:\n\n${lines.join('\n')}`, btns, `Atualizado: ${col.lastSynced}`, mapCard);
           return;
         }
       }
@@ -546,7 +767,8 @@
       if (owned.length === 1) {
         uiState.sim.state = 'PRIVATE_RESULT';
         const text = renderSafeTemplate(intent.template, { tenant: t, customer: { nome: customer.name }, collection: col, record: owned[0] });
-        simPushBot(text, [{ id: 'sys:menu', label: 'Voltar ao início' }], `Atualizado: ${col.lastSynced}`);
+        const mapCard = (intent.attachMap && owned[0].pin) ? { pins: [owned[0].pin], activePinId: owned[0].pin.id, zoom: 1 } : null;
+        simPushBot(text, [{ id: 'sys:menu', label: 'Voltar ao início' }], `Atualizado: ${col.lastSynced}`, mapCard);
         return;
       }
 
@@ -635,8 +857,9 @@
         if (rec && intent && customer && rec.customerId === customer.id) {
           uiState.sim.state = 'PRIVATE_RESULT';
           const text = renderSafeTemplate(intent.template, { tenant: t, customer: { nome: customer.name }, collection: col, record: rec });
-          simPushBot(text, [{ id: 'sys:menu', label: 'Voltar ao início' }], `Atualizado: ${col.lastSynced}`);
-          addAuditLog('RECORD_RENDERED', `tenant=${t.id} col=${col.slug} record=${rec.id} pii=REDACTED`);
+          const mapCard = (intent.attachMap && rec.pin) ? { pins: [rec.pin], activePinId: rec.pin.id, zoom: 1 } : null;
+          simPushBot(text, [{ id: 'sys:menu', label: 'Voltar ao início' }], `Atualizado: ${col.lastSynced}`, mapCard);
+          addAuditLog('RECORD_RENDERED', `tenant=${t.id} col=${col.slug} record=${rec.id} map=${Boolean(mapCard)} pii=REDACTED`);
         }
         return;
       }
@@ -753,8 +976,18 @@
           record: sampleRecord
         });
 
+        let previewMap = null;
+        if (intent.attachMap) {
+          if (col && sampleRecord?.pin) {
+            const pins = intent.actionType === 'PUBLIC_CATALOG_LIST' ? col.records.slice(0, 2).map(r => r.pin).filter(Boolean) : [sampleRecord.pin];
+            previewMap = { pins, activePinId: pins[0]?.id, zoom: 1 };
+          } else if (t.hqPin) {
+            previewMap = { pins: [t.hqPin], activePinId: t.hqPin.id, zoom: 1 };
+          }
+        }
+
         return `
-          <div data-component="WhatsAppPreviewCard (Novo)" class="iphone-shell max-w-[330px] w-full mx-auto flex flex-col" style="height: 540px;">
+          <div data-component="WhatsAppPreviewCard (Novo)" class="iphone-shell max-w-[340px] w-full mx-auto flex flex-col" style="height: 580px;">
             <span class="comp-tag">WhatsAppPreviewCard · Novo</span>
             <div class="pt-2.5 pb-2 wa-topbar">
               <div class="iphone-island"></div>
@@ -767,16 +1000,17 @@
               </div>
             </div>
 
-            <div class="flex-1 p-3.5 chat-surface overflow-y-auto custom-scroll space-y-3 flex flex-col justify-end">
+            <div class="flex-1 p-3.5 chat-surface overflow-y-auto custom-scroll space-y-2.5 flex flex-col justify-end">
               <div class="flex justify-end">
                 <div class="bubble-user px-3.5 py-2 text-xs max-w-[82%]">${escapeHtml(intent.title)}</div>
               </div>
               <div class="flex justify-start">
-                <div class="w-full max-w-[92%] space-y-1.5">
+                <div class="w-full max-w-[94%] space-y-1.5">
                   <div class="bubble-bot px-3.5 py-2.5 text-xs whitespace-pre-line leading-relaxed">
                     ${escapeHtml(preview)}
                     ${col ? `<div class="mt-2 pt-1.5 border-t border-[var(--border)] text-[11px] text-[var(--muted-foreground)]">Atualizado: ${escapeHtml(col.lastSynced)}</div>` : ''}
                   </div>
+                  ${previewMap ? renderMiniMapCard(previewMap, -1) : ''}
                   <div class="wa-quick-btn py-2 px-3 text-center text-xs">Voltar ao início</div>
                 </div>
               </div>
@@ -784,7 +1018,7 @@
 
             <div class="p-2.5 bg-[var(--card)] border-t border-[var(--border)] text-center">
               <button type="button" onclick="switchView('simulator')" class="text-xs font-semibold apple-link">
-                Interagir com este fluxo no iPhone →
+                Testar mapa e conversa ao vivo no iPhone →
               </button>
             </div>
           </div>
@@ -792,7 +1026,7 @@
       }
 
       return `
-        <div data-component="ChatSimulator (Novo)" class="iphone-shell max-w-[370px] w-full mx-auto flex flex-col" style="height: 610px;">
+        <div data-component="ChatSimulator (Novo)" class="iphone-shell max-w-[375px] w-full mx-auto flex flex-col" style="height: 640px;">
           <span class="comp-tag">ChatSimulator · Novo</span>
           <div class="pt-2.5 pb-2.5 wa-topbar">
             <div class="iphone-island"></div>
@@ -811,15 +1045,16 @@
           </div>
 
           <div id="chatMessages" class="flex-1 p-3.5 chat-surface overflow-y-auto custom-scroll space-y-3">
-            ${s.messages.map(m => `
+            ${s.messages.map((m, idx) => `
               <div class="flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}">
-                <div class="max-w-[90%] space-y-1.5">
-                  <div class="${m.from === 'user' ? 'bubble-user' : 'bubble-bot'} px-3.5 py-2.5 text-xs whitespace-pre-line leading-relaxed">
+                <div class="w-full max-w-[92%] space-y-1.5 ${m.from === 'user' ? 'flex flex-col items-end' : ''}">
+                  <div class="${m.from === 'user' ? 'bubble-user' : 'bubble-bot w-full'} px-3.5 py-2.5 text-xs whitespace-pre-line leading-relaxed">
                     ${escapeHtml(m.text)}
                     ${m.footer ? `<div class="mt-2 pt-1.5 border-t border-[var(--border)] text-[11px] opacity-70">${escapeHtml(m.footer)}</div>` : ''}
                   </div>
+                  ${m.mapCard ? renderMiniMapCard(m.mapCard, idx) : ''}
                   ${m.buttons && m.buttons.length ? `
-                    <div class="flex flex-col gap-1.5">
+                    <div class="flex flex-col gap-1.5 w-full">
                       ${m.buttons.map(b => `
                         <button type="button" data-sim-reply="${escapeHtml(b.id)}" data-sim-label="${escapeHtml(b.label)}" class="wa-quick-btn w-full text-center text-xs py-2 px-3">
                           ${b.tag ? `${b.tag} ` : ''}${escapeHtml(b.label)}
@@ -865,7 +1100,7 @@
               <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--accent)]">Como funciona</span>
               <h2 class="text-base font-semibold apple-title mt-0.5">Seu atendimento personalizado em 3 passos simples</h2>
             </div>
-            <span class="text-xs text-[var(--muted-foreground)]">Sem inteligência artificial inventando valores</span>
+            <span class="text-xs text-[var(--muted-foreground)]">Valores e mapas direto da tabela do comércio</span>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
@@ -874,8 +1109,8 @@
                 <span class="w-6 h-6 rounded-full solid-graphite text-xs font-semibold flex items-center justify-center">1</span>
                 <span class="text-xs apple-link opacity-0 group-hover:opacity-100 transition-opacity">Abrir →</span>
               </div>
-              <div class="font-semibold text-xs mt-3">Conecte seus dados</div>
-              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Importe sua planilha do Google Sheets ou cadastre clientes, valores e itens disponíveis.</p>
+              <div class="font-semibold text-xs mt-3">Conecte seus dados e endereços</div>
+              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Importe sua planilha com clientes, valores e endereços dos imóveis ou serviços.</p>
             </button>
 
             <button type="button" onclick="switchView('intents')" class="apple-subcard p-4 text-left hover:border-[var(--accent)] transition-all group">
@@ -884,7 +1119,7 @@
                 <span class="text-xs apple-link opacity-0 group-hover:opacity-100 transition-opacity">Personalizar →</span>
               </div>
               <div class="font-semibold text-xs mt-3">Monte as respostas</div>
-              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Clique nas etiquetas como <span class="font-medium text-[var(--accent)]">+ Valor do Aluguel</span> para puxar o dado exato de cada cliente.</p>
+              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Use etiquetas como <span class="font-medium text-[var(--accent)]">+ Valor do Aluguel</span> e <span class="font-medium text-[var(--accent)]">+ Endereço (Mapa)</span>.</p>
             </button>
 
             <button type="button" onclick="switchView('simulator')" class="apple-subcard p-4 text-left hover:border-[var(--accent)] transition-all group">
@@ -892,8 +1127,8 @@
                 <span class="w-6 h-6 rounded-full solid-graphite text-xs font-semibold flex items-center justify-center">3</span>
                 <span class="text-xs apple-link opacity-0 group-hover:opacity-100 transition-opacity">Simular →</span>
               </div>
-              <div class="font-semibold text-xs mt-3">Teste no iPhone virtual</div>
-              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Veja como o cliente confirma os 4 últimos dígitos do CPF e recebe apenas o que é dele.</p>
+              <div class="font-semibold text-xs mt-3">Teste o chat e o mapa no iPhone</div>
+              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Toque nos pinos de preço do mini-mapa dentro do iPhone e teste a rota interativa.</p>
             </button>
           </div>
         </section>
@@ -1059,14 +1294,14 @@
             <div data-component="SchemaFieldList (Novo)" class="apple-subcard p-3.5 flex flex-wrap items-center justify-between gap-2">
               <span class="comp-tag">SchemaFieldList · Novo</span>
               <div class="flex items-center gap-2 flex-wrap text-xs">
-                <span class="text-[var(--muted-foreground)] font-medium">Colunas desta tabela (viram etiquetas nas mensagens):</span>
+                <span class="text-[var(--muted-foreground)] font-medium">Colunas desta tabela (viram etiquetas e mapa no WhatsApp):</span>
                 ${col.fields.map(f => `
                   <span class="px-2.5 py-1 rounded-lg bg-[var(--card)] border border-[var(--border)] font-medium">
-                    ${escapeHtml(f.label)}
+                    ${f.type === 'location' ? '📍 ' : ''}${escapeHtml(f.label)}
                   </span>
                 `).join('')}
               </div>
-              <button type="button" onclick="showToast('Você pode criar novas colunas personalizadas para o seu negócio.')" class="text-xs apple-link font-semibold">+ Nova coluna</button>
+              <button type="button" onclick="showToast('Você pode criar colunas de texto, valor, data ou endereço (mapa).')" class="text-xs apple-link font-semibold">+ Nova coluna</button>
             </div>
 
             <!-- Tabela de Dados -->
@@ -1086,7 +1321,7 @@
                       ${col.fields.map(f => {
                         const raw = r.data[f.key];
                         const formatted = f.type === 'currency_brl' ? formatBRL(raw) : String(raw ?? '—');
-                        return `<td class="py-3 px-3">${escapeHtml(formatted)}</td>`;
+                        return `<td class="py-3 px-3">${f.type === 'location' ? '📍 ' : ''}${escapeHtml(formatted)}</td>`;
                       }).join('')}
                     </tr>
                   `).join('')}
@@ -1120,10 +1355,11 @@
 
       const friendlyVars = [
         { token: '{{comercio.nome}}', label: 'Nome do Comércio' },
+        { token: '{{comercio.endereco}}', label: '📍 Endereço do Comércio' },
         { token: '{{comercio.chave_pix}}', label: 'Chave Pix' },
         { token: '{{comercio.horario_atendimento}}', label: 'Horário' },
         ...(intent.visibility === 'PRIVATE' ? [{ token: '{{cliente.nome}}', label: 'Nome do Cliente' }] : []),
-        ...(col ? col.fields.map(f => ({ token: `{{registro.${f.key}}}`, label: f.label })) : [])
+        ...(col ? col.fields.map(f => ({ token: `{{registro.${f.key}}}`, label: `${f.type === 'location' ? '📍 ' : ''}${f.label}` })) : [])
       ];
 
       return `
@@ -1141,7 +1377,7 @@
                   <div class="flex items-center justify-between gap-2">
                     <span class="text-xs font-semibold">${idx + 1}. ${escapeHtml(it.title)}</span>
                     <span class="text-[11px] px-2 py-0.5 rounded-full ${it.visibility === 'PRIVATE' ? 'soft-graphite' : 'soft-primary'}">
-                      ${it.visibility === 'PRIVATE' ? '🔒 Privada' : 'Pública'}
+                      ${it.visibility === 'PRIVATE' ? '🔒 Privada' : (it.attachMap ? '📍 Mapa' : 'Pública')}
                     </span>
                   </div>
                   <p class="text-[11px] text-[var(--muted-foreground)] font-normal mt-1 leading-snug">${escapeHtml(it.subtitle)}</p>
@@ -1181,8 +1417,17 @@
 
             <div>
               <label for="tplArea" class="block text-xs font-medium text-[var(--muted-foreground)] mb-1.5">Texto da mensagem (o iPhone ao lado atualiza na hora)</label>
-              <textarea id="tplArea" rows="7" oninput="updateIntentField('template', this.value)" class="w-full p-3.5 rounded-2xl bg-[var(--content)] border border-[var(--border)] text-xs leading-relaxed focus:outline-none focus:border-[var(--accent)]">${escapeHtml(intent.template)}</textarea>
+              <textarea id="tplArea" rows="6" oninput="updateIntentField('template', this.value)" class="w-full p-3.5 rounded-2xl bg-[var(--content)] border border-[var(--border)] text-xs leading-relaxed focus:outline-none focus:border-[var(--accent)]">${escapeHtml(intent.template)}</textarea>
             </div>
+
+            <!-- Switch de Mini-Mapa acoplado à resposta -->
+            <label class="apple-subcard p-3.5 flex items-center justify-between gap-3 cursor-pointer">
+              <div class="text-xs">
+                <div class="font-semibold">📍 Enviar cartão de mini-mapa interativo no iPhone</div>
+                <div class="text-[var(--muted-foreground)] mt-0.5">Gera o mapa com pino clicável e rota a partir do endereço da linha ou do comércio.</div>
+              </div>
+              <input type="checkbox" ${intent.attachMap ? 'checked' : ''} onchange="toggleIntentMap(this.checked)" class="accent-[var(--accent)] w-4 h-4 shrink-0 cursor-pointer" />
+            </label>
           </div>
 
           <!-- Coluna 3: iPhone Ao Vivo -->
@@ -1206,6 +1451,14 @@
       }
     }
 
+    function toggleIntentMap(checked) {
+      const t = currentTenant();
+      const intent = t.intents.find(i => i.id === uiState.selectedIntentId);
+      if (!intent) return;
+      intent.attachMap = Boolean(checked);
+      render();
+    }
+
     function renderSimulator(t) {
       if (!uiState.sim) resetSimulator();
       const s = uiState.sim;
@@ -1221,7 +1474,7 @@
           id: 'unknown',
           name: 'Visitante não cadastrado',
           badge: 'Teste de Segurança',
-          desc: 'Testa vitrine pública e bloqueio de dados privados (LGPD)',
+          desc: 'Testa vitrine pública com mapa e bloqueio de dados privados (LGPD)',
           phone: '+55 11 98888-0000'
         }
       ];
@@ -1275,7 +1528,7 @@
               <div>
                 <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--accent)]">Simulador interativo</span>
                 <h2 class="text-base font-semibold apple-title mt-0.5">Com qual cliente você quer testar agora?</h2>
-                <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Escolha uma pessoa abaixo e toque nos botões da tela do iPhone.</p>
+                <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Toque em <strong>Imóveis disponíveis</strong> ou <strong>Como chegar (Mapa)</strong> no iPhone para interagir com o mini-mapa.</p>
               </div>
 
               <div class="space-y-2.5">
@@ -1362,6 +1615,10 @@
 
             <div class="space-y-2.5 text-xs">
               <div class="apple-subcard p-3.5 flex justify-between gap-2">
+                <span class="text-[var(--muted-foreground)]">Endereço oficial (Mapa)</span>
+                <span class="font-semibold truncate">${escapeHtml(t.globals.endereco)}</span>
+              </div>
+              <div class="apple-subcard p-3.5 flex justify-between gap-2">
                 <span class="text-[var(--muted-foreground)]">Chave Pix oficial</span>
                 <span class="font-mono font-semibold truncate">${escapeHtml(t.globals.chave_pix)}</span>
               </div>
@@ -1395,9 +1652,9 @@
     // =========================================================================
     const VIEW_META = {
       dashboard:   { title: 'Início', subtitle: 'Resumo do seu autoatendimento e acesso rápido às configurações.' },
-      collections: { title: 'Cadastros e Tabelas', subtitle: 'Seus clientes e as tabelas que alimentam as respostas automáticas.' },
-      intents:     { title: 'Respostas do WhatsApp', subtitle: 'Personalize os botões do menu e veja como a mensagem fica no iPhone.' },
-      simulator:   { title: 'Testar no iPhone', subtitle: 'Simule a experiência real do seu cliente antes de ativar.' },
+      collections: { title: 'Cadastros e Tabelas', subtitle: 'Seus clientes e as tabelas que alimentam as respostas e mapas automáticos.' },
+      intents:     { title: 'Respostas do WhatsApp', subtitle: 'Personalize os botões do menu e veja como a mensagem e o mapa ficam no iPhone.' },
+      simulator:   { title: 'Testar no iPhone', subtitle: 'Simule a conversa e toque nos pinos do mini-mapa interativo.' },
       handoff:     { title: 'Atendimento Humano', subtitle: 'Conversas onde o robô foi pausado para sua equipe responder.' }
     };
 
@@ -1457,6 +1714,40 @@
       });
     }
     document.getElementById('mainContent').addEventListener('click', e => {
+      // Interação com pinos do Mini-Mapa dentro do iPhone
+      const pinBtn = e.target.closest('[data-map-pin]');
+      if (pinBtn) {
+        const msgIdx = Number(pinBtn.dataset.mapMsg);
+        const pinId = pinBtn.dataset.mapPin;
+        if (msgIdx >= 0 && uiState.sim?.messages[msgIdx]?.mapCard) {
+          uiState.sim.messages[msgIdx].mapCard.activePinId = pinId;
+          render();
+        }
+        return;
+      }
+
+      // Zoom (+/-) no Mini-Mapa
+      const zoomBtn = e.target.closest('[data-map-zoom]');
+      if (zoomBtn) {
+        const msgIdx = Number(zoomBtn.dataset.mapMsg);
+        const dir = zoomBtn.dataset.mapZoom;
+        if (msgIdx >= 0 && uiState.sim?.messages[msgIdx]?.mapCard) {
+          const curr = uiState.sim.messages[msgIdx].mapCard.zoom || 1;
+          const next = dir === 'in' ? Math.min(1.5, Number((curr + 0.25).toFixed(2))) : Math.max(1, Number((curr - 0.25).toFixed(2)));
+          uiState.sim.messages[msgIdx].mapCard.zoom = next;
+          render();
+        }
+        return;
+      }
+
+      // Abrir modal de rota detalhada
+      const routeBtn = e.target.closest('[data-open-route]');
+      if (routeBtn) {
+        openRouteDetailModal(routeBtn.dataset.openRoute || '', routeBtn.dataset.routeAddr || '', routeBtn.dataset.routeDist || '');
+        return;
+      }
+
+      // Clique nos botões de resposta rápida do WhatsApp
       const simBtn = e.target.closest('[data-sim-reply]');
       if (simBtn) {
         simReceiveUser(simBtn.dataset.simLabel || '', 'INTERACTIVE_REPLY', simBtn.dataset.simReply || '');
@@ -1465,6 +1756,8 @@
         if (box) box.scrollTop = box.scrollHeight;
         return;
       }
+
+      // Inserir etiqueta no editor de template
       const varBtn = e.target.closest('[data-insert-var]');
       if (varBtn) {
         const t = currentTenant();
