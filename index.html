@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AtendeBase — Mockup Interativo (Atendimento Personalizado Multi-Comércio)</title>
+  <meta name="description" content="Protótipo interativo de SaaS de atendimento automático personalizado para comércios com dados 100% fictícios." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./cores.css" />
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased m-0 p-0">
+  <div class="min-h-screen flex flex-col lg:flex-row">
+
+    <!-- SIDEBAR (Componente: AppSidebar) -->
+    <aside data-component="AppSidebar (Novo)" class="w-full lg:w-64 shrink-0 bg-[var(--sidebar)] border-b lg:border-b-0 lg:border-r border-[var(--border)] flex flex-col">
+      <span class="comp-tag">AppSidebar · Novo</span>
+
+      <!-- Marca + Seletor de Tenant -->
+      <div class="p-4 border-b border-[var(--border)] space-y-3">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center font-bold text-sm">AB</div>
+            <div>
+              <div class="font-bold text-sm leading-tight">AtendeBase</div>
+              <div class="text-xs text-[var(--muted-foreground)]">Mockup SDD v0.1</div>
+            </div>
+          </div>
+          <span class="text-xs px-2 py-0.5 rounded-full border soft-primary font-medium">Demo</span>
+        </div>
+
+        <!-- Troca de Comércio (prova visual multi-tenant) -->
+        <div>
+          <label for="tenantSelect" class="block text-xs text-[var(--muted-foreground)] mb-1">Comércio ativo (Tenant)</label>
+          <select id="tenantSelect" class="w-full text-xs rounded-lg px-2.5 py-2 bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)]">
+            <option value="imobiliaria">Imobiliária Horizonte (Piloto)</option>
+            <option value="oficina">Oficina Silva Auto (Exemplo)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Menu principal -->
+      <nav class="p-3 flex lg:flex-col gap-1 overflow-x-auto lg:overflow-visible flex-1" aria-label="Navegação principal">
+        <button data-view="dashboard" class="nav-btn nav-active flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-left whitespace-nowrap transition-colors">
+          <span>◉</span><span>Visão Geral</span>
+        </button>
+        <button data-view="collections" class="nav-btn nav-idle flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-left whitespace-nowrap transition-colors">
+          <span>▤</span><span>Coleções &amp; Dados</span>
+        </button>
+        <button data-view="intents" class="nav-btn nav-idle flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-left whitespace-nowrap transition-colors">
+          <span>❖</span><span>Menus &amp; Templates</span>
+        </button>
+        <button data-view="simulator" class="nav-btn nav-idle flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-xs text-left whitespace-nowrap transition-colors">
+          <span class="flex items-center gap-2.5"><span>▶</span><span>Simulador WhatsApp</span></span>
+          <span class="text-xs px-1.5 py-0.5 rounded soft-success border font-medium">Live</span>
+        </button>
+        <button data-view="handoff" class="nav-btn nav-idle flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-xs text-left whitespace-nowrap transition-colors">
+          <span class="flex items-center gap-2.5"><span>⇄</span><span>Transbordos &amp; Canal</span></span>
+          <span id="handoffBadge" class="text-xs px-1.5 rounded-full soft-warning border font-semibold">2</span>
+        </button>
+      </nav>
+
+      <!-- Rodapé Sidebar -->
+      <div class="hidden lg:block p-3 border-t border-[var(--border)] space-y-2">
+        <label class="flex items-center justify-between gap-2 px-2.5 py-2 rounded-lg bg-[var(--card)] border border-[var(--border)] cursor-pointer text-xs">
+          <span class="font-medium">Mapa Component-First</span>
+          <input id="toggleComponents" type="checkbox" class="accent-[var(--primary)]" />
+        </label>
+        <div class="text-xs text-[var(--muted-foreground)] px-1 leading-relaxed">
+          Dados 100% fictícios (LGPD). Motor determinístico sem IA na v1.
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+      <!-- TOPBAR (Componente: PageHeader) -->
+      <header data-component="PageHeader (Novo)" class="bg-[var(--card)] border-b border-[var(--border)] px-4 sm:px-5 py-3.5 flex flex-wrap items-center justify-between gap-3">
+        <span class="comp-tag">PageHeader · Novo</span>
+        <div class="min-w-0">
+          <h1 id="pageTitle" class="text-sm sm:text-base font-bold leading-tight truncate">Visão Geral</h1>
+          <p id="pageSubtitle" class="text-xs text-[var(--muted-foreground)] mt-0.5"></p>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="hidden sm:inline-flex text-xs px-2.5 py-1 rounded-full border soft-success font-medium">● WhatsApp Cloud API · Conectado</span>
+          <button id="btnToggleTheme" type="button" class="text-xs px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--content)] hover:border-[var(--primary)] font-medium transition-colors" aria-label="Alternar tema claro e escuro">
+            🌙 Escuro
+          </button>
+          <button id="btnQuickSim" type="button" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold hover:opacity-90 transition-opacity">
+            ▶ Testar Simulador
+          </button>
+        </div>
+      </header>
+
+      <!-- ÁREA DA TELA ATIVA -->
+      <main id="mainContent" class="flex-1 p-4 sm:p-5 space-y-5 overflow-y-auto custom-scroll"></main>
+    </div>
+  </div>
+
+  <!-- MODAL GENÉRICO (Componente: ModalDialog) -->
+  <div id="modalBackdrop" class="hidden fixed inset-0 z-50 modal-overlay backdrop-blur-[1px] flex items-center justify-center p-4">
+    <div data-component="ModalDialog (Novo)" class="bg-[var(--card)] border border-[var(--border)] rounded-xl max-w-2xl w-full surface-shadow overflow-hidden flex flex-col max-h-[88vh]">
+      <span class="comp-tag">ModalDialog · Novo</span>
+      <div class="px-5 py-3.5 border-b border-[var(--border)] flex items-center justify-between">
+        <h2 id="modalTitle" class="text-sm font-bold">Modal</h2>
+        <button id="modalClose" type="button" class="text-xs px-2 py-1 rounded-md border border-[var(--border)] hover:bg-[var(--content)]">Fechar ✕</button>
+      </div>
+      <div id="modalBody" class="p-5 overflow-y-auto custom-scroll space-y-4 text-xs"></div>
+      <div id="modalFooter" class="px-5 py-3 border-t border-[var(--border)] bg-[var(--content)] flex items-center justify-end gap-2"></div>
+    </div>
+  </div>
+
+  <!-- TOAST (Componente: ToastNotification) -->
+  <div id="toast" class="hidden fixed bottom-4 right-4 z-50 px-4 py-2.5 rounded-lg border bg-[var(--card)] border-[var(--border)] surface-shadow text-xs font-medium flex items-center gap-2"></div>
+
+  <script>
+    // =========================================================================
+    // UTILITÁRIO DE SEGURANÇA (Zero XSS — escapeHtml obrigatório)
+    // =========================================================================
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function formatBRL(num) {
+      return Number(num).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    // =========================================================================
+    // TEMA CLARO / ESCURO (Claro por padrão)
+    // =========================================================================
+    function applyTheme(theme) {
+      const safeTheme = theme === 'dark' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', safeTheme);
+      const btn = document.getElementById('btnToggleTheme');
+      if (btn) btn.textContent = safeTheme === 'dark' ? '☀ Claro' : '🌙 Escuro';
+      try { localStorage.setItem('atendebase_theme', safeTheme); } catch (_) {}
+    }
+
+    function initTheme() {
+      let saved = 'light';
+      try {
+        const raw = localStorage.getItem('atendebase_theme');
+        if (raw === 'dark' || raw === 'light') saved = raw;
+      } catch (_) {}
+      applyTheme(saved);
+    }
+
+    // =========================================================================
+    // DADOS FICTÍCIOS MULTI-TENANT (LGPD — 100% fictício)
+    // =========================================================================
+    const TENANTS = {
+      imobiliaria: {
+        id: 'tnt_imob_01',
+        name: 'Imobiliária Horizonte',
+        niche: 'Imobiliária',
+        globals: {
+          nome: 'Imobiliária Horizonte',
+          chave_pix: 'financeiro@horizonte-demo.exemplo',
+          horario_atendimento: 'Seg a Sex, 08h às 18h',
+          telefone_suporte: '(11) 3000-0001'
+        },
+        authHint: '4 últimos dígitos do CPF',
+        sessionTtlMin: 30,
+        metrics: { today: 47, autoRate: '91%', handoffs: 2, freshness: 'Há 18 min' },
+        staleAlert: {
+          active: true,
+          collection: 'Imóveis Disponíveis',
+          detail: 'Última atualização há 52h (limite configurado: 48h). Recomenda-se sincronizar antes de responder novos leads.'
+        },
+        customers: [
+          { id: 'cus_01', name: 'Maria Souza', phone: '+55 11 99999-0001', cpfLast4: '7735', email: 'maria.demo@exemplo.com', active: true },
+          { id: 'cus_02', name: 'João Pereira', phone: '+55 11 99999-0002', cpfLast4: '1234', email: 'joao.demo@exemplo.com', active: true },
+          { id: 'cus_03', name: 'Carla Lima', phone: '+55 11 99999-0003', cpfLast4: '9876', email: 'carla.demo@exemplo.com', active: true }
+        ],
+        collections: [
+          {
+            id: 'col_contratos',
+            slug: 'contratos_locacao',
+            name: 'Contratos de Locação',
+            visibility: 'PRIVATE',
+            source: 'GOOGLE_SHEETS',
+            lastSynced: '23/11 às 09:15',
+            stale: false,
+            titleField: 'imovel',
+            fields: [
+              { key: 'imovel', label: 'Imóvel', type: 'text', required: true, inTemplate: true },
+              { key: 'valor_aluguel', label: 'Valor do Aluguel', type: 'currency_brl', required: true, inTemplate: true },
+              { key: 'vencimento', label: 'Vencimento', type: 'date', required: true, inTemplate: true },
+              { key: 'status_parcela', label: 'Status', type: 'enum', required: true, inTemplate: true }
+            ],
+            records: [
+              { id: 'rec_101', customerId: 'cus_01', data: { imovel: 'Apt 302 — Ed. Ipê', valor_aluguel: 1850, vencimento: '05/12/2026', status_parcela: 'Em aberto' } },
+              { id: 'rec_102', customerId: 'cus_01', data: { imovel: 'Sala 04 — Centro', valor_aluguel: 2400, vencimento: '10/12/2026', status_parcela: 'Em aberto' } },
+              { id: 'rec_103', customerId: 'cus_02', data: { imovel: 'Casa Rua das Flores, 88', valor_aluguel: 2150, vencimento: '05/12/2026', status_parcela: 'Pago' } },
+              { id: 'rec_104', customerId: 'cus_03', data: { imovel: 'Kitnet 12 — Vila Nova', valor_aluguel: 1120, vencimento: '15/12/2026', status_parcela: 'Em aberto' } }
+            ]
+          },
+          {
+            id: 'col_imoveis',
+            slug: 'imoveis_disponiveis',
+            name: 'Imóveis Disponíveis',
+            visibility: 'PUBLIC',
+            source: 'CSV_IMPORT',
+            lastSynced: '21/11 às 05:10',
+            stale: true,
+            titleField: 'titulo',
+            fields: [
+              { key: 'titulo', label: 'Título', type: 'text', required: true, inTemplate: true },
+              { key: 'bairro', label: 'Bairro', type: 'text', required: true, inTemplate: true },
+              { key: 'valor', label: 'Aluguel mensal', type: 'currency_brl', required: true, inTemplate: true },
+              { key: 'quartos', label: 'Quartos', type: 'number', required: false, inTemplate: true }
+            ],
+            records: [
+              { id: 'pub_01', customerId: null, data: { titulo: 'Apt 2 quartos c/ garagem', bairro: 'Jardim América', valor: 1950, quartos: 2 } },
+              { id: 'pub_02', customerId: null, data: { titulo: 'Casa térrea quintal amplo', bairro: 'Vila Esperança', valor: 2300, quartos: 3 } },
+              { id: 'pub_03', customerId: null, data: { titulo: 'Sala comercial 45m²', bairro: 'Centro', valor: 1700, quartos: 0 } },
+              { id: 'pub_04', customerId: null, data: { titulo: 'Kitnet mobiliada próx. faculdade', bairro: 'Universitário', valor: 1250, quartos: 1 } }
+            ]
+          }
+        ],
+        intents: [
+          {
+            id: 'int_aluguel',
+            code: 'consultar_aluguel',
+            title: 'Meu aluguel',
+            visibility: 'PRIVATE',
+            actionType: 'CUSTOMER_RECORD_LOOKUP',
+            collectionId: 'col_contratos',
+            keywords: ['aluguel', 'valor', 'boleto'],
+            template: 'Olá {{cliente.nome}}!\n\nImóvel: {{registro.imovel}}\nAluguel atual: {{registro.valor_aluguel}}\nVencimento: {{registro.vencimento}}\nStatus: {{registro.status_parcela}}\n\nChave Pix: {{comercio.chave_pix}}\nAtualizado em {{colecao.atualizado_em}}.'
+          },
+          {
+            id: 'int_pix',
+            code: 'ver_pix',
+            title: 'Chave Pix',
+            visibility: 'PUBLIC',
+            actionType: 'STATIC_MESSAGE',
+            collectionId: null,
+            keywords: ['pix', 'pagamento'],
+            template: 'Nossa chave Pix oficial ({{comercio.nome}}):\n{{comercio.chave_pix}}\n\nEnvie o comprovante no horário de atendimento ({{comercio.horario_atendimento}}).'
+          },
+          {
+            id: 'int_imoveis',
+            code: 'listar_imoveis',
+            title: 'Imóveis disponíveis',
+            visibility: 'PUBLIC',
+            actionType: 'PUBLIC_CATALOG_LIST',
+            collectionId: 'col_imoveis',
+            keywords: ['imoveis', 'catalogo', 'alugar'],
+            template: '• {{registro.titulo}} ({{registro.bairro}}) — {{registro.valor}}/mês'
+          },
+          {
+            id: 'int_humano',
+            code: 'falar_humano',
+            title: 'Falar com atendente',
+            visibility: 'PUBLIC',
+            actionType: 'HUMAN_HANDOFF',
+            collectionId: null,
+            keywords: ['atendente', 'humano'],
+            template: 'Certo! Pausamos o atendimento automático. Um atendente da {{comercio.nome}} continuará por aqui em breve ({{comercio.horario_atendimento}}).'
+          }
+        ],
+        handoffs: [
+          { id: 'hnd_01', phoneMasked: '+55 11 *****-8812', reason: 'Telefone não localizado no cadastro', since: 'Há 9 min', status: 'AGUARDANDO' },
+          { id: 'hnd_02', phoneMasked: '+55 11 *****-0003', reason: 'Cliente solicitou renegociação de contrato', since: 'Há 24 min', status: 'AGUARDANDO' }
+        ]
+      },
+
+      oficina: {
+        id: 'tnt_ofic_02',
+        name: 'Oficina Silva Auto',
+        niche: 'Oficina Mecânica',
+        globals: {
+          nome: 'Oficina Silva Auto',
+          chave_pix: 'pix@silvaauto-demo.exemplo',
+          horario_atendimento: 'Seg a Sáb, 08h às 17h',
+          telefone_suporte: '(11) 3000-0099'
+        },
+        authHint: '4 últimos dígitos do CPF',
+        sessionTtlMin: 30,
+        metrics: { today: 29, autoRate: '94%', handoffs: 1, freshness: 'Há 6 min' },
+        staleAlert: { active: false },
+        customers: [
+          { id: 'cus_21', name: 'Maria Souza', phone: '+55 11 99999-0001', cpfLast4: '7735', email: 'maria.demo@exemplo.com', active: true },
+          { id: 'cus_22', name: 'João Pereira', phone: '+55 11 99999-0002', cpfLast4: '1234', email: 'joao.demo@exemplo.com', active: true }
+        ],
+        collections: [
+          {
+            id: 'col_os',
+            slug: 'ordens_servico',
+            name: 'Ordens de Serviço',
+            visibility: 'PRIVATE',
+            source: 'MANUAL',
+            lastSynced: '23/11 às 09:29',
+            stale: false,
+            titleField: 'veiculo',
+            fields: [
+              { key: 'veiculo', label: 'Veículo / OS', type: 'text', required: true, inTemplate: true },
+              { key: 'status_servico', label: 'Etapa atual', type: 'enum', required: true, inTemplate: true },
+              { key: 'orcamento', label: 'Orçamento', type: 'currency_brl', required: true, inTemplate: true },
+              { key: 'previsao_entrega', label: 'Previsão', type: 'date', required: true, inTemplate: true }
+            ],
+            records: [
+              { id: 'os_01', customerId: 'cus_21', data: { veiculo: 'OS #412 — Sedan Prata', status_servico: 'Pronto para retirada', orcamento: 890, previsao_entrega: '23/11/2026' } },
+              { id: 'os_02', customerId: 'cus_22', data: { veiculo: 'OS #418 — Hatch Branco', status_servico: 'Aguardando peça', orcamento: 1420, previsao_entrega: '25/11/2026' } }
+            ]
+          },
+          {
+            id: 'col_servicos',
+            slug: 'servicos_tabela',
+            name: 'Serviços & Revisões',
+            visibility: 'PUBLIC',
+            source: 'MANUAL',
+            lastSynced: '22/11 às 16:00',
+            stale: false,
+            titleField: 'servico',
+            fields: [
+              { key: 'servico', label: 'Serviço', type: 'text', required: true, inTemplate: true },
+              { key: 'valor', label: 'A partir de', type: 'currency_brl', required: true, inTemplate: true }
+            ],
+            records: [
+              { id: 'srv_01', customerId: null, data: { servico: 'Troca de óleo + filtros', valor: 260 } },
+              { id: 'srv_02', customerId: null, data: { servico: 'Alinhamento + balanceamento', valor: 180 } },
+              { id: 'srv_03', customerId: null, data: { servico: 'Revisão preventiva completa', valor: 490 } }
+            ]
+          }
+        ],
+        intents: [
+          {
+            id: 'int_os',
+            code: 'status_veiculo',
+            title: 'Status do meu carro',
+            visibility: 'PRIVATE',
+            actionType: 'CUSTOMER_RECORD_LOOKUP',
+            collectionId: 'col_os',
+            keywords: ['carro', 'os', 'pronto'],
+            template: 'Olá {{cliente.nome}}!\n\n{{registro.veiculo}}\nEtapa: {{registro.status_servico}}\nValor aprovado: {{registro.orcamento}}\nPrevisão: {{registro.previsao_entrega}}\n\nPix: {{comercio.chave_pix}}'
+          },
+          {
+            id: 'int_srv',
+            code: 'tabela_servicos',
+            title: 'Serviços e valores',
+            visibility: 'PUBLIC',
+            actionType: 'PUBLIC_CATALOG_LIST',
+            collectionId: 'col_servicos',
+            keywords: ['servicos', 'preco'],
+            template: '• {{registro.servico}} — a partir de {{registro.valor}}'
+          },
+          {
+            id: 'int_humano_ofic',
+            code: 'falar_mecanico',
+            title: 'Falar com atendente',
+            visibility: 'PUBLIC',
+            actionType: 'HUMAN_HANDOFF',
+            collectionId: null,
+            keywords: ['atendente', 'humano'],
+            template: 'Bot pausado! Nossa equipe da {{comercio.nome}} vai responder em instantes ({{comercio.horario_atendimento}}).'
+          }
+        ],
+        handoffs: [
+          { id: 'hnd_21', phoneMasked: '+55 11 *****-0002', reason: 'Cliente pediu orçamento extra de funilaria', since: 'Há 14 min', status: 'AGUARDANDO' }
+        ]
+      }
+    };
+
+    // =========================================================================
+    // ESTADO GLOBAL DA UI E DO SIMULADOR
+    // =========================================================================
+    const uiState = {
+      tenantKey: 'imobiliaria',
+      view: 'dashboard',
+      collectionTab: 'col_contratos',
+      selectedIntentId: 'int_aluguel',
+      simProfile: 'cus_01',
+      sim: null
+    };
+
+    function currentTenant() { return TENANTS[uiState.tenantKey]; }
+
+    function resetSimulator() {
+      const t = currentTenant();
+      const firstCus = t.customers[0]?.id || 'unknown';
+      if (uiState.simProfile !== 'unknown' && !t.customers.some(c => c.id === uiState.simProfile)) {
+        uiState.simProfile = firstCus;
+      }
+      uiState.sim = {
+        state: 'IDLE',
+        authenticatedCustomerId: null,
+        authExpiresAt: null,
+        failedAttempts: 0,
+        locked: false,
+        pendingIntentId: null,
+        pendingRecords: [],
+        publicPage: 0,
+        messages: [],
+        logs: []
+      };
+      addAuditLog('SESSION_INIT', `tenant=${t.id} state=IDLE pii=REDACTED`);
+      simReceiveUser('Oi', 'TEXT', null, true);
+    }
+
+    function addAuditLog(code, meta) {
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+      uiState.sim.logs.unshift({ ts: `${hh}:${mm}:${ss}`, code, meta });
+      if (uiState.sim.logs.length > 14) uiState.sim.logs.pop();
+    }
+
+    function renderSafeTemplate(template, ctx) {
+      return template.replace(/\{\{(comercio|cliente|registro|colecao)\.([a-z0-9_]+)\}\}/g, (_, scope, key) => {
+        if (scope === 'comercio') return ctx.tenant.globals[key] ?? 'não informado';
+        if (scope === 'cliente') return ctx.customer ? (ctx.customer[key] ?? 'não informado') : 'visitante';
+        if (scope === 'colecao') return ctx.collection ? (key === 'atualizado_em' ? ctx.collection.lastSynced : 'não informado') : 'não informado';
+        if (scope === 'registro' && ctx.record) {
+          const val = ctx.record.data[key];
+          if (val === null || val === undefined || val === '') return 'não informado';
+          const fieldDef = ctx.collection?.fields.find(f => f.key === key);
+          if (fieldDef?.type === 'currency_brl') return formatBRL(val);
+          return String(val);
+        }
+        return 'não informado';
+      });
+    }
+
+    // =========================================================================
+    // MOTOR DETERMINÍSTICO DO SIMULADOR (ConversationEngine)
+    // =========================================================================
+    function simPushBot(text, buttons = [], footer = '') {
+      uiState.sim.messages.push({ from: 'bot', text, buttons, footer });
+    }
+
+    function simMenuButtons(tenant) {
+      return tenant.intents.map(i => ({
+        id: `intent:${i.id}`,
+        label: i.title,
+        tag: i.visibility === 'PRIVATE' ? '🔒' : '🌐'
+      }));
+    }
+
+    function simSendMenu(greetingPrefix) {
+      const t = currentTenant();
+      uiState.sim.state = 'MENU_OPEN';
+      uiState.sim.pendingIntentId = null;
+      uiState.sim.pendingRecords = [];
+      simPushBot(
+        `${greetingPrefix}Olá! Sou o atendimento automático da ${t.name}. Escolha uma opção abaixo:`,
+        simMenuButtons(t),
+        'Digite "menu" a qualquer momento'
+      );
+    }
+
+    function simExecuteIntent(intent) {
+      const t = currentTenant();
+      addAuditLog('INTENT_MATCH', `intent=${intent.code} visibility=${intent.visibility} resolver=DETERMINISTIC`);
+
+      if (intent.actionType === 'HUMAN_HANDOFF') {
+        uiState.sim.state = 'HANDOFF_HUMAN';
+        const msg = renderSafeTemplate(intent.template, { tenant: t });
+        simPushBot(msg, [{ id: 'sys:resume', label: 'Reativar menu automático' }], 'Sessão em transbordo humano');
+        addAuditLog('HANDOFF_OPENED', `tenant=${t.id} bot_paused=true`);
+        return;
+      }
+
+      if (intent.visibility === 'PUBLIC') {
+        if (intent.actionType === 'STATIC_MESSAGE') {
+          uiState.sim.state = 'PUBLIC_RESULT';
+          const msg = renderSafeTemplate(intent.template, { tenant: t });
+          simPushBot(msg, [{ id: 'sys:menu', label: 'Voltar ao menu' }]);
+          return;
+        }
+        if (intent.actionType === 'PUBLIC_CATALOG_LIST') {
+          const col = t.collections.find(c => c.id === intent.collectionId);
+          uiState.sim.state = 'PUBLIC_RESULT';
+          const pageSize = 2;
+          const start = uiState.sim.publicPage * pageSize;
+          const slice = col.records.slice(start, start + pageSize);
+          const lines = slice.map(r => renderSafeTemplate(intent.template, { tenant: t, collection: col, record: r }));
+          const btns = [];
+          if (start + pageSize < col.records.length) {
+            btns.push({ id: `sys:next_pub:${intent.id}`, label: `Ver mais (${col.records.length - (start + pageSize)})` });
+          }
+          btns.push({ id: 'sys:menu', label: 'Voltar ao menu' });
+          simPushBot(`${col.name} (pág. ${uiState.sim.publicPage + 1}):\n\n${lines.join('\n')}`, btns, `Atualizado em ${col.lastSynced}`);
+          return;
+        }
+      }
+
+      const customer = t.customers.find(c => c.id === uiState.simProfile);
+      if (!customer) {
+        uiState.sim.state = 'HANDOFF_HUMAN';
+        addAuditLog('AUTH_DENIED_UNREGISTERED', `tenant=${t.id} phone_match=false pii=REDACTED`);
+        simPushBot(
+          `Este número de WhatsApp não está vinculado a nenhum cadastro na ${t.name}. Por segurança (LGPD), não liberamos dados privados apenas informando CPF.\n\nDeseja falar com um atendente para atualizar seu telefone?`,
+          [
+            { id: 'sys:menu', label: 'Voltar ao menu público' },
+            { id: `intent:${t.intents.find(i => i.actionType === 'HUMAN_HANDOFF').id}`, label: 'Falar com atendente' }
+          ],
+          'Bloqueio preventivo de privacidade'
+        );
+        return;
+      }
+
+      if (uiState.sim.locked) {
+        uiState.sim.state = 'AUTH_LOCKED';
+        simPushBot('Tentativas bloqueadas temporariamente por segurança (15 min). Você pode aguardar ou falar com um atendente.', [
+          { id: 'sys:menu', label: 'Voltar ao menu' }
+        ]);
+        return;
+      }
+
+      if (uiState.sim.authenticatedCustomerId !== customer.id) {
+        uiState.sim.state = 'AUTH_CHALLENGE';
+        uiState.sim.pendingIntentId = intent.id;
+        addAuditLog('AUTH_CHALLENGE_SENT', `tenant=${t.id} customer=${customer.id} factor=CPF_LAST4`);
+        simPushBot(
+          `Identificamos seu número cadastrado, ${customer.name.split(' ')[0]}!\nPara sua segurança, informe os ${t.authHint} (teste: ${customer.cpfLast4}).`,
+          [
+            { id: `sys:quick_auth:${customer.cpfLast4}`, label: `Atalho demo: enviar ${customer.cpfLast4}` },
+            { id: 'sys:menu', label: 'Cancelar' }
+          ],
+          'Sessão válida por 30 min após confirmar'
+        );
+        return;
+      }
+
+      const col = t.collections.find(c => c.id === intent.collectionId);
+      const owned = col.records.filter(r => r.customerId === customer.id);
+      addAuditLog('PRIVATE_QUERY', `tenant=${t.id} col=${col.slug} customer=${customer.id} rows=${owned.length}`);
+
+      if (owned.length === 0) {
+        uiState.sim.state = 'PRIVATE_RESULT';
+        simPushBot('Não encontramos registros ativos vinculados ao seu cadastro.', [{ id: 'sys:menu', label: 'Voltar ao menu' }]);
+        return;
+      }
+
+      if (owned.length === 1) {
+        uiState.sim.state = 'PRIVATE_RESULT';
+        const text = renderSafeTemplate(intent.template, { tenant: t, customer: { nome: customer.name }, collection: col, record: owned[0] });
+        simPushBot(text, [{ id: 'sys:menu', label: 'Voltar ao menu' }], `Atualizado em ${col.lastSynced}`);
+        return;
+      }
+
+      uiState.sim.state = 'RECORD_SELECTION';
+      uiState.sim.pendingIntentId = intent.id;
+      uiState.sim.pendingRecords = owned;
+      const listBtns = owned.map((r, idx) => ({ id: `rec:${idx}`, label: String(r.data[col.titleField]) }));
+      listBtns.push({ id: 'sys:menu', label: 'Voltar ao menu' });
+      simPushBot(`Encontramos ${owned.length} registros ativos no seu cadastro. Qual você deseja consultar?`, listBtns, 'Seleção isolada ao seu cadastro');
+    }
+
+    function simReceiveUser(displayText, kind = 'TEXT', selectedId = null, silent = false) {
+      const t = currentTenant();
+      if (selectedId && selectedId.startsWith('sys:quick_auth:')) {
+        const code = selectedId.replace('sys:quick_auth:', '');
+        simReceiveUser(code, 'TEXT', null, false);
+        return;
+      }
+
+      if (!silent) {
+        uiState.sim.messages.push({ from: 'user', text: displayText });
+      }
+
+      if (kind === 'UNSUPPORTED_MEDIA') {
+        addAuditLog('UNSUPPORTED_MEDIA', `tenant=${t.id} kind=AUDIO`);
+        simPushBot('No momento, o atendimento automático responde apenas pelas opções do menu (sem áudio/imagem). Escolha uma opção abaixo:', simMenuButtons(t));
+        return;
+      }
+
+      const norm = String(displayText || '').trim().toLowerCase();
+
+      if (selectedId === 'sys:menu' || selectedId === 'sys:resume' || norm === 'menu') {
+        uiState.sim.publicPage = 0;
+        simSendMenu('');
+        return;
+      }
+
+      if (selectedId && selectedId.startsWith('sys:next_pub:')) {
+        const intentId = selectedId.replace('sys:next_pub:', '');
+        uiState.sim.publicPage += 1;
+        const intent = t.intents.find(i => i.id === intentId);
+        if (intent) simExecuteIntent(intent);
+        return;
+      }
+
+      if (uiState.sim.state === 'HANDOFF_HUMAN') {
+        addAuditLog('HANDOFF_PASS_THROUGH', `tenant=${t.id} bot_ignored=true`);
+        simPushBot('(Bot em pausa — mensagem encaminhada à fila humana no painel.)', [{ id: 'sys:resume', label: 'Simular encerramento do humano' }]);
+        return;
+      }
+
+      if (uiState.sim.state === 'AUTH_CHALLENGE' && !selectedId) {
+        const customer = t.customers.find(c => c.id === uiState.simProfile);
+        if (customer && norm === customer.cpfLast4) {
+          uiState.sim.authenticatedCustomerId = customer.id;
+          uiState.sim.authExpiresAt = '+30 min';
+          uiState.sim.failedAttempts = 0;
+          addAuditLog('AUTH_SUCCESS', `tenant=${t.id} customer=${customer.id} ttl=30m`);
+          const pending = t.intents.find(i => i.id === uiState.sim.pendingIntentId);
+          if (pending) simExecuteIntent(pending);
+        } else {
+          uiState.sim.failedAttempts += 1;
+          addAuditLog('AUTH_FAILED', `tenant=${t.id} attempt=${uiState.sim.failedAttempts}/3 pii=REDACTED`);
+          if (uiState.sim.failedAttempts >= 3) {
+            uiState.sim.locked = true;
+            uiState.sim.state = 'AUTH_LOCKED';
+            simPushBot('Limite de 3 tentativas atingido. Acesso privado bloqueado por 15 minutos por segurança.', [
+              { id: 'sys:menu', label: 'Voltar ao menu público' },
+              { id: `intent:${t.intents.find(i => i.actionType === 'HUMAN_HANDOFF').id}`, label: 'Falar com atendente' }
+            ]);
+          } else {
+            simPushBot(`Confirmação incorreta (tentativa ${uiState.sim.failedAttempts} de 3). Tente novamente os ${t.authHint}:`, [{ id: 'sys:menu', label: 'Cancelar' }]);
+          }
+        }
+        return;
+      }
+
+      if (uiState.sim.state === 'RECORD_SELECTION' && selectedId && selectedId.startsWith('rec:')) {
+        const idx = Number(selectedId.replace('rec:', ''));
+        const rec = uiState.sim.pendingRecords[idx];
+        const intent = t.intents.find(i => i.id === uiState.sim.pendingIntentId);
+        const customer = t.customers.find(c => c.id === uiState.sim.authenticatedCustomerId);
+        const col = t.collections.find(c => c.id === intent.collectionId);
+        if (rec && intent && customer && rec.customerId === customer.id) {
+          uiState.sim.state = 'PRIVATE_RESULT';
+          const text = renderSafeTemplate(intent.template, { tenant: t, customer: { nome: customer.name }, collection: col, record: rec });
+          simPushBot(text, [{ id: 'sys:menu', label: 'Voltar ao menu' }], `Atualizado em ${col.lastSynced}`);
+          addAuditLog('RECORD_RENDERED', `tenant=${t.id} col=${col.slug} record=${rec.id} pii=REDACTED`);
+        }
+        return;
+      }
+
+      if (selectedId && selectedId.startsWith('intent:')) {
+        const intentId = selectedId.replace('intent:', '');
+        const intent = t.intents.find(i => i.id === intentId);
+        uiState.sim.publicPage = 0;
+        if (intent) { simExecuteIntent(intent); return; }
+      }
+
+      const kwMatch = t.intents.find(i => i.keywords.some(k => norm === k));
+      if (kwMatch) {
+        uiState.sim.publicPage = 0;
+        simExecuteIntent(kwMatch);
+        return;
+      }
+
+      if (uiState.sim.state === 'IDLE') {
+        simSendMenu('');
+      } else {
+        addAuditLog('NO_MATCH_FALLBACK', `tenant=${t.id} resolver=DETERMINISTIC`);
+        simSendMenu('Não entendi esse comando na v1 (use os botões). ');
+      }
+    }
+
+    // =========================================================================
+    // TOAST & MODAIS
+    // =========================================================================
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      clearTimeout(el._timer);
+      el._timer = setTimeout(() => el.classList.add('hidden'), 2800);
+    }
+
+    function openModal(title, bodyHtml, footerHtml) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalBody').innerHTML = bodyHtml;
+      document.getElementById('modalFooter').innerHTML = footerHtml;
+      document.getElementById('modalBackdrop').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modalBackdrop').classList.add('hidden');
+    }
+
+    function openCsvDryRunModal() {
+      const body = `
+        <div class="p-3 rounded-lg border soft-primary">
+          <div class="font-semibold">Pré-visualização obrigatória (Dry-Run · RF-05)</div>
+          <p class="mt-1 opacity-90">Nenhum registro foi alterado ainda. Confira o mapeamento e os erros de validação antes de confirmar.</p>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="p-3 rounded-lg border border-[var(--border)] bg-[var(--content)]">
+            <div class="text-[var(--muted-foreground)]">Linhas lidas</div>
+            <div class="text-lg font-bold mt-0.5">10</div>
+          </div>
+          <div class="p-3 rounded-lg border soft-success">
+            <div>Válidas (Upsert)</div>
+            <div class="text-lg font-bold mt-0.5">8</div>
+          </div>
+          <div class="p-3 rounded-lg border soft-error">
+            <div>Com erro (Ignoradas)</div>
+            <div class="text-lg font-bold mt-0.5">2</div>
+          </div>
+        </div>
+        <div class="border border-[var(--border)] rounded-lg overflow-hidden">
+          <div class="px-3 py-2 bg-[var(--content)] font-semibold border-b border-[var(--border)]">Relatório de erros (sem expor dados pessoais)</div>
+          <div class="divide-y divide-[var(--border)]">
+            <div class="px-3 py-2 flex justify-between gap-2"><span>Linha 4 · campo <code class="font-mono">valor_aluguel</code></span><span class="text-[var(--error)] font-medium">Formato monetário inválido</span></div>
+            <div class="px-3 py-2 flex justify-between gap-2"><span>Linha 9 · campo <code class="font-mono">telefone</code></span><span class="text-[var(--error)] font-medium">Cliente não encontrado na base</span></div>
+          </div>
+        </div>
+      `;
+      const footer = `
+        <button type="button" onclick="closeModal()" class="text-xs px-3 py-1.5 rounded-lg border border-[var(--border)]">Cancelar</button>
+        <button type="button" onclick="closeModal(); showToast('Importação aplicada: 8 registros atualizados com segurança.');" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">Confirmar importação (8 linhas)</button>
+      `;
+      openModal('Importar CSV — Dry-Run de Validação', body, footer);
+    }
+
+    function openSheetsGuardModal() {
+      const body = `
+        <div class="p-3.5 rounded-lg border soft-error space-y-1.5">
+          <div class="font-bold">⚠ Sincronização abortada pela Trava de Segurança (REJECTED_SAFETY_GUARD · RF-06)</div>
+          <p>A planilha conectada retornou <strong>0 linhas válidas</strong> (queda de 100%, acima do limite de segurança de 50%).</p>
+          <p class="opacity-90">Os 4 registros ativos anteriores foram <strong>preservados intactos</strong> para evitar que o atendimento responda dados vazios aos clientes.</p>
+        </div>
+        <div class="p-3 rounded-lg border border-[var(--border)] bg-[var(--content)] space-y-1">
+          <div class="font-semibold">Ações recomendadas</div>
+          <div>1. Verifique se a aba <code class="font-mono">Contratos_Ativos</code> foi renomeada ou limpa no Google Sheets.</div>
+          <div>2. Revise as permissões OAuth (escopo somente leitura).</div>
+          <div>3. Após corrigir a planilha, clique em <strong>Sincronizar agora</strong>.</div>
+        </div>
+      `;
+      const footer = `
+        <button type="button" onclick="closeModal()" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">Entendido (manter snapshot atual)</button>
+      `;
+      openModal('Google Sheets Sync — Demonstração da Trava de Segurança', body, footer);
+    }
+
+    // =========================================================================
+    // RENDERIZAÇÃO DAS 5 TELAS
+    // =========================================================================
+    function renderDashboard(t) {
+      const staleBanner = t.staleAlert.active ? `
+        <div data-component="SyncGuardBanner (Novo)" class="p-4 rounded-xl border soft-warning flex flex-wrap items-center justify-between gap-3">
+          <span class="comp-tag">SyncGuardBanner · Novo</span>
+          <div class="space-y-0.5 text-xs">
+            <div class="font-bold">⚠ Base potencialmente desatualizada: ${escapeHtml(t.staleAlert.collection)}</div>
+            <div>${escapeHtml(t.staleAlert.detail)}</div>
+          </div>
+          <button type="button" onclick="switchView('collections')" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] font-semibold">
+            Atualizar base agora
+          </button>
+        </div>
+      ` : '';
+
+      return `
+        ${staleBanner}
+        <section data-component="SummaryCardGrid (Novo)" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <span class="comp-tag">SummaryCardGrid · Novo</span>
+          <div class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
+            <div class="text-xs text-[var(--muted-foreground)]">Atendimentos hoje</div>
+            <div class="text-2xl font-bold mt-1 tabular-nums">${t.metrics.today}</div>
+            <div class="text-xs text-[var(--success)] mt-1">Janela gratuita Meta (reativo)</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
+            <div class="text-xs text-[var(--muted-foreground)]">Resolvidos 100% automático</div>
+            <div class="text-2xl font-bold mt-1 tabular-nums">${t.metrics.autoRate}</div>
+            <div class="text-xs text-[var(--muted-foreground)] mt-1">Custo de IA: R$ 0,00 (v1)</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
+            <div class="text-xs text-[var(--muted-foreground)]">Transbordos humanos</div>
+            <div class="text-2xl font-bold mt-1 tabular-nums">${t.handoffs.length}</div>
+            <div class="text-xs text-[var(--warning)] mt-1">Aguardando retorno</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
+            <div class="text-xs text-[var(--muted-foreground)]">Último sync da base</div>
+            <div class="text-2xl font-bold mt-1">${escapeHtml(t.metrics.freshness)}</div>
+            <div class="text-xs text-[var(--muted-foreground)] mt-1">Trava anti-perda ativa</div>
+          </div>
+        </section>
+
+        <section class="grid grid-cols-1 xl:grid-cols-3 gap-4">
+          <div data-component="DataTable (Novo)" class="xl:col-span-2 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+            <span class="comp-tag">DataTable · Novo</span>
+            <div class="flex items-center justify-between gap-2">
+              <h2 class="text-sm font-bold">Coleções ativas de ${escapeHtml(t.name)}</h2>
+              <button type="button" onclick="switchView('collections')" class="text-xs text-[var(--primary)] font-medium hover:underline">Gerenciar coleções →</button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
+                    <th class="py-2 pr-3 font-medium">Coleção</th>
+                    <th class="py-2 px-3 font-medium">Escopo</th>
+                    <th class="py-2 px-3 font-medium">Origem</th>
+                    <th class="py-2 px-3 font-medium">Linhas</th>
+                    <th class="py-2 pl-3 font-medium">Frescor</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[var(--border)]">
+                  ${t.collections.map(c => `
+                    <tr>
+                      <td class="py-2.5 pr-3 font-semibold">${escapeHtml(c.name)}</td>
+                      <td class="py-2.5 px-3">
+                        <span class="px-2 py-0.5 rounded-full border ${c.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'} font-medium whitespace-nowrap">
+                          ${c.visibility === 'PRIVATE' ? '🔒 Privada' : '🌐 Pública'}
+                        </span>
+                      </td>
+                      <td class="py-2.5 px-3 text-[var(--muted-foreground)]">${escapeHtml(c.source)}</td>
+                      <td class="py-2.5 px-3 tabular-nums">${c.records.length}</td>
+                      <td class="py-2.5 pl-3 whitespace-nowrap">
+                        <span class="${c.stale ? 'text-[var(--warning)] font-semibold' : 'text-[var(--muted-foreground)]'}">
+                          ${c.stale ? '⚠ ' : ''}${escapeHtml(c.lastSynced)}
+                        </span>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div data-component="ActionCard (Novo)" class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+            <span class="comp-tag">ActionCard · Novo</span>
+            <h2 class="text-sm font-bold">Atalhos operacionais</h2>
+            <div class="space-y-2">
+              <button type="button" onclick="switchView('simulator')" class="w-full text-left p-3 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] transition-colors">
+                <div class="text-xs font-semibold">▶ Testar atendimento no Simulador</div>
+                <div class="text-xs text-[var(--muted-foreground)] mt-0.5">Simule cliente cadastrado ou visitante antes de publicar.</div>
+              </button>
+              <button type="button" onclick="openCsvDryRunModal()" class="w-full text-left p-3 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] transition-colors">
+                <div class="text-xs font-semibold">⇪ Importar CSV com Dry-Run</div>
+                <div class="text-xs text-[var(--muted-foreground)] mt-0.5">Valida linha a linha antes de gravar na base.</div>
+              </button>
+              <button type="button" onclick="openSheetsGuardModal()" class="w-full text-left p-3 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] transition-colors">
+                <div class="text-xs font-semibold">🛡 Simular Trava Google Sheets</div>
+                <div class="text-xs text-[var(--muted-foreground)] mt-0.5">Veja como o sistema impede apagamento acidental.</div>
+              </button>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderCollections(t) {
+      if (uiState.collectionTab !== 'customers' && !t.collections.some(c => c.id === uiState.collectionTab)) {
+        uiState.collectionTab = t.collections[0].id;
+      }
+
+      const tabs = [
+        { id: 'customers', label: `Clientes (${t.customers.length})`, badge: 'Mestre' },
+        ...t.collections.map(c => ({ id: c.id, label: `${c.name} (${c.records.length})`, badge: c.visibility === 'PRIVATE' ? '🔒 Privada' : '🌐 Pública' }))
+      ];
+
+      let contentHtml = '';
+      if (uiState.collectionTab === 'customers') {
+        contentHtml = `
+          <div data-component="DataTable (Novo)" class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+            <span class="comp-tag">DataTable · Novo</span>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h2 class="text-sm font-bold">Cadastro Mestre de Clientes</h2>
+                <p class="text-xs text-[var(--muted-foreground)]">Chave de verificação guardada apenas em hash (nunca em texto aberto).</p>
+              </div>
+              <button type="button" onclick="showToast('Mockup: formulário de novo cliente com telefone E.164 e confirmação.')" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">+ Novo cliente</button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
+                    <th class="py-2 pr-3 font-medium">Nome</th>
+                    <th class="py-2 px-3 font-medium">WhatsApp autorizado (E.164)</th>
+                    <th class="py-2 px-3 font-medium">Fator de confirmação</th>
+                    <th class="py-2 px-3 font-medium">E-mail (OTP)</th>
+                    <th class="py-2 pl-3 font-medium">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[var(--border)]">
+                  ${t.customers.map(c => `
+                    <tr>
+                      <td class="py-2.5 pr-3 font-semibold">${escapeHtml(c.name)}</td>
+                      <td class="py-2.5 px-3 font-mono whitespace-nowrap">${escapeHtml(c.phone)}</td>
+                      <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded border soft-muted font-mono">sha256(***${escapeHtml(c.cpfLast4.slice(-2))})</span></td>
+                      <td class="py-2.5 px-3 text-[var(--muted-foreground)]">${escapeHtml(c.email)}</td>
+                      <td class="py-2.5 pl-3"><span class="px-2 py-0.5 rounded-full border soft-success">Ativo</span></td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      } else {
+        const col = t.collections.find(c => c.id === uiState.collectionTab);
+        const customerName = id => t.customers.find(c => c.id === id)?.name || '—';
+        contentHtml = `
+          <div class="grid grid-cols-1 xl:grid-cols-4 gap-4">
+            <div data-component="SchemaFieldList (Novo)" class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+              <span class="comp-tag">SchemaFieldList · Novo</span>
+              <div class="flex items-center justify-between">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--muted-foreground)]">Campos da coleção</h3>
+                <span class="text-xs px-2 py-0.5 rounded-full border ${col.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'}">
+                  ${col.visibility === 'PRIVATE' ? 'Privada' : 'Pública'}
+                </span>
+              </div>
+              <div class="space-y-2">
+                ${col.fields.map(f => `
+                  <div class="p-2.5 rounded-lg border border-[var(--border)] bg-[var(--content)] text-xs flex items-start justify-between gap-2">
+                    <div>
+                      <div class="font-semibold">${escapeHtml(f.label)}</div>
+                      <div class="font-mono text-[var(--muted-foreground)] mt-0.5">{{registro.${escapeHtml(f.key)}}} · ${escapeHtml(f.type)}</div>
+                    </div>
+                    ${f.inTemplate ? `<span title="Campo em uso em template ativo — exclusão bloqueada" class="text-xs px-1.5 py-0.5 rounded border soft-warning shrink-0">🔒 Em uso</span>` : ''}
+                  </div>
+                `).join('')}
+              </div>
+              <button type="button" onclick="showToast('Mockup: adicionar novo campo tipado (text, currency_brl, date, enum...).')" class="w-full text-xs py-1.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)]">+ Adicionar campo</button>
+            </div>
+
+            <div data-component="DataTable (Novo)" class="xl:col-span-3 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+              <span class="comp-tag">DataTable · Novo</span>
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h2 class="text-sm font-bold">${escapeHtml(col.name)}</h2>
+                  <p class="text-xs text-[var(--muted-foreground)]">Origem: <strong>${escapeHtml(col.source)}</strong> · Última atualização: <strong>${escapeHtml(col.lastSynced)}</strong></p>
+                </div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <button type="button" onclick="openCsvDryRunModal()" class="text-xs px-3 py-1.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)]">⇪ Importar CSV</button>
+                  <button type="button" onclick="openSheetsGuardModal()" class="text-xs px-3 py-1.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)]">↻ Sync Google Sheets</button>
+                  <button type="button" onclick="showToast('Mockup: inserir nova linha manual validada pelo schema.')" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">+ Nova linha</button>
+                </div>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-xs text-left border-collapse">
+                  <thead>
+                    <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
+                      ${col.visibility === 'PRIVATE' ? '<th class="py-2 pr-3 font-medium">Cliente vinculado</th>' : ''}
+                      ${col.fields.map(f => `<th class="py-2 px-3 font-medium">${escapeHtml(f.label)}</th>`).join('')}
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-[var(--border)]">
+                    ${col.records.map(r => `
+                      <tr>
+                        ${col.visibility === 'PRIVATE' ? `<td class="py-2.5 pr-3 font-semibold whitespace-nowrap">${escapeHtml(customerName(r.customerId))}</td>` : ''}
+                        ${col.fields.map(f => {
+                          const raw = r.data[f.key];
+                          const formatted = f.type === 'currency_brl' ? formatBRL(raw) : String(raw ?? '—');
+                          return `<td class="py-2.5 px-3">${escapeHtml(formatted)}</td>`;
+                        }).join('')}
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="flex items-center gap-2 flex-wrap">
+          ${tabs.map(tb => `
+            <button type="button" onclick="uiState.collectionTab='${tb.id}'; render();" class="text-xs px-3 py-2 rounded-lg border transition-colors ${uiState.collectionTab === tb.id ? 'soft-primary font-semibold' : 'bg-[var(--card)] border-[var(--border)] hover:border-[var(--primary)]'}">
+              ${escapeHtml(tb.label)} <span class="opacity-75 ml-1">· ${escapeHtml(tb.badge)}</span>
+            </button>
+          `).join('')}
+        </div>
+        ${contentHtml}
+      `;
+    }
+
+    function renderIntents(t) {
+      if (!t.intents.some(i => i.id === uiState.selectedIntentId)) {
+        uiState.selectedIntentId = t.intents[0].id;
+      }
+      const intent = t.intents.find(i => i.id === uiState.selectedIntentId);
+      const col = t.collections.find(c => c.id === intent.collectionId);
+      const sampleCustomer = t.customers[0];
+      const sampleRecord = col ? col.records[0] : null;
+      const preview = renderSafeTemplate(intent.template, {
+        tenant: t,
+        customer: { nome: sampleCustomer.name },
+        collection: col,
+        record: sampleRecord
+      });
+
+      const vars = [
+        '{{comercio.nome}}', '{{comercio.chave_pix}}', '{{comercio.horario_atendimento}}',
+        ...(intent.visibility === 'PRIVATE' ? ['{{cliente.nome}}'] : []),
+        ...(col ? col.fields.map(f => `{{registro.${f.key}}}`).concat(['{{colecao.atualizado_em}}']) : [])
+      ];
+
+      return `
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-4">
+          <div data-component="IntentMenuList (Novo)" class="xl:col-span-4 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+            <span class="comp-tag">IntentMenuList · Novo</span>
+            <div class="flex items-center justify-between">
+              <h2 class="text-sm font-bold">Opções do Menu (v1)</h2>
+              <button type="button" onclick="showToast('Mockup: adicionar nova opção determinística ao menu.')" class="text-xs px-2.5 py-1 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">+ Opção</button>
+            </div>
+            <div class="space-y-2">
+              ${t.intents.map((it, idx) => `
+                <button type="button" onclick="uiState.selectedIntentId='${it.id}'; render();" class="w-full text-left p-3 rounded-lg border transition-colors ${it.id === intent.id ? 'soft-primary' : 'bg-[var(--content)] border-[var(--border)] hover:border-[var(--primary)]'}">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-xs font-bold">${idx + 1}. ${escapeHtml(it.title)}</span>
+                    <span class="text-xs px-1.5 py-0.5 rounded border ${it.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'}">${it.visibility === 'PRIVATE' ? '🔒 Privada' : '🌐 Pública'}</span>
+                  </div>
+                  <div class="text-xs text-[var(--muted-foreground)] mt-1 flex items-center justify-between">
+                    <span class="font-mono">${escapeHtml(it.code)}</span>
+                    <span>${it.title.length}/20 chars WhatsApp</span>
+                  </div>
+                </button>
+              `).join('')}
+            </div>
+
+            <div class="p-3 rounded-lg border border-[var(--border)] bg-[var(--content)] space-y-1.5 opacity-85">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-semibold">Classificador IA texto livre</span>
+                <span class="px-2 py-0.5 rounded-full border soft-muted">v2 · Off</span>
+              </div>
+              <p class="text-xs text-[var(--muted-foreground)]">Contrato <code>IntentResolver</code> pronto. Na v2, a IA só escolhe o código da opção — nunca lê os dados.</p>
+            </div>
+          </div>
+
+          <div data-component="TemplateEditor (Novo)" class="xl:col-span-5 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+            <span class="comp-tag">TemplateEditor · Novo</span>
+            <div class="flex items-center justify-between">
+              <h2 class="text-sm font-bold">Editor de Template Seguro</h2>
+              <span class="text-xs text-[var(--muted-foreground)]">Zero <code>eval</code> · Variáveis validadas</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div>
+                <label class="block text-[var(--muted-foreground)] mb-1">Texto do botão (máx. 20)</label>
+                <input type="text" maxlength="20" value="${escapeHtml(intent.title)}" oninput="updateIntentField('title', this.value)" class="w-full px-2.5 py-1.5 rounded-lg bg-[var(--content)] border border-[var(--border)]" />
+              </div>
+              <div>
+                <label class="block text-[var(--muted-foreground)] mb-1">Tipo de ação</label>
+                <input type="text" disabled value="${escapeHtml(intent.actionType)}" class="w-full px-2.5 py-1.5 rounded-lg bg-[var(--content)] border border-[var(--border)] font-mono opacity-75" />
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <div class="text-xs text-[var(--muted-foreground)]">Clique para inserir variável desta coleção:</div>
+              <div class="flex flex-wrap gap-1.5">
+                ${vars.map(v => `
+                  <button type="button" data-insert-var="${escapeHtml(v)}" class="text-xs font-mono px-2 py-1 rounded-md border soft-primary hover:opacity-80">${escapeHtml(v)}</button>
+                `).join('')}
+              </div>
+            </div>
+
+            <div>
+              <label for="tplArea" class="block text-xs text-[var(--muted-foreground)] mb-1">Mensagem de resposta (edite e veja o preview ao vivo)</label>
+              <textarea id="tplArea" rows="7" oninput="updateIntentField('template', this.value)" class="w-full p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] text-xs font-mono leading-relaxed focus:outline-none focus:border-[var(--primary)]">${escapeHtml(intent.template)}</textarea>
+            </div>
+          </div>
+
+          <div data-component="WhatsAppPreviewCard (Novo)" class="xl:col-span-3 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3 flex flex-col">
+            <span class="comp-tag">WhatsAppPreviewCard · Novo</span>
+            <h2 class="text-sm font-bold">Preview com linha real</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">Simulando com <strong>${escapeHtml(sampleCustomer.name)}</strong> (dados fictícios).</p>
+            <div class="flex-1 rounded-xl p-3 chat-surface border border-[var(--border)] flex flex-col justify-between gap-3">
+              <div class="bubble-bot rounded-xl p-3 text-xs whitespace-pre-line leading-relaxed">${escapeHtml(preview)}</div>
+              <div class="text-center text-xs py-1.5 rounded-lg border border-[var(--border)] bg-[var(--card)] font-medium text-[var(--primary)]">Voltar ao menu</div>
+            </div>
+            <button type="button" onclick="switchView('simulator')" class="w-full text-xs py-2 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">Abrir no Simulador completo</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateIntentField(field, value) {
+      const t = currentTenant();
+      const intent = t.intents.find(i => i.id === uiState.selectedIntentId);
+      if (!intent) return;
+      intent[field] = value;
+      render();
+      const area = document.getElementById('tplArea');
+      if (field === 'template' && area) {
+        area.focus();
+        area.setSelectionRange(value.length, value.length);
+      }
+    }
+
+    function renderSimulator(t) {
+      if (!uiState.sim) resetSimulator();
+      const s = uiState.sim;
+      const profiles = [
+        ...t.customers.map(c => {
+          const privCol = t.collections.find(col => col.visibility === 'PRIVATE');
+          const count = privCol ? privCol.records.filter(r => r.customerId === c.id).length : 0;
+          return { id: c.id, label: `${c.name} (${count} reg · CPF fim ${c.cpfLast4})`, phone: c.phone };
+        }),
+        { id: 'unknown', label: 'Visitante não cadastrado (bloqueio LGPD)', phone: '+55 11 98888-0000' }
+      ];
+
+      return `
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-4 items-start">
+          <!-- Controles do Simulador -->
+          <div data-component="SimulatorControls (Novo)" class="xl:col-span-3 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-4">
+            <span class="comp-tag">SimulatorControls · Novo</span>
+            <div>
+              <h2 class="text-sm font-bold">Perfil de teste</h2>
+              <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Executa o mesmo <code>ConversationEngine</code> do WhatsApp.</p>
+            </div>
+
+            <div class="space-y-2">
+              ${profiles.map(p => `
+                <button type="button" onclick="uiState.simProfile='${p.id}'; resetSimulator(); render();" class="w-full text-left p-2.5 rounded-lg border text-xs transition-colors ${uiState.simProfile === p.id ? 'soft-primary font-semibold' : 'bg-[var(--content)] border-[var(--border)] hover:border-[var(--primary)]'}">
+                  <div>${escapeHtml(p.label)}</div>
+                  <div class="font-mono opacity-75 mt-0.5">${escapeHtml(p.phone)}</div>
+                </button>
+              `).join('')}
+            </div>
+
+            <div class="pt-2 border-t border-[var(--border)] space-y-2">
+              <div class="text-xs font-semibold">Testar casos de borda</div>
+              <button type="button" onclick="simReceiveUser('[Áudio 0:08]', 'UNSUPPORTED_MEDIA'); render();" class="w-full text-xs py-1.5 px-2.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] text-left">🎤 Simular envio de áudio</button>
+              <button type="button" onclick="resetSimulator(); render();" class="w-full text-xs py-1.5 px-2.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] text-left">↺ Reiniciar sessão (limpar auth)</button>
+            </div>
+          </div>
+
+          <!-- Celular WhatsApp Simulado (primeiro no mobile!) -->
+          <div data-component="ChatSimulator (Novo)" class="order-first xl:order-none xl:col-span-5 rounded-2xl bg-[var(--card)] border border-[var(--border)] overflow-hidden flex flex-col" style="height: 560px;">
+            <span class="comp-tag">ChatSimulator · Novo</span>
+            <div class="px-4 py-3 border-b border-[var(--border)] bg-[var(--sidebar)] flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-8 h-8 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center text-xs font-bold shrink-0">${escapeHtml(t.name.slice(0, 2).toUpperCase())}</div>
+                <div class="min-w-0">
+                  <div class="text-xs font-bold truncate">${escapeHtml(t.name)}</div>
+                  <div class="text-xs text-[var(--success)]">Conta oficial · Automático</div>
+                </div>
+              </div>
+              <span class="text-xs font-mono px-2 py-0.5 rounded border border-[var(--border)] shrink-0">${escapeHtml(s.state)}</span>
+            </div>
+
+            <div id="chatMessages" class="flex-1 p-4 chat-surface overflow-y-auto custom-scroll space-y-3">
+              ${s.messages.map(m => `
+                <div class="flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}">
+                  <div class="max-w-[90%] space-y-1.5">
+                    <div class="${m.from === 'user' ? 'bubble-user' : 'bubble-bot'} rounded-xl px-3.5 py-2.5 text-xs whitespace-pre-line leading-relaxed">
+                      ${escapeHtml(m.text)}
+                      ${m.footer ? `<div class="mt-2 pt-1.5 border-t border-[var(--border)] text-[var(--muted-foreground)]">${escapeHtml(m.footer)}</div>` : ''}
+                    </div>
+                    ${m.buttons && m.buttons.length ? `
+                      <div class="flex flex-col gap-1.5">
+                        ${m.buttons.map(b => `
+                          <button type="button" data-sim-reply="${escapeHtml(b.id)}" data-sim-label="${escapeHtml(b.label)}" class="w-full text-center text-xs font-semibold py-2 px-3 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--primary)] hover:border-[var(--primary)] transition-colors">
+                            ${b.tag ? `${b.tag} ` : ''}${escapeHtml(b.label)}
+                          </button>
+                        `).join('')}
+                      </div>
+                    ` : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+
+            <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-[var(--border)] bg-[var(--card)] flex gap-2">
+              <input id="chatInput" type="text" placeholder="Digite (ex.: 7735, pix, menu) ou clique..." class="flex-1 text-xs px-3 py-2 rounded-lg bg-[var(--content)] border border-[var(--border)] focus:outline-none focus:border-[var(--primary)]" />
+              <button type="submit" class="text-xs px-4 py-2 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">Enviar</button>
+            </form>
+          </div>
+
+          <!-- Inspetor de Sessão + Logs Sanitizados LGPD -->
+          <div data-component="SessionAuditInspector (Novo)" class="xl:col-span-4 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-4">
+            <span class="comp-tag">SessionAuditInspector · Novo</span>
+            <div>
+              <h2 class="text-sm font-bold">Inspetor de Estado &amp; LGPD</h2>
+              <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Prova de isolamento e logs sem dados pessoais.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="p-2.5 rounded-lg bg-[var(--content)] border border-[var(--border)]">
+                <div class="text-[var(--muted-foreground)]">Estado</div>
+                <div class="font-mono font-bold mt-0.5">${escapeHtml(s.state)}</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-[var(--content)] border border-[var(--border)]">
+                <div class="text-[var(--muted-foreground)]">Tenant ativo</div>
+                <div class="font-mono font-bold mt-0.5">${escapeHtml(t.id)}</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-[var(--content)] border border-[var(--border)]">
+                <div class="text-[var(--muted-foreground)]">Sessão privada</div>
+                <div class="font-semibold mt-0.5 ${s.authenticatedCustomerId ? 'text-[var(--success)]' : 'text-[var(--muted-foreground)]'}">
+                  ${s.authenticatedCustomerId ? `Autenticada (${escapeHtml(s.authenticatedCustomerId)})` : 'Não autenticada'}
+                </div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-[var(--content)] border border-[var(--border)]">
+                <div class="text-[var(--muted-foreground)]">Falhas auth</div>
+                <div class="font-mono font-bold mt-0.5 ${s.failedAttempts > 0 ? 'text-[var(--error)]' : ''}">${s.failedAttempts} / 3</div>
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-semibold">Logs sanitizados (zero CPF/valor)</span>
+                <span class="px-2 py-0.5 rounded-full border soft-success">LGPD OK</span>
+              </div>
+              <div class="rounded-lg bg-[var(--content)] border border-[var(--border)] p-2.5 font-mono text-xs space-y-1.5 max-h-64 overflow-y-auto custom-scroll">
+                ${s.logs.map(l => `
+                  <div class="leading-snug">
+                    <span class="text-[var(--muted-foreground)]">[${l.ts}]</span>
+                    <span class="font-semibold text-[var(--primary)]">${escapeHtml(l.code)}</span>
+                    <div class="text-[var(--muted-foreground)] break-all">${escapeHtml(l.meta)}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function handleChatSubmit(event) {
+      event.preventDefault();
+      const input = document.getElementById('chatInput');
+      const val = input.value.trim();
+      if (!val) return;
+      input.value = '';
+      simReceiveUser(val, 'TEXT');
+      render();
+      const box = document.getElementById('chatMessages');
+      if (box) box.scrollTop = box.scrollHeight;
+    }
+
+    function renderHandoff(t) {
+      return `
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-4">
+          <div data-component="HandoffQueueCard (Novo)" class="xl:col-span-7 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+            <span class="comp-tag">HandoffQueueCard · Novo</span>
+            <div>
+              <h2 class="text-sm font-bold">Fila de Transbordo Humano (RF-13)</h2>
+              <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Sessões onde o bot foi pausado aguardando um operador assumir no WhatsApp Business.</p>
+            </div>
+            ${t.handoffs.length === 0 ? `
+              <div class="p-6 text-center rounded-lg border border-[var(--border)] bg-[var(--content)] text-xs text-[var(--muted-foreground)]">
+                Nenhum transbordo pendente no momento.
+              </div>
+            ` : `
+              <div class="space-y-2.5">
+                ${t.handoffs.map(h => `
+                  <div class="p-3.5 rounded-lg border border-[var(--border)] bg-[var(--content)] flex flex-wrap items-center justify-between gap-3">
+                    <div class="space-y-0.5 text-xs">
+                      <div class="font-bold font-mono">${escapeHtml(h.phoneMasked)} <span class="font-sans font-normal text-[var(--muted-foreground)]">· ${escapeHtml(h.since)}</span></div>
+                      <div>${escapeHtml(h.reason)}</div>
+                    </div>
+                    <button type="button" onclick="resolveHandoff('${h.id}')" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">
+                      Encerrar e reativar bot
+                    </button>
+                  </div>
+                `).join('')}
+              </div>
+            `}
+          </div>
+
+          <div data-component="ChannelConfigCard (Novo)" class="xl:col-span-5 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-4">
+            <span class="comp-tag">ChannelConfigCard · Novo</span>
+            <div class="flex items-center justify-between">
+              <h2 class="text-sm font-bold">Canal &amp; Regras de Segurança</h2>
+              <span class="text-xs px-2 py-0.5 rounded-full border soft-success">Webhook HMAC OK</span>
+            </div>
+
+            <div class="space-y-2.5 text-xs">
+              <div class="p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] flex justify-between gap-2">
+                <span class="text-[var(--muted-foreground)]">Adaptador ativo</span>
+                <span class="font-mono font-semibold">WhatsAppCloudAdapter</span>
+              </div>
+              <div class="p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] flex justify-between gap-2">
+                <span class="text-[var(--muted-foreground)]">Chave Pix global</span>
+                <span class="font-mono truncate">${escapeHtml(t.globals.chave_pix)}</span>
+              </div>
+              <div class="p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] flex justify-between gap-2">
+                <span class="text-[var(--muted-foreground)]">Desafio privado padrão</span>
+                <span class="font-semibold">${escapeHtml(t.authHint)}</span>
+              </div>
+              <div class="p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] flex justify-between gap-2">
+                <span class="text-[var(--muted-foreground)]">TTL sessão autenticada</span>
+                <span class="font-semibold">${t.sessionTtlMin} minutos</span>
+              </div>
+              <div class="p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] flex justify-between gap-2">
+                <span class="text-[var(--muted-foreground)]">Idempotência de webhook</span>
+                <span class="text-[var(--success)] font-semibold">Ativa (7 dias)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function resolveHandoff(id) {
+      const t = currentTenant();
+      t.handoffs = t.handoffs.filter(h => h.id !== id);
+      showToast('Transbordo encerrado: atendimento automático reativado para este contato.');
+      render();
+    }
+
+    // =========================================================================
+    // ROTEAMENTO E EVENTOS
+    // =========================================================================
+    const VIEW_META = {
+      dashboard:   { title: 'Visão Geral', subtitle: 'Saúde do atendimento determinístico, frescor das bases e atalhos rápidos.' },
+      collections: { title: 'Coleções & Dados (Rows)', subtitle: 'Gerencie clientes, coleções públicas/privadas, CSV com dry-run e sync Google Sheets.' },
+      intents:     { title: 'Menus & Templates', subtitle: 'Configure botões/listas do WhatsApp e variáveis {{escopo.campo}} com preview ao vivo.' },
+      simulator:   { title: 'Simulador WhatsApp (Core Real)', subtitle: 'Teste todos os fluxos, autenticação por telefone + CPF e logs higienizados.' },
+      handoff:     { title: 'Transbordos & Canal', subtitle: 'Fila de atendimento humano e status do adaptador WhatsApp Cloud API.' }
+    };
+
+    function switchView(view) {
+      uiState.view = view;
+      render();
+    }
+
+    function render() {
+      const t = currentTenant();
+      const meta = VIEW_META[uiState.view];
+      document.getElementById('pageTitle').textContent = `${meta.title} — ${t.name}`;
+      document.getElementById('pageSubtitle').textContent = meta.subtitle;
+      document.getElementById('handoffBadge').textContent = String(t.handoffs.length);
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const active = btn.dataset.view === uiState.view;
+        btn.classList.toggle('nav-active', active);
+        btn.classList.toggle('nav-idle', !active);
+      });
+
+      const main = document.getElementById('mainContent');
+      if (uiState.view === 'dashboard') main.innerHTML = renderDashboard(t);
+      if (uiState.view === 'collections') main.innerHTML = renderCollections(t);
+      if (uiState.view === 'intents') main.innerHTML = renderIntents(t);
+      if (uiState.view === 'simulator') {
+        main.innerHTML = renderSimulator(t);
+        const box = document.getElementById('chatMessages');
+        if (box) box.scrollTop = box.scrollHeight;
+      }
+      if (uiState.view === 'handoff') main.innerHTML = renderHandoff(t);
+    }
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchView(btn.dataset.view));
+    });
+    document.getElementById('btnQuickSim').addEventListener('click', () => switchView('simulator'));
+    document.getElementById('btnToggleTheme').addEventListener('click', () => {
+      const curr = document.documentElement.getAttribute('data-theme');
+      applyTheme(curr === 'dark' ? 'light' : 'dark');
+    });
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalBackdrop').addEventListener('click', e => {
+      if (e.target.id === 'modalBackdrop') closeModal();
+    });
+    document.getElementById('tenantSelect').addEventListener('change', e => {
+      uiState.tenantKey = e.target.value;
+      uiState.collectionTab = currentTenant().collections[0].id;
+      uiState.selectedIntentId = currentTenant().intents[0].id;
+      uiState.simProfile = currentTenant().customers[0].id;
+      resetSimulator();
+      render();
+      showToast(`Comércio alternado para: ${currentTenant().name}`);
+    });
+    const compToggle = document.getElementById('toggleComponents');
+    if (compToggle) {
+      compToggle.addEventListener('change', e => {
+        document.body.classList.toggle('show-components', e.target.checked);
+      });
+    }
+    document.getElementById('mainContent').addEventListener('click', e => {
+      const simBtn = e.target.closest('[data-sim-reply]');
+      if (simBtn) {
+        simReceiveUser(simBtn.dataset.simLabel || '', 'INTERACTIVE_REPLY', simBtn.dataset.simReply || '');
+        render();
+        const box = document.getElementById('chatMessages');
+        if (box) box.scrollTop = box.scrollHeight;
+        return;
+      }
+      const varBtn = e.target.closest('[data-insert-var]');
+      if (varBtn) {
+        const t = currentTenant();
+        const intent = t.intents.find(i => i.id === uiState.selectedIntentId);
+        if (!intent) return;
+        intent.template = `${intent.template} ${varBtn.dataset.insertVar || ''}`;
+        render();
+      }
+    });
+
+    initTheme();
+    resetSimulator();
+    render();
+  </script>
+</body>
+</html>

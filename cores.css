@@ -1,0 +1,167 @@
+/* ==========================================================================
+   AtendeBase — Tokens de Cores Centralizados (Tema Claro padrão + Escuro)
+   Nenhuma cor literal deve existir fora deste arquivo.
+   ========================================================================== */
+
+:root {
+  --background: #f4f6f9;
+  --content: #eef2f6;
+  --card: #ffffff;
+  --sidebar: #ffffff;
+  --border: #dce3ec;
+  --card-border: #dce3ec;
+  --foreground: #0f172a;
+  --muted-foreground: #526074;
+
+  --primary: #0f766e;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b;
+  --secondary-foreground: #ffffff;
+  --accent: #0d9488;
+
+  --success: #15803d;
+  --warning: #b45309;
+  --error: #b91c1c;
+
+  --backdrop: rgba(15, 23, 42, 0.55);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.16);
+}
+
+[data-theme="dark"] {
+  --background: #0b1120;
+  --content: #111827;
+  --card: #162033;
+  --sidebar: #0f172a;
+  --border: #263449;
+  --card-border: #263449;
+  --foreground: #f1f5f9;
+  --muted-foreground: #94a3b8;
+
+  --primary: #14b8a6;
+  --primary-foreground: #042f2e;
+  --secondary: #334155;
+  --secondary-foreground: #f8fafc;
+  --accent: #2dd4bf;
+
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --error: #f87171;
+
+  --backdrop: rgba(2, 6, 23, 0.72);
+  --shadow-sm: 0 1px 2px rgba(2, 6, 23, 0.35);
+  --shadow-lg: 0 18px 40px rgba(2, 6, 23, 0.55);
+}
+
+/* ==========================================================================
+   Classes semânticas derivadas exclusivamente dos tokens acima
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.soft-primary {
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--primary);
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+.soft-success {
+  background: color-mix(in srgb, var(--success) 12%, transparent);
+  color: var(--success);
+  border-color: color-mix(in srgb, var(--success) 32%, transparent);
+}
+
+.soft-warning {
+  background: color-mix(in srgb, var(--warning) 13%, transparent);
+  color: var(--warning);
+  border-color: color-mix(in srgb, var(--warning) 34%, transparent);
+}
+
+.soft-error {
+  background: color-mix(in srgb, var(--error) 12%, transparent);
+  color: var(--error);
+  border-color: color-mix(in srgb, var(--error) 34%, transparent);
+}
+
+.soft-muted {
+  background: color-mix(in srgb, var(--muted-foreground) 12%, transparent);
+  color: var(--muted-foreground);
+  border-color: var(--border);
+}
+
+.chat-surface {
+  background: color-mix(in srgb, var(--content) 88%, var(--background));
+}
+
+.bubble-bot {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.bubble-user {
+  background: color-mix(in srgb, var(--primary) 16%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--primary) 36%, transparent);
+}
+
+.modal-overlay {
+  background: var(--backdrop);
+}
+
+.surface-shadow {
+  box-shadow: var(--shadow-lg);
+}
+
+.nav-active {
+  background: color-mix(in srgb, var(--primary) 14%, transparent);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.nav-idle:hover {
+  background: color-mix(in srgb, var(--foreground) 6%, transparent);
+}
+
+.comp-tag {
+  display: none;
+  position: absolute;
+  top: -10px;
+  right: 8px;
+  z-index: 20;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+body.show-components [data-component] {
+  outline: 1.5px dashed color-mix(in srgb, var(--primary) 72%, transparent);
+  outline-offset: 2px;
+  position: relative;
+}
+
+body.show-components [data-component] > .comp-tag {
+  display: inline-block;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
