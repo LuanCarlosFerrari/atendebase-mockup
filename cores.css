@@ -1,108 +1,62 @@
 /* ==========================================================================
-   AtendeBase — Apple HIG Inspired Token System (macOS Sequoia / iOS 18)
-   Todas as cores e superfícies vivem exclusivamente neste arquivo.
+   AtendeBase — Paleta Única: Monocromática Apple Store
+   Base: Alabaster (#F5F5F7) · Branco (#FFFFFF) · Grafite (#1D1D1F)
+   Destaque Único: Apple Blue (#0066CC)
+   Nenhuma cor literal deve existir fora deste arquivo.
    ========================================================================== */
 
 :root {
   --background: #f5f5f7;
-  --content: #ebebf0;
+  --content: #ededf0;
   --card: #ffffff;
-  --card-elevated: rgba(255, 255, 255, 0.86);
-  --sidebar: rgba(245, 245, 247, 0.78);
-  --topbar: rgba(255, 255, 255, 0.76);
+  --sidebar: rgba(245, 245, 247, 0.84);
+  --topbar: rgba(255, 255, 255, 0.82);
 
-  --border: rgba(0, 0, 0, 0.08);
-  --card-border: rgba(0, 0, 0, 0.06);
-  --divider: rgba(0, 0, 0, 0.06);
+  --border: rgba(29, 29, 31, 0.08);
+  --card-border: rgba(29, 29, 31, 0.06);
 
   --foreground: #1d1d1f;
   --muted-foreground: #6e6e73;
-  --subtle-foreground: #86868b;
 
-  --primary: #0071e3;
-  --primary-hover: #0077ed;
+  /* Botões principais e ações fortes em Preto-Grafite Apple */
+  --primary: #1d1d1f;
+  --primary-hover: #333336;
   --primary-foreground: #ffffff;
 
-  --secondary: #1d1d1f;
-  --secondary-foreground: #ffffff;
-  --accent: #0071e3;
+  /* Único ponto cromático: Apple Blue (#0066CC) para links, etiquetas e iMessage */
+  --accent: #0066cc;
+  --accent-hover: #0055b3;
+  --accent-foreground: #ffffff;
 
-  --success: #28cd41;
-  --success-ink: #147d25;
-  --warning: #ff9500;
-  --warning-ink: #a65c00;
-  --error: #ff3b30;
-  --error-ink: #c91f16;
+  /* Estados semânticos contidos dentro da mesma harmonia monocromática + azul */
+  --success: #0066cc;
+  --success-ink: #0066cc;
+  --warning: #1d1d1f;
+  --warning-ink: #1d1d1f;
+  --error: #1d1d1f;
+  --error-ink: #1d1d1f;
 
-  --segment-track: rgba(118, 118, 128, 0.12);
+  --segment-track: rgba(29, 29, 31, 0.07);
   --segment-pill: #ffffff;
-  --segment-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.08);
+  --segment-shadow: 0 2px 6px rgba(0, 0, 0, 0.07), 0 0 1px rgba(0, 0, 0, 0.08);
 
+  /* iPhone unificado à paleta do painel (estilo iOS / iMessage) */
   --phone-frame: #1d1d1f;
   --phone-bezel: #3a3a3c;
-  --chat-wallpaper: #efeae2;
-  --bubble-user-bg: #d9fdd3;
-  --bubble-user-ink: #111b21;
+  --chat-wallpaper: #f5f5f7;
+  --wa-header: #ffffff;
+  --bubble-user-bg: #0066cc;
+  --bubble-user-ink: #ffffff;
   --bubble-bot-bg: #ffffff;
-  --bubble-bot-ink: #111b21;
-  --wa-header: #f0f2f5;
+  --bubble-bot-ink: #1d1d1f;
 
-  --backdrop: rgba(29, 29, 31, 0.38);
-  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.03), 0 0 1px rgba(0, 0, 0, 0.06);
-  --shadow-float: 0 20px 50px rgba(0, 0, 0, 0.14), 0 2px 10px rgba(0, 0, 0, 0.06);
-}
-
-[data-theme="dark"] {
-  --background: #000000;
-  --content: #121214;
-  --card: #1c1c1e;
-  --card-elevated: rgba(28, 28, 30, 0.88);
-  --sidebar: rgba(22, 22, 24, 0.78);
-  --topbar: rgba(28, 28, 30, 0.76);
-
-  --border: rgba(255, 255, 255, 0.11);
-  --card-border: rgba(255, 255, 255, 0.09);
-  --divider: rgba(255, 255, 255, 0.08);
-
-  --foreground: #f5f5f7;
-  --muted-foreground: #a1a1a6;
-  --subtle-foreground: #6e6e73;
-
-  --primary: #0a84ff;
-  --primary-hover: #409cff;
-  --primary-foreground: #ffffff;
-
-  --secondary: #2c2c2e;
-  --secondary-foreground: #f5f5f7;
-  --accent: #0a84ff;
-
-  --success: #30d158;
-  --success-ink: #4ae06e;
-  --warning: #ff9f0a;
-  --warning-ink: #ffb340;
-  --error: #ff453a;
-  --error-ink: #ff6961;
-
-  --segment-track: rgba(118, 118, 128, 0.28);
-  --segment-pill: #3a3a3c;
-  --segment-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-
-  --phone-frame: #2c2c2e;
-  --phone-bezel: #48484a;
-  --chat-wallpaper: #0b141a;
-  --bubble-user-bg: #005c4b;
-  --bubble-user-ink: #e9edef;
-  --bubble-bot-bg: #202c33;
-  --bubble-bot-ink: #e9edef;
-  --wa-header: #202c33;
-
-  --backdrop: rgba(0, 0, 0, 0.65);
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.35), 0 0 1px rgba(255, 255, 255, 0.08);
-  --shadow-float: 0 24px 60px rgba(0, 0, 0, 0.65);
+  --backdrop: rgba(29, 29, 31, 0.42);
+  --shadow-card: 0 2px 14px rgba(0, 0, 0, 0.03), 0 0 1px rgba(0, 0, 0, 0.06);
+  --shadow-float: 0 22px 54px rgba(0, 0, 0, 0.14), 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* ==========================================================================
-   Base Tipográfica e Superfícies Estilo Apple
+   Tipografia e Superfícies Estilo Apple Store
    ========================================================================== */
 
 * {
@@ -147,12 +101,13 @@ h1, h2, h3, .apple-title {
   border-radius: 14px;
 }
 
+/* Botão primário Preto-Grafite (#1D1D1F) */
 .apple-btn-primary {
   background: var(--primary);
   color: var(--primary-foreground);
   border-radius: 9999px;
   font-weight: 500;
-  transition: transform 0.12s ease, background-color 0.15s ease, opacity 0.15s ease;
+  transition: transform 0.12s ease, background-color 0.15s ease;
 }
 
 .apple-btn-primary:hover {
@@ -163,6 +118,7 @@ h1, h2, h3, .apple-title {
   transform: scale(0.98);
 }
 
+/* Botão secundário neutro */
 .apple-btn-secondary {
   background: var(--segment-track);
   color: var(--foreground);
@@ -172,7 +128,17 @@ h1, h2, h3, .apple-title {
 }
 
 .apple-btn-secondary:hover {
-  background: color-mix(in srgb, var(--foreground) 12%, transparent);
+  background: rgba(29, 29, 31, 0.12);
+}
+
+/* Links e detalhes no único tom de azul (#0066CC) */
+.apple-link {
+  color: var(--accent);
+}
+
+.apple-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
 }
 
 /* Segmented Control (Pílula estilo iOS / macOS) */
@@ -200,29 +166,41 @@ h1, h2, h3, .apple-title {
   box-shadow: var(--segment-shadow);
 }
 
-/* Badges suaves */
+/* Badges coerentes com a paleta única (Grafite vs. Apple Blue) */
 .soft-primary {
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
-  color: var(--primary);
-  border-color: color-mix(in srgb, var(--primary) 24%, transparent);
+  background: rgba(0, 102, 204, 0.09);
+  color: var(--accent);
+  border-color: rgba(0, 102, 204, 0.22);
+}
+
+.soft-graphite {
+  background: rgba(29, 29, 31, 0.08);
+  color: var(--foreground);
+  border-color: rgba(29, 29, 31, 0.16);
+}
+
+.solid-graphite {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
 }
 
 .soft-success {
-  background: color-mix(in srgb, var(--success) 14%, transparent);
-  color: var(--success-ink);
-  border-color: color-mix(in srgb, var(--success) 28%, transparent);
+  background: rgba(0, 102, 204, 0.08);
+  color: var(--accent);
+  border-color: rgba(0, 102, 204, 0.2);
 }
 
 .soft-warning {
-  background: color-mix(in srgb, var(--warning) 15%, transparent);
-  color: var(--warning-ink);
-  border-color: color-mix(in srgb, var(--warning) 30%, transparent);
+  background: rgba(29, 29, 31, 0.07);
+  color: var(--foreground);
+  border-color: rgba(29, 29, 31, 0.16);
 }
 
 .soft-error {
-  background: color-mix(in srgb, var(--error) 13%, transparent);
-  color: var(--error-ink);
-  border-color: color-mix(in srgb, var(--error) 28%, transparent);
+  background: rgba(29, 29, 31, 0.07);
+  color: var(--foreground);
+  border-color: rgba(29, 29, 31, 0.2);
 }
 
 .soft-muted {
@@ -233,8 +211,8 @@ h1, h2, h3, .apple-title {
 
 /* Navegação lateral macOS */
 .nav-active {
-  background: color-mix(in srgb, var(--primary) 13%, transparent);
-  color: var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
   font-weight: 600;
 }
 
@@ -243,10 +221,10 @@ h1, h2, h3, .apple-title {
 }
 
 .nav-idle:hover {
-  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  background: rgba(29, 29, 31, 0.05);
 }
 
-/* Moldura iPhone realista */
+/* Moldura iPhone unificada à paleta Apple */
 .iphone-shell {
   background: var(--phone-frame);
   border: 6px solid var(--phone-bezel);
@@ -259,7 +237,7 @@ h1, h2, h3, .apple-title {
 .iphone-island {
   width: 92px;
   height: 22px;
-  background: #000000;
+  background: var(--primary);
   border-radius: 999px;
   margin: 0 auto;
 }
@@ -276,29 +254,30 @@ h1, h2, h3, .apple-title {
 .bubble-bot {
   background: var(--bubble-bot-bg);
   color: var(--bubble-bot-ink);
-  border-radius: 16px 16px 16px 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--card-border);
+  border-radius: 18px 18px 18px 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .bubble-user {
   background: var(--bubble-user-bg);
   color: var(--bubble-user-ink);
-  border-radius: 16px 16px 4px 16px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  border-radius: 18px 18px 4px 18px;
+  box-shadow: 0 1px 3px rgba(0, 102, 204, 0.18);
 }
 
 .wa-quick-btn {
   background: var(--card);
-  color: var(--primary);
+  color: var(--accent);
   border: 1px solid var(--border);
   border-radius: 12px;
   font-weight: 600;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
   transition: transform 0.1s ease, background-color 0.15s ease;
 }
 
 .wa-quick-btn:hover {
-  background: color-mix(in srgb, var(--primary) 8%, var(--card));
+  background: rgba(0, 102, 204, 0.06);
 }
 
 .wa-quick-btn:active {
@@ -326,14 +305,14 @@ h1, h2, h3, .apple-title {
   font-weight: 700;
   padding: 2px 8px;
   border-radius: 999px;
-  background: var(--primary);
-  color: var(--primary-foreground);
+  background: var(--accent);
+  color: var(--accent-foreground);
   letter-spacing: 0.02em;
   pointer-events: none;
 }
 
 body.show-components [data-component] {
-  outline: 1.5px dashed color-mix(in srgb, var(--primary) 70%, transparent);
+  outline: 1.5px dashed var(--accent);
   outline-offset: 2px;
   position: relative;
 }

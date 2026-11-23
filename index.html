@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,7 @@
 <body class="min-h-screen m-0 p-0">
   <div class="min-h-screen flex flex-col lg:flex-row">
 
-    <!-- SIDEBAR ESTILO macOS SEQUOIA (Componente: AppSidebar) -->
+    <!-- SIDEBAR ESTILO APPLE STORE / macOS (Componente: AppSidebar) -->
     <aside data-component="AppSidebar (Novo)" class="w-full lg:w-64 shrink-0 apple-glass-sidebar border-b lg:border-b-0 lg:border-r border-[var(--border)] flex flex-col lg:sticky lg:top-0 lg:h-screen">
       <span class="comp-tag">AppSidebar · Novo</span>
 
@@ -20,7 +20,7 @@
         <div class="flex items-center justify-between px-1">
           <div class="flex items-center gap-2.5">
             <div class="w-8 h-8 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center shadow-sm">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             </div>
             <div>
               <div class="font-semibold text-sm apple-title leading-none">AtendeBase</div>
@@ -29,17 +29,17 @@
           </div>
         </div>
 
-        <!-- Seletor de Comércio estilo card iOS -->
+        <!-- Seletor de Comércio -->
         <div class="apple-card p-2.5">
           <label for="tenantSelect" class="block text-[11px] font-medium text-[var(--muted-foreground)] px-1 mb-1">Negócio em exibição</label>
-          <select id="tenantSelect" class="w-full text-xs font-semibold rounded-lg px-2 py-1.5 bg-[var(--content)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] cursor-pointer">
-            <option value="imobiliaria">🏠 Imobiliária Horizonte</option>
-            <option value="oficina">🔧 Oficina Silva Auto</option>
+          <select id="tenantSelect" class="w-full text-xs font-semibold rounded-lg px-2 py-1.5 bg-[var(--content)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-[var(--accent)] cursor-pointer">
+            <option value="imobiliaria">Imobiliária Horizonte</option>
+            <option value="oficina">Oficina Silva Auto</option>
           </select>
         </div>
       </div>
 
-      <!-- Navegação principal com ícones estilo SF Symbols -->
+      <!-- Navegação principal -->
       <nav class="px-3 pb-3 lg:py-2 flex lg:flex-col gap-1 overflow-x-auto lg:overflow-visible flex-1" aria-label="Menu principal">
         <button data-view="dashboard" class="nav-btn nav-active flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs text-left whitespace-nowrap transition-all">
           <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
@@ -61,7 +61,7 @@
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
             <span>Testar no iPhone</span>
           </span>
-          <span class="text-[11px] px-2 py-0.5 rounded-full soft-success font-semibold">Ao vivo</span>
+          <span class="text-[11px] px-2 py-0.5 rounded-full soft-primary font-semibold">Ao vivo</span>
         </button>
 
         <button data-view="handoff" class="nav-btn nav-idle flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-xs text-left whitespace-nowrap transition-all">
@@ -69,7 +69,7 @@
             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             <span>Atendimento Humano</span>
           </span>
-          <span id="handoffBadge" class="text-[11px] px-2 py-0.5 rounded-full soft-warning font-semibold">2</span>
+          <span id="handoffBadge" class="text-[11px] px-2 py-0.5 rounded-full soft-graphite font-semibold">2</span>
         </button>
       </nav>
 
@@ -77,7 +77,7 @@
       <div class="hidden lg:block p-4 border-t border-[var(--border)] space-y-2.5">
         <div class="flex items-center justify-between text-xs px-1">
           <span class="text-[var(--muted-foreground)]">Modo Inspetor (SDD)</span>
-          <input id="toggleInspector" type="checkbox" class="accent-[var(--primary)] w-4 h-4 cursor-pointer" />
+          <input id="toggleInspector" type="checkbox" class="accent-[var(--accent)] w-4 h-4 cursor-pointer" />
         </div>
         <div class="text-[11px] text-[var(--muted-foreground)] px-1 leading-relaxed">
           Respostas exatas direto da tabela do comércio, com privacidade por cliente.
@@ -88,7 +88,7 @@
     <!-- ÁREA PRINCIPAL -->
     <div class="flex-1 flex flex-col min-w-0">
 
-      <!-- TOPBAR TRANSLÚCIDA ESTILO APPLE (Componente: PageHeader) -->
+      <!-- TOPBAR TRANSLÚCIDA ESTILO APPLE STORE (Componente: PageHeader) -->
       <header data-component="PageHeader (Novo)" class="apple-glass-topbar sticky top-0 z-30 border-b border-[var(--border)] px-4 sm:px-7 py-3.5 flex flex-wrap items-center justify-between gap-3">
         <span class="comp-tag">PageHeader · Novo</span>
         <div class="min-w-0">
@@ -96,15 +96,11 @@
           <p id="pageSubtitle" class="text-xs text-[var(--muted-foreground)] mt-0.5"></p>
         </div>
 
-        <div class="flex items-center gap-2 flex-wrap">
-          <span class="hidden sm:inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full soft-success font-medium">
-            <span class="w-2 h-2 rounded-full bg-[var(--success)]"></span>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <span class="hidden sm:inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full soft-primary font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
             WhatsApp conectado
           </span>
-
-          <button id="btnToggleTheme" type="button" class="apple-btn-secondary text-xs px-3.5 py-1.5" aria-label="Alternar tema claro e escuro">
-            Escuro
-          </button>
 
           <button id="btnQuickSim" type="button" class="apple-btn-primary text-xs px-4 py-1.5 shadow-sm">
             Testar no iPhone
@@ -123,15 +119,15 @@
       <span class="comp-tag">ModalDialog · Novo</span>
       <div class="px-6 py-4 border-b border-[var(--border)] flex items-center justify-between">
         <h2 id="modalTitle" class="text-sm font-semibold apple-title">Detalhes</h2>
-        <button id="modalClose" type="button" class="apple-btn-secondary text-xs px-2.5 py-1">Fechar</button>
+        <button id="modalClose" type="button" class="apple-btn-secondary text-xs px-3 py-1">Fechar</button>
       </div>
       <div id="modalBody" class="p-6 overflow-y-auto custom-scroll space-y-4 text-xs"></div>
       <div id="modalFooter" class="px-6 py-3.5 border-t border-[var(--border)] bg-[var(--content)] flex items-center justify-end gap-2.5"></div>
     </div>
   </div>
 
-  <!-- TOAST ESTILO iOS DYNAMIC PILL (Componente: ToastNotification) -->
-  <div id="toast" class="hidden fixed bottom-5 right-5 z-50 px-4 py-2.5 rounded-full apple-card surface-shadow text-xs font-medium flex items-center gap-2"></div>
+  <!-- TOAST ESTILO DYNAMIC PILL (Componente: ToastNotification) -->
+  <div id="toast" class="hidden fixed bottom-5 right-5 z-50 px-4 py-2.5 rounded-full solid-graphite surface-shadow text-xs font-medium flex items-center gap-2"></div>
 
   <script>
     // =========================================================================
@@ -148,26 +144,6 @@
 
     function formatBRL(num) {
       return Number(num).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    }
-
-    // =========================================================================
-    // TEMA CLARO / ESCURO (Claro como padrão)
-    // =========================================================================
-    function applyTheme(theme) {
-      const safeTheme = theme === 'dark' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', safeTheme);
-      const btn = document.getElementById('btnToggleTheme');
-      if (btn) btn.textContent = safeTheme === 'dark' ? '☀ Modo Claro' : '🌙 Modo Escuro';
-      try { localStorage.setItem('atendebase_theme', safeTheme); } catch (_) {}
-    }
-
-    function initTheme() {
-      let saved = 'light';
-      try {
-        const raw = localStorage.getItem('atendebase_theme');
-        if (raw === 'dark' || raw === 'light') saved = raw;
-      } catch (_) {}
-      applyTheme(saved);
     }
 
     // =========================================================================
@@ -253,7 +229,7 @@
             actionType: 'CUSTOMER_RECORD_LOOKUP',
             collectionId: 'col_contratos',
             keywords: ['aluguel', 'valor', 'boleto'],
-            template: 'Olá, {{cliente.nome}}!\n\n📍 {{registro.imovel}}\n💰 Valor atual: {{registro.valor_aluguel}}\n📅 Vencimento: {{registro.vencimento}}\n📌 Situação: {{registro.status_parcela}}\n\nChave Pix: {{comercio.chave_pix}}'
+            template: 'Olá, {{cliente.nome}}!\n\nImóvel: {{registro.imovel}}\nValor atual: {{registro.valor_aluguel}}\nVencimento: {{registro.vencimento}}\nSituação: {{registro.status_parcela}}\n\nChave Pix: {{comercio.chave_pix}}'
           },
           {
             id: 'int_pix',
@@ -364,7 +340,7 @@
             actionType: 'CUSTOMER_RECORD_LOOKUP',
             collectionId: 'col_os',
             keywords: ['carro', 'os', 'pronto'],
-            template: 'Olá, {{cliente.nome}}!\n\n🚗 {{registro.veiculo}}\n🔧 Etapa: {{registro.status_servico}}\n💰 Orçamento: {{registro.orcamento}}\n📅 Previsão: {{registro.previsao_entrega}}\n\nPix: {{comercio.chave_pix}}'
+            template: 'Olá, {{cliente.nome}}!\n\nVeículo: {{registro.veiculo}}\nEtapa: {{registro.status_servico}}\nOrçamento: {{registro.orcamento}}\nPrevisão: {{registro.previsao_entrega}}\n\nPix: {{comercio.chave_pix}}'
           },
           {
             id: 'int_srv',
@@ -549,7 +525,7 @@
         simPushBot(
           `Olá, ${customer.name.split(' ')[0]}! Reconheci seu número.\n\nPara confirmar sua identidade, digite os ${t.authHint}:`,
           [
-            { id: `sys:quick_auth:${customer.cpfLast4}`, label: `✨ Testar com 1 toque: enviar ${customer.cpfLast4}` },
+            { id: `sys:quick_auth:${customer.cpfLast4}`, label: `Testar com 1 toque: enviar ${customer.cpfLast4}` },
             { id: 'sys:menu', label: 'Cancelar' }
           ],
           'Confirmação rápida de segurança'
@@ -642,7 +618,7 @@
             ]);
           } else {
             simPushBot(`Código não confere (tentativa ${uiState.sim.failedAttempts} de 3). Digite os ${t.authHint}:`, [
-              { id: `sys:quick_auth:${customer ? customer.cpfLast4 : '7735'}`, label: `✨ Testar código correto (${customer ? customer.cpfLast4 : '7735'})` },
+              { id: `sys:quick_auth:${customer ? customer.cpfLast4 : '7735'}`, label: `Testar código correto (${customer ? customer.cpfLast4 : '7735'})` },
               { id: 'sys:menu', label: 'Cancelar' }
             ]);
           }
@@ -715,11 +691,11 @@
             <div class="text-[var(--muted-foreground)]">Linhas na planilha</div>
             <div class="text-xl font-bold mt-1">10</div>
           </div>
-          <div class="p-3.5 rounded-2xl border soft-success">
+          <div class="p-3.5 rounded-2xl border soft-primary">
             <div>Prontas para salvar</div>
             <div class="text-xl font-bold mt-1">8</div>
           </div>
-          <div class="p-3.5 rounded-2xl border soft-error">
+          <div class="p-3.5 rounded-2xl border soft-graphite">
             <div>Precisam de revisão</div>
             <div class="text-xl font-bold mt-1">2</div>
           </div>
@@ -727,8 +703,8 @@
         <div class="apple-subcard overflow-hidden">
           <div class="px-4 py-2.5 font-semibold border-b border-[var(--border)]">O que precisa de atenção (2 linhas ignoradas)</div>
           <div class="divide-y divide-[var(--border)]">
-            <div class="px-4 py-2.5 flex justify-between gap-2"><span>Linha 4 · Valor do Aluguel</span><span class="text-[var(--error)] font-medium">Valor inválido</span></div>
-            <div class="px-4 py-2.5 flex justify-between gap-2"><span>Linha 9 · Telefone WhatsApp</span><span class="text-[var(--error)] font-medium">Cliente não cadastrado</span></div>
+            <div class="px-4 py-2.5 flex justify-between gap-2"><span>Linha 4 · Valor do Aluguel</span><span class="font-semibold">Valor inválido</span></div>
+            <div class="px-4 py-2.5 flex justify-between gap-2"><span>Linha 9 · Telefone WhatsApp</span><span class="font-semibold">Cliente não cadastrado</span></div>
           </div>
         </div>
       `;
@@ -741,7 +717,7 @@
 
     function openSheetsGuardModal() {
       const body = `
-        <div class="p-4 rounded-2xl border soft-error space-y-1.5">
+        <div class="p-4 rounded-2xl border soft-graphite space-y-1.5">
           <div class="font-semibold text-sm">Proteção ativada: evitamos apagar seus dados</div>
           <p>A planilha do Google Sheets parece ter sido apagada ou teve as colunas renomeadas (0 linhas encontradas).</p>
           <p class="opacity-90">Por segurança, <strong>mantivemos os dados anteriores funcionando</strong> para que seus clientes não fiquem sem resposta.</p>
@@ -759,7 +735,7 @@
     }
 
     // =========================================================================
-    // COMPONENTE REUTILIZÁVEL: MOLDURA iPHONE (Usado em Respostas e no Simulador)
+    // COMPONENTE REUTILIZÁVEL: MOLDURA iPHONE UNIFICADA À PALETA APPLE
     // =========================================================================
     function renderIPhoneMockup(t, mode = 'interactive') {
       if (!uiState.sim) resetSimulator();
@@ -780,7 +756,7 @@
         return `
           <div data-component="WhatsAppPreviewCard (Novo)" class="iphone-shell max-w-[330px] w-full mx-auto flex flex-col" style="height: 540px;">
             <span class="comp-tag">WhatsAppPreviewCard · Novo</span>
-            <div class="pt-2.5 pb-2 bg-[var(--wa-header)]">
+            <div class="pt-2.5 pb-2 wa-topbar">
               <div class="iphone-island"></div>
               <div class="px-4 pt-2.5 flex items-center gap-2.5">
                 <div class="w-8 h-8 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center text-xs font-bold">${escapeHtml(t.name.slice(0, 2).toUpperCase())}</div>
@@ -793,7 +769,7 @@
 
             <div class="flex-1 p-3.5 chat-surface overflow-y-auto custom-scroll space-y-3 flex flex-col justify-end">
               <div class="flex justify-end">
-                <div class="bubble-user px-3 py-2 text-xs max-w-[82%]">${escapeHtml(intent.title)}</div>
+                <div class="bubble-user px-3.5 py-2 text-xs max-w-[82%]">${escapeHtml(intent.title)}</div>
               </div>
               <div class="flex justify-start">
                 <div class="w-full max-w-[92%] space-y-1.5">
@@ -807,7 +783,7 @@
             </div>
 
             <div class="p-2.5 bg-[var(--card)] border-t border-[var(--border)] text-center">
-              <button type="button" onclick="switchView('simulator')" class="text-xs font-semibold text-[var(--primary)] hover:underline">
+              <button type="button" onclick="switchView('simulator')" class="text-xs font-semibold apple-link">
                 Interagir com este fluxo no iPhone →
               </button>
             </div>
@@ -815,7 +791,6 @@
         `;
       }
 
-      // Modo interativo completo
       return `
         <div data-component="ChatSimulator (Novo)" class="iphone-shell max-w-[370px] w-full mx-auto flex flex-col" style="height: 610px;">
           <span class="comp-tag">ChatSimulator · Novo</span>
@@ -826,7 +801,7 @@
                 <div class="w-8 h-8 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center text-xs font-bold shrink-0">${escapeHtml(t.name.slice(0, 2).toUpperCase())}</div>
                 <div class="min-w-0">
                   <div class="text-xs font-semibold truncate">${escapeHtml(t.name)}</div>
-                  <div class="text-[11px] text-[var(--success-ink)] font-medium">● Conta Comercial · Automático</div>
+                  <div class="text-[11px] text-[var(--accent)] font-medium">● Conta Comercial · Automático</div>
                 </div>
               </div>
               <button type="button" onclick="resetSimulator(); render();" class="apple-btn-secondary text-[11px] px-2.5 py-1 shrink-0" title="Recomeçar conversa">
@@ -858,7 +833,7 @@
           </div>
 
           <form onsubmit="handleChatSubmit(event)" class="p-2.5 bg-[var(--card)] border-t border-[var(--border)] flex gap-2">
-            <input id="chatInput" type="text" placeholder="Digite ou toque nos botões acima..." class="flex-1 text-xs px-3.5 py-2 rounded-full bg-[var(--content)] border border-[var(--border)] focus:outline-none focus:border-[var(--primary)]" />
+            <input id="chatInput" type="text" placeholder="Digite ou toque nos botões acima..." class="flex-1 text-xs px-3.5 py-2 rounded-full bg-[var(--content)] border border-[var(--border)] focus:outline-none focus:border-[var(--accent)]" />
             <button type="submit" class="apple-btn-primary text-xs px-4 py-2">Enviar</button>
           </form>
         </div>
@@ -866,14 +841,14 @@
     }
 
     // =========================================================================
-    // TELAS PRINCIPAIS (Design Limpo e Intuitivo estilo Apple)
+    // TELAS PRINCIPAIS
     // =========================================================================
     function renderDashboard(t) {
       const staleBanner = t.staleAlert.active ? `
-        <div data-component="SyncGuardBanner (Novo)" class="apple-card p-4 border-l-4 border-l-[var(--warning)] flex flex-wrap items-center justify-between gap-3">
+        <div data-component="SyncGuardBanner (Novo)" class="apple-card p-4 border-l-4 border-l-[var(--primary)] flex flex-wrap items-center justify-between gap-3">
           <span class="comp-tag">SyncGuardBanner · Novo</span>
           <div class="space-y-0.5 text-xs">
-            <div class="font-semibold text-[var(--warning-ink)]">Atenção: a tabela "${escapeHtml(t.staleAlert.collection)}" está há 2 dias sem atualização</div>
+            <div class="font-semibold">Aviso: a tabela "${escapeHtml(t.staleAlert.collection)}" está há 2 dias sem atualização</div>
             <div class="text-[var(--muted-foreground)]">${escapeHtml(t.staleAlert.detail)}</div>
           </div>
           <button type="button" onclick="switchView('collections')" class="apple-btn-secondary text-xs px-3.5 py-1.5">
@@ -883,39 +858,39 @@
       ` : '';
 
       return `
-        <!-- Guia Intuitivo em 3 Passos (Onboarding estilo Apple) -->
+        <!-- Guia Intuitivo em 3 Passos -->
         <section class="apple-card p-5 sm:p-6 space-y-4">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--primary)]">Como funciona</span>
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--accent)]">Como funciona</span>
               <h2 class="text-base font-semibold apple-title mt-0.5">Seu atendimento personalizado em 3 passos simples</h2>
             </div>
             <span class="text-xs text-[var(--muted-foreground)]">Sem inteligência artificial inventando valores</span>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-            <button type="button" onclick="switchView('collections')" class="apple-subcard p-4 text-left hover:border-[var(--primary)] transition-all group">
+            <button type="button" onclick="switchView('collections')" class="apple-subcard p-4 text-left hover:border-[var(--accent)] transition-all group">
               <div class="flex items-center justify-between">
-                <span class="w-6 h-6 rounded-full soft-primary text-xs font-bold flex items-center justify-center">1</span>
-                <span class="text-xs text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity">Abrir →</span>
+                <span class="w-6 h-6 rounded-full solid-graphite text-xs font-semibold flex items-center justify-center">1</span>
+                <span class="text-xs apple-link opacity-0 group-hover:opacity-100 transition-opacity">Abrir →</span>
               </div>
               <div class="font-semibold text-xs mt-3">Conecte seus dados</div>
               <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Importe sua planilha do Google Sheets ou cadastre clientes, valores e itens disponíveis.</p>
             </button>
 
-            <button type="button" onclick="switchView('intents')" class="apple-subcard p-4 text-left hover:border-[var(--primary)] transition-all group">
+            <button type="button" onclick="switchView('intents')" class="apple-subcard p-4 text-left hover:border-[var(--accent)] transition-all group">
               <div class="flex items-center justify-between">
-                <span class="w-6 h-6 rounded-full soft-primary text-xs font-bold flex items-center justify-center">2</span>
-                <span class="text-xs text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity">Personalizar →</span>
+                <span class="w-6 h-6 rounded-full solid-graphite text-xs font-semibold flex items-center justify-center">2</span>
+                <span class="text-xs apple-link opacity-0 group-hover:opacity-100 transition-opacity">Personalizar →</span>
               </div>
               <div class="font-semibold text-xs mt-3">Monte as respostas</div>
-              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Clique nas etiquetas como <span class="font-medium text-[var(--foreground)]">+ Valor do Aluguel</span> para puxar o dado exato de cada cliente.</p>
+              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Clique nas etiquetas como <span class="font-medium text-[var(--accent)]">+ Valor do Aluguel</span> para puxar o dado exato de cada cliente.</p>
             </button>
 
-            <button type="button" onclick="switchView('simulator')" class="apple-subcard p-4 text-left hover:border-[var(--primary)] transition-all group">
+            <button type="button" onclick="switchView('simulator')" class="apple-subcard p-4 text-left hover:border-[var(--accent)] transition-all group">
               <div class="flex items-center justify-between">
-                <span class="w-6 h-6 rounded-full soft-primary text-xs font-bold flex items-center justify-center">3</span>
-                <span class="text-xs text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity">Simular →</span>
+                <span class="w-6 h-6 rounded-full solid-graphite text-xs font-semibold flex items-center justify-center">3</span>
+                <span class="text-xs apple-link opacity-0 group-hover:opacity-100 transition-opacity">Simular →</span>
               </div>
               <div class="font-semibold text-xs mt-3">Teste no iPhone virtual</div>
               <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Veja como o cliente confirma os 4 últimos dígitos do CPF e recebe apenas o que é dele.</p>
@@ -931,7 +906,7 @@
           <div class="apple-card p-5">
             <div class="text-xs text-[var(--muted-foreground)]">Conversas hoje</div>
             <div class="text-2xl font-semibold apple-title mt-1.5 tabular-nums">${t.metrics.today}</div>
-            <div class="text-xs text-[var(--success-ink)] mt-1">Atendimento instantâneo</div>
+            <div class="text-xs text-[var(--accent)] mt-1">Atendimento instantâneo</div>
           </div>
           <div class="apple-card p-5">
             <div class="text-xs text-[var(--muted-foreground)]">Resolvidas sem humano</div>
@@ -941,7 +916,7 @@
           <div class="apple-card p-5">
             <div class="text-xs text-[var(--muted-foreground)]">Aguardando atendente</div>
             <div class="text-2xl font-semibold apple-title mt-1.5 tabular-nums">${t.handoffs.length}</div>
-            <div class="text-xs text-[var(--warning-ink)] mt-1">Robô pausado nessas conversas</div>
+            <div class="text-xs text-[var(--muted-foreground)] mt-1">Robô pausado nessas conversas</div>
           </div>
           <div class="apple-card p-5">
             <div class="text-xs text-[var(--muted-foreground)]">Sincronização dos dados</div>
@@ -959,7 +934,7 @@
                 <h2 class="text-sm font-semibold apple-title">Tabelas conectadas em ${escapeHtml(t.name)}</h2>
                 <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Tabelas privadas exigem confirmação do cliente; tabelas públicas ficam abertas a interessados.</p>
               </div>
-              <button type="button" onclick="switchView('collections')" class="apple-btn-secondary text-xs px-3 py-1.5 shrink-0">Ver dados</button>
+              <button type="button" onclick="switchView('collections')" class="apple-btn-secondary text-xs px-3.5 py-1.5 shrink-0">Ver dados</button>
             </div>
 
             <div class="divide-y divide-[var(--border)]">
@@ -968,17 +943,17 @@
                   <div class="space-y-1">
                     <div class="flex items-center gap-2">
                       <span class="font-semibold text-sm">${escapeHtml(c.name)}</span>
-                      <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium ${c.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'}">
-                        ${c.visibility === 'PRIVATE' ? '🔒 Só o próprio cliente vê' : '🌐 Aberta ao público'}
+                      <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium ${c.visibility === 'PRIVATE' ? 'soft-graphite' : 'soft-primary'}">
+                        ${c.visibility === 'PRIVATE' ? '🔒 Só o próprio cliente vê' : 'Pública'}
                       </span>
                     </div>
                     <div class="text-[var(--muted-foreground)]">Fonte: ${escapeHtml(c.sourceLabel)} · ${c.records.length} registros ativos</div>
                   </div>
                   <div class="flex items-center gap-3">
-                    <span class="${c.stale ? 'text-[var(--warning-ink)] font-medium' : 'text-[var(--muted-foreground)]'}">
-                      ${c.stale ? '⚠ ' : 'Atualizado: '}${escapeHtml(c.lastSynced)}
+                    <span class="text-[var(--muted-foreground)]">
+                      Atualizado: ${escapeHtml(c.lastSynced)}
                     </span>
-                    <button type="button" onclick="uiState.collectionTab='${c.id}'; switchView('collections');" class="text-[var(--primary)] font-semibold hover:underline">Abrir →</button>
+                    <button type="button" onclick="uiState.collectionTab='${c.id}'; switchView('collections');" class="apple-link font-semibold">Abrir →</button>
                   </div>
                 </div>
               `).join('')}
@@ -992,11 +967,11 @@
               <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Simule o que acontece quando uma planilha tem erros.</p>
             </div>
             <div class="space-y-2.5">
-              <button type="button" onclick="openCsvDryRunModal()" class="w-full text-left apple-subcard p-3.5 hover:border-[var(--primary)] transition-colors">
+              <button type="button" onclick="openCsvDryRunModal()" class="w-full text-left apple-subcard p-3.5 hover:border-[var(--accent)] transition-colors">
                 <div class="text-xs font-semibold">Conferência prévia de planilha (CSV)</div>
                 <div class="text-xs text-[var(--muted-foreground)] mt-1">Mostra quais linhas estão certas e quais têm erro antes de salvar.</div>
               </button>
-              <button type="button" onclick="openSheetsGuardModal()" class="w-full text-left apple-subcard p-3.5 hover:border-[var(--primary)] transition-colors">
+              <button type="button" onclick="openSheetsGuardModal()" class="w-full text-left apple-subcard p-3.5 hover:border-[var(--accent)] transition-colors">
                 <div class="text-xs font-semibold">Proteção contra planilha apagada</div>
                 <div class="text-xs text-[var(--muted-foreground)] mt-1">Se alguém apagar o Google Sheets sem querer, o sistema preserva os dados antigos.</div>
               </button>
@@ -1048,7 +1023,7 @@
                       <td class="py-3 px-3"><span class="px-2.5 py-1 rounded-lg soft-muted font-mono">Final CPF: <strong>${escapeHtml(c.cpfLast4)}</strong></span></td>
                       <td class="py-3 px-3 text-[var(--muted-foreground)]">${escapeHtml(c.desc)}</td>
                       <td class="py-3 pl-3 text-right">
-                        <button type="button" onclick="uiState.simProfile='${c.id}'; resetSimulator(); switchView('simulator');" class="text-[var(--primary)] font-semibold hover:underline">Simular conversa →</button>
+                        <button type="button" onclick="uiState.simProfile='${c.id}'; resetSimulator(); switchView('simulator');" class="apple-link font-semibold">Simular conversa →</button>
                       </td>
                     </tr>
                   `).join('')}
@@ -1066,8 +1041,8 @@
               <div class="space-y-1">
                 <div class="flex items-center gap-2.5 flex-wrap">
                   <h2 class="text-base font-semibold apple-title">${escapeHtml(col.name)}</h2>
-                  <span class="px-2.5 py-0.5 rounded-full text-xs font-medium ${col.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'}">
-                    ${col.visibility === 'PRIVATE' ? '🔒 Privada (só o cliente dono da linha pode consultar)' : '🌐 Pública (qualquer pessoa pode consultar)'}
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-medium ${col.visibility === 'PRIVATE' ? 'soft-graphite' : 'soft-primary'}">
+                    ${col.visibility === 'PRIVATE' ? '🔒 Privada (só o cliente dono da linha pode consultar)' : 'Pública (qualquer pessoa pode consultar)'}
                   </span>
                 </div>
                 <p class="text-xs text-[var(--muted-foreground)]">Fonte: <strong>${escapeHtml(col.sourceLabel)}</strong> · Atualizado: <strong>${escapeHtml(col.lastSynced)}</strong></p>
@@ -1091,7 +1066,7 @@
                   </span>
                 `).join('')}
               </div>
-              <button type="button" onclick="showToast('Você pode criar novas colunas personalizadas para o seu negócio.')" class="text-xs text-[var(--primary)] font-semibold hover:underline">+ Nova coluna</button>
+              <button type="button" onclick="showToast('Você pode criar novas colunas personalizadas para o seu negócio.')" class="text-xs apple-link font-semibold">+ Nova coluna</button>
             </div>
 
             <!-- Tabela de Dados -->
@@ -1123,7 +1098,6 @@
       }
 
       return `
-        <!-- Segmented Control estilo macOS / iOS -->
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div class="segmented-control flex-wrap">
             ${tabs.map(tb => `
@@ -1144,7 +1118,6 @@
       const intent = t.intents.find(i => i.id === uiState.selectedIntentId);
       const col = t.collections.find(c => c.id === intent.collectionId);
 
-      // Etiquetas com nomes humanos amigáveis!
       const friendlyVars = [
         { token: '{{comercio.nome}}', label: 'Nome do Comércio' },
         { token: '{{comercio.chave_pix}}', label: 'Chave Pix' },
@@ -1160,15 +1133,15 @@
             <span class="comp-tag">IntentMenuList · Novo</span>
             <div class="flex items-center justify-between px-1">
               <h2 class="text-sm font-semibold apple-title">Opções do Menu</h2>
-              <button type="button" onclick="showToast('Em produção: cria um novo botão no menu do WhatsApp.')" class="text-xs font-semibold text-[var(--primary)] hover:underline">+ Nova</button>
+              <button type="button" onclick="showToast('Em produção: cria um novo botão no menu do WhatsApp.')" class="text-xs font-semibold apple-link">+ Nova</button>
             </div>
             <div class="space-y-2">
               ${t.intents.map((it, idx) => `
-                <button type="button" onclick="uiState.selectedIntentId='${it.id}'; render();" class="w-full text-left p-3 rounded-2xl border transition-all ${it.id === intent.id ? 'soft-primary font-semibold' : 'apple-subcard hover:border-[var(--primary)]'}">
+                <button type="button" onclick="uiState.selectedIntentId='${it.id}'; render();" class="w-full text-left p-3 rounded-2xl border transition-all ${it.id === intent.id ? 'soft-primary font-semibold' : 'apple-subcard hover:border-[var(--accent)]'}">
                   <div class="flex items-center justify-between gap-2">
                     <span class="text-xs font-semibold">${idx + 1}. ${escapeHtml(it.title)}</span>
-                    <span class="text-[11px] px-2 py-0.5 rounded-full ${it.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'}">
-                      ${it.visibility === 'PRIVATE' ? '🔒 Privada' : '🌐 Pública'}
+                    <span class="text-[11px] px-2 py-0.5 rounded-full ${it.visibility === 'PRIVATE' ? 'soft-graphite' : 'soft-primary'}">
+                      ${it.visibility === 'PRIVATE' ? '🔒 Privada' : 'Pública'}
                     </span>
                   </div>
                   <p class="text-[11px] text-[var(--muted-foreground)] font-normal mt-1 leading-snug">${escapeHtml(it.subtitle)}</p>
@@ -1182,17 +1155,17 @@
             <span class="comp-tag">TemplateEditor · Novo</span>
             <div class="flex flex-wrap items-center justify-between gap-2">
               <div>
-                <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--primary)]">Personalizar resposta</span>
+                <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--accent)]">Personalizar resposta</span>
                 <h2 class="text-base font-semibold apple-title mt-0.5">Quando o cliente tocar em "${escapeHtml(intent.title)}"</h2>
               </div>
-              <span class="text-xs px-2.5 py-1 rounded-full ${intent.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'} font-medium">
-                ${intent.visibility === 'PRIVATE' ? '🔒 Exige confirmar identidade' : '🌐 Resposta imediata'}
+              <span class="text-xs px-2.5 py-1 rounded-full ${intent.visibility === 'PRIVATE' ? 'soft-graphite' : 'soft-primary'} font-medium">
+                ${intent.visibility === 'PRIVATE' ? '🔒 Exige confirmar identidade' : 'Resposta imediata'}
               </span>
             </div>
 
             <div>
               <label class="block text-xs font-medium text-[var(--muted-foreground)] mb-1.5">Nome do botão no WhatsApp (até 20 letras)</label>
-              <input type="text" maxlength="20" value="${escapeHtml(intent.title)}" oninput="updateIntentField('title', this.value)" class="w-full px-3.5 py-2 rounded-xl bg-[var(--content)] border border-[var(--border)] text-xs font-semibold focus:outline-none focus:border-[var(--primary)]" />
+              <input type="text" maxlength="20" value="${escapeHtml(intent.title)}" oninput="updateIntentField('title', this.value)" class="w-full px-3.5 py-2 rounded-xl bg-[var(--content)] border border-[var(--border)] text-xs font-semibold focus:outline-none focus:border-[var(--accent)]" />
             </div>
 
             <div class="space-y-2">
@@ -1208,7 +1181,7 @@
 
             <div>
               <label for="tplArea" class="block text-xs font-medium text-[var(--muted-foreground)] mb-1.5">Texto da mensagem (o iPhone ao lado atualiza na hora)</label>
-              <textarea id="tplArea" rows="7" oninput="updateIntentField('template', this.value)" class="w-full p-3.5 rounded-2xl bg-[var(--content)] border border-[var(--border)] text-xs leading-relaxed focus:outline-none focus:border-[var(--primary)]">${escapeHtml(intent.template)}</textarea>
+              <textarea id="tplArea" rows="7" oninput="updateIntentField('template', this.value)" class="w-full p-3.5 rounded-2xl bg-[var(--content)] border border-[var(--border)] text-xs leading-relaxed focus:outline-none focus:border-[var(--accent)]">${escapeHtml(intent.template)}</textarea>
             </div>
           </div>
 
@@ -1261,7 +1234,7 @@
               <h3 class="text-sm font-semibold apple-title">Bastidores Técnicos (SDD &amp; LGPD)</h3>
               <p class="text-xs text-[var(--muted-foreground)]">Os logs registram o atendimento sem guardar CPF, telefone nem valores.</p>
             </div>
-            <span class="text-xs px-2.5 py-0.5 rounded-full soft-success font-semibold">LGPD OK</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full soft-primary font-semibold">LGPD OK</span>
           </div>
 
           <div class="grid grid-cols-3 gap-2.5 text-xs">
@@ -1271,7 +1244,7 @@
             </div>
             <div class="apple-subcard p-2.5">
               <div class="text-[var(--muted-foreground)]">Identidade</div>
-              <div class="font-semibold mt-0.5 ${s.authenticatedCustomerId ? 'text-[var(--success-ink)]' : 'text-[var(--muted-foreground)]'}">
+              <div class="font-semibold mt-0.5 ${s.authenticatedCustomerId ? 'text-[var(--accent)]' : 'text-[var(--muted-foreground)]'}">
                 ${s.authenticatedCustomerId ? 'Confirmada' : 'Pública'}
               </div>
             </div>
@@ -1285,7 +1258,7 @@
             ${s.logs.map(l => `
               <div>
                 <span class="text-[var(--muted-foreground)]">[${l.ts}]</span>
-                <span class="font-semibold text-[var(--primary)]">${escapeHtml(l.code)}</span>
+                <span class="font-semibold text-[var(--accent)]">${escapeHtml(l.code)}</span>
                 <span class="text-[var(--muted-foreground)]"> · ${escapeHtml(l.meta)}</span>
               </div>
             `).join('')}
@@ -1300,17 +1273,17 @@
             <span class="comp-tag">SimulatorControls · Novo</span>
             <div class="apple-card p-5 space-y-4">
               <div>
-                <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--primary)]">Simulador interativo</span>
+                <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--accent)]">Simulador interativo</span>
                 <h2 class="text-base font-semibold apple-title mt-0.5">Com qual cliente você quer testar agora?</h2>
                 <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Escolha uma pessoa abaixo e toque nos botões da tela do iPhone.</p>
               </div>
 
               <div class="space-y-2.5">
                 ${profiles.map(p => `
-                  <button type="button" onclick="uiState.simProfile='${p.id}'; resetSimulator(); render();" class="w-full text-left p-3.5 rounded-2xl border transition-all ${uiState.simProfile === p.id ? 'soft-primary' : 'apple-subcard hover:border-[var(--primary)]'}">
+                  <button type="button" onclick="uiState.simProfile='${p.id}'; resetSimulator(); render();" class="w-full text-left p-3.5 rounded-2xl border transition-all ${uiState.simProfile === p.id ? 'soft-primary' : 'apple-subcard hover:border-[var(--accent)]'}">
                     <div class="flex items-center justify-between gap-2">
                       <span class="text-xs font-semibold">${escapeHtml(p.name)}</span>
-                      <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[var(--card)] border border-[var(--border)] font-medium">${escapeHtml(p.badge)}</span>
+                      <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[var(--card)] border border-[var(--border)] font-medium text-[var(--foreground)]">${escapeHtml(p.badge)}</span>
                     </div>
                     <div class="text-xs text-[var(--muted-foreground)] mt-1">${escapeHtml(p.desc)}</div>
                   </button>
@@ -1319,9 +1292,9 @@
 
               <div class="pt-3 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-2">
                 <button type="button" onclick="simReceiveUser('[Áudio de voz 0:08]', 'UNSUPPORTED_MEDIA'); render();" class="apple-btn-secondary text-xs px-3.5 py-1.5">
-                  🎤 Simular cliente mandando áudio
+                  Simular cliente mandando áudio
                 </button>
-                <button type="button" onclick="uiState.inspectorOpen = !uiState.inspectorOpen; render();" class="text-xs font-medium text-[var(--primary)] hover:underline">
+                <button type="button" onclick="uiState.inspectorOpen = !uiState.inspectorOpen; render();" class="text-xs font-medium apple-link">
                   ${uiState.inspectorOpen ? 'Ocultar bastidores técnicos' : 'Ver bastidores (Segurança & LGPD)'}
                 </button>
               </div>
@@ -1330,7 +1303,7 @@
             ${inspectorPanel}
           </div>
 
-          <!-- Coluna Direita: iPhone Centralizado (aparece primeiro no celular!) -->
+          <!-- Coluna Direita: iPhone Centralizado -->
           <div class="order-first xl:order-none xl:col-span-7 flex justify-center">
             ${renderIPhoneMockup(t, 'interactive')}
           </div>
@@ -1384,7 +1357,7 @@
             <span class="comp-tag">ChannelConfigCard · Novo</span>
             <div class="flex items-center justify-between">
               <h2 class="text-base font-semibold apple-title">Dados gerais do comércio</h2>
-              <span class="text-xs px-2.5 py-0.5 rounded-full soft-success font-medium">Ativo</span>
+              <span class="text-xs px-2.5 py-0.5 rounded-full soft-primary font-medium">Ativo</span>
             </div>
 
             <div class="space-y-2.5 text-xs">
@@ -1462,10 +1435,6 @@
       btn.addEventListener('click', () => switchView(btn.dataset.view));
     });
     document.getElementById('btnQuickSim').addEventListener('click', () => switchView('simulator'));
-    document.getElementById('btnToggleTheme').addEventListener('click', () => {
-      const curr = document.documentElement.getAttribute('data-theme');
-      applyTheme(curr === 'dark' ? 'light' : 'dark');
-    });
     document.getElementById('modalClose').addEventListener('click', closeModal);
     document.getElementById('modalBackdrop').addEventListener('click', e => {
       if (e.target.id === 'modalBackdrop') closeModal();
@@ -1506,7 +1475,6 @@
       }
     });
 
-    initTheme();
     resetSimulator();
     render();
   </script>
