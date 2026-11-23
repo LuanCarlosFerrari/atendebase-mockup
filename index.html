@@ -3,119 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AtendeBase — Mockup Interativo (Atendimento Personalizado Multi-Comércio)</title>
-  <meta name="description" content="Protótipo interativo de SaaS de atendimento automático personalizado para comércios com dados 100% fictícios." />
+  <title>AtendeBase — Atendimento Personalizado para Comércios</title>
+  <meta name="description" content="Atendimento automático e personalizado no WhatsApp conectado à planilha ou cadastro do seu comércio." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./cores.css" />
 </head>
-<body class="bg-[var(--background)] text-[var(--foreground)] antialiased m-0 p-0">
+<body class="min-h-screen m-0 p-0">
   <div class="min-h-screen flex flex-col lg:flex-row">
 
-    <!-- SIDEBAR (Componente: AppSidebar) -->
-    <aside data-component="AppSidebar (Novo)" class="w-full lg:w-64 shrink-0 bg-[var(--sidebar)] border-b lg:border-b-0 lg:border-r border-[var(--border)] flex flex-col">
+    <!-- SIDEBAR ESTILO macOS SEQUOIA (Componente: AppSidebar) -->
+    <aside data-component="AppSidebar (Novo)" class="w-full lg:w-64 shrink-0 apple-glass-sidebar border-b lg:border-b-0 lg:border-r border-[var(--border)] flex flex-col lg:sticky lg:top-0 lg:h-screen">
       <span class="comp-tag">AppSidebar · Novo</span>
 
-      <!-- Marca + Seletor de Tenant -->
-      <div class="p-4 border-b border-[var(--border)] space-y-3">
-        <div class="flex items-center justify-between gap-2">
+      <!-- Cabeçalho da marca + Seletor de Comércio -->
+      <div class="p-4 pt-5 space-y-3.5">
+        <div class="flex items-center justify-between px-1">
           <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center font-bold text-sm">AB</div>
+            <div class="w-8 h-8 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center shadow-sm">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
             <div>
-              <div class="font-bold text-sm leading-tight">AtendeBase</div>
-              <div class="text-xs text-[var(--muted-foreground)]">Mockup SDD v0.1</div>
+              <div class="font-semibold text-sm apple-title leading-none">AtendeBase</div>
+              <div class="text-xs text-[var(--muted-foreground)] mt-1">Atendimento inteligente</div>
             </div>
           </div>
-          <span class="text-xs px-2 py-0.5 rounded-full border soft-primary font-medium">Demo</span>
         </div>
 
-        <!-- Troca de Comércio (prova visual multi-tenant) -->
-        <div>
-          <label for="tenantSelect" class="block text-xs text-[var(--muted-foreground)] mb-1">Comércio ativo (Tenant)</label>
-          <select id="tenantSelect" class="w-full text-xs rounded-lg px-2.5 py-2 bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)]">
-            <option value="imobiliaria">Imobiliária Horizonte (Piloto)</option>
-            <option value="oficina">Oficina Silva Auto (Exemplo)</option>
+        <!-- Seletor de Comércio estilo card iOS -->
+        <div class="apple-card p-2.5">
+          <label for="tenantSelect" class="block text-[11px] font-medium text-[var(--muted-foreground)] px-1 mb-1">Negócio em exibição</label>
+          <select id="tenantSelect" class="w-full text-xs font-semibold rounded-lg px-2 py-1.5 bg-[var(--content)] border border-[var(--border)] text-[var(--foreground)] focus:outline-none focus:border-[var(--primary)] cursor-pointer">
+            <option value="imobiliaria">🏠 Imobiliária Horizonte</option>
+            <option value="oficina">🔧 Oficina Silva Auto</option>
           </select>
         </div>
       </div>
 
-      <!-- Menu principal -->
-      <nav class="p-3 flex lg:flex-col gap-1 overflow-x-auto lg:overflow-visible flex-1" aria-label="Navegação principal">
-        <button data-view="dashboard" class="nav-btn nav-active flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-left whitespace-nowrap transition-colors">
-          <span>◉</span><span>Visão Geral</span>
+      <!-- Navegação principal com ícones estilo SF Symbols -->
+      <nav class="px-3 pb-3 lg:py-2 flex lg:flex-col gap-1 overflow-x-auto lg:overflow-visible flex-1" aria-label="Menu principal">
+        <button data-view="dashboard" class="nav-btn nav-active flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs text-left whitespace-nowrap transition-all">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span>Início</span>
         </button>
-        <button data-view="collections" class="nav-btn nav-idle flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-left whitespace-nowrap transition-colors">
-          <span>▤</span><span>Coleções &amp; Dados</span>
+
+        <button data-view="collections" class="nav-btn nav-idle flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs text-left whitespace-nowrap transition-all">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+          <span>Cadastros e Tabelas</span>
         </button>
-        <button data-view="intents" class="nav-btn nav-idle flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-left whitespace-nowrap transition-colors">
-          <span>❖</span><span>Menus &amp; Templates</span>
+
+        <button data-view="intents" class="nav-btn nav-idle flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs text-left whitespace-nowrap transition-all">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <span>Respostas do WhatsApp</span>
         </button>
-        <button data-view="simulator" class="nav-btn nav-idle flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-xs text-left whitespace-nowrap transition-colors">
-          <span class="flex items-center gap-2.5"><span>▶</span><span>Simulador WhatsApp</span></span>
-          <span class="text-xs px-1.5 py-0.5 rounded soft-success border font-medium">Live</span>
+
+        <button data-view="simulator" class="nav-btn nav-idle flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-xs text-left whitespace-nowrap transition-all">
+          <span class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <span>Testar no iPhone</span>
+          </span>
+          <span class="text-[11px] px-2 py-0.5 rounded-full soft-success font-semibold">Ao vivo</span>
         </button>
-        <button data-view="handoff" class="nav-btn nav-idle flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-xs text-left whitespace-nowrap transition-colors">
-          <span class="flex items-center gap-2.5"><span>⇄</span><span>Transbordos &amp; Canal</span></span>
-          <span id="handoffBadge" class="text-xs px-1.5 rounded-full soft-warning border font-semibold">2</span>
+
+        <button data-view="handoff" class="nav-btn nav-idle flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-xs text-left whitespace-nowrap transition-all">
+          <span class="flex items-center gap-2.5">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Atendimento Humano</span>
+          </span>
+          <span id="handoffBadge" class="text-[11px] px-2 py-0.5 rounded-full soft-warning font-semibold">2</span>
         </button>
       </nav>
 
-      <!-- Rodapé Sidebar -->
-      <div class="hidden lg:block p-3 border-t border-[var(--border)] space-y-2">
-        <label class="flex items-center justify-between gap-2 px-2.5 py-2 rounded-lg bg-[var(--card)] border border-[var(--border)] cursor-pointer text-xs">
-          <span class="font-medium">Mapa Component-First</span>
-          <input id="toggleComponents" type="checkbox" class="accent-[var(--primary)]" />
-        </label>
-        <div class="text-xs text-[var(--muted-foreground)] px-1 leading-relaxed">
-          Dados 100% fictícios (LGPD). Motor determinístico sem IA na v1.
+      <!-- Rodapé discreto da Sidebar -->
+      <div class="hidden lg:block p-4 border-t border-[var(--border)] space-y-2.5">
+        <div class="flex items-center justify-between text-xs px-1">
+          <span class="text-[var(--muted-foreground)]">Modo Inspetor (SDD)</span>
+          <input id="toggleInspector" type="checkbox" class="accent-[var(--primary)] w-4 h-4 cursor-pointer" />
+        </div>
+        <div class="text-[11px] text-[var(--muted-foreground)] px-1 leading-relaxed">
+          Respostas exatas direto da tabela do comércio, com privacidade por cliente.
         </div>
       </div>
     </aside>
 
-    <!-- CONTEÚDO PRINCIPAL -->
+    <!-- ÁREA PRINCIPAL -->
     <div class="flex-1 flex flex-col min-w-0">
 
-      <!-- TOPBAR (Componente: PageHeader) -->
-      <header data-component="PageHeader (Novo)" class="bg-[var(--card)] border-b border-[var(--border)] px-4 sm:px-5 py-3.5 flex flex-wrap items-center justify-between gap-3">
+      <!-- TOPBAR TRANSLÚCIDA ESTILO APPLE (Componente: PageHeader) -->
+      <header data-component="PageHeader (Novo)" class="apple-glass-topbar sticky top-0 z-30 border-b border-[var(--border)] px-4 sm:px-7 py-3.5 flex flex-wrap items-center justify-between gap-3">
         <span class="comp-tag">PageHeader · Novo</span>
         <div class="min-w-0">
-          <h1 id="pageTitle" class="text-sm sm:text-base font-bold leading-tight truncate">Visão Geral</h1>
+          <h1 id="pageTitle" class="text-base sm:text-lg font-semibold apple-title leading-tight truncate">Início</h1>
           <p id="pageSubtitle" class="text-xs text-[var(--muted-foreground)] mt-0.5"></p>
         </div>
+
         <div class="flex items-center gap-2 flex-wrap">
-          <span class="hidden sm:inline-flex text-xs px-2.5 py-1 rounded-full border soft-success font-medium">● WhatsApp Cloud API · Conectado</span>
-          <button id="btnToggleTheme" type="button" class="text-xs px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--content)] hover:border-[var(--primary)] font-medium transition-colors" aria-label="Alternar tema claro e escuro">
-            🌙 Escuro
+          <span class="hidden sm:inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full soft-success font-medium">
+            <span class="w-2 h-2 rounded-full bg-[var(--success)]"></span>
+            WhatsApp conectado
+          </span>
+
+          <button id="btnToggleTheme" type="button" class="apple-btn-secondary text-xs px-3.5 py-1.5" aria-label="Alternar tema claro e escuro">
+            Escuro
           </button>
-          <button id="btnQuickSim" type="button" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold hover:opacity-90 transition-opacity">
-            ▶ Testar Simulador
+
+          <button id="btnQuickSim" type="button" class="apple-btn-primary text-xs px-4 py-1.5 shadow-sm">
+            Testar no iPhone
           </button>
         </div>
       </header>
 
-      <!-- ÁREA DA TELA ATIVA -->
-      <main id="mainContent" class="flex-1 p-4 sm:p-5 space-y-5 overflow-y-auto custom-scroll"></main>
+      <!-- CONTEÚDO DINÂMICO -->
+      <main id="mainContent" class="flex-1 p-4 sm:p-7 max-w-7xl w-full mx-auto space-y-6"></main>
     </div>
   </div>
 
-  <!-- MODAL GENÉRICO (Componente: ModalDialog) -->
-  <div id="modalBackdrop" class="hidden fixed inset-0 z-50 modal-overlay backdrop-blur-[1px] flex items-center justify-center p-4">
-    <div data-component="ModalDialog (Novo)" class="bg-[var(--card)] border border-[var(--border)] rounded-xl max-w-2xl w-full surface-shadow overflow-hidden flex flex-col max-h-[88vh]">
+  <!-- MODAL ESTILO macOS SHEET (Componente: ModalDialog) -->
+  <div id="modalBackdrop" class="hidden fixed inset-0 z-50 modal-overlay flex items-center justify-center p-4">
+    <div data-component="ModalDialog (Novo)" class="apple-card max-w-xl w-full surface-shadow overflow-hidden flex flex-col max-h-[88vh]">
       <span class="comp-tag">ModalDialog · Novo</span>
-      <div class="px-5 py-3.5 border-b border-[var(--border)] flex items-center justify-between">
-        <h2 id="modalTitle" class="text-sm font-bold">Modal</h2>
-        <button id="modalClose" type="button" class="text-xs px-2 py-1 rounded-md border border-[var(--border)] hover:bg-[var(--content)]">Fechar ✕</button>
+      <div class="px-6 py-4 border-b border-[var(--border)] flex items-center justify-between">
+        <h2 id="modalTitle" class="text-sm font-semibold apple-title">Detalhes</h2>
+        <button id="modalClose" type="button" class="apple-btn-secondary text-xs px-2.5 py-1">Fechar</button>
       </div>
-      <div id="modalBody" class="p-5 overflow-y-auto custom-scroll space-y-4 text-xs"></div>
-      <div id="modalFooter" class="px-5 py-3 border-t border-[var(--border)] bg-[var(--content)] flex items-center justify-end gap-2"></div>
+      <div id="modalBody" class="p-6 overflow-y-auto custom-scroll space-y-4 text-xs"></div>
+      <div id="modalFooter" class="px-6 py-3.5 border-t border-[var(--border)] bg-[var(--content)] flex items-center justify-end gap-2.5"></div>
     </div>
   </div>
 
-  <!-- TOAST (Componente: ToastNotification) -->
-  <div id="toast" class="hidden fixed bottom-4 right-4 z-50 px-4 py-2.5 rounded-lg border bg-[var(--card)] border-[var(--border)] surface-shadow text-xs font-medium flex items-center gap-2"></div>
+  <!-- TOAST ESTILO iOS DYNAMIC PILL (Componente: ToastNotification) -->
+  <div id="toast" class="hidden fixed bottom-5 right-5 z-50 px-4 py-2.5 rounded-full apple-card surface-shadow text-xs font-medium flex items-center gap-2"></div>
 
   <script>
     // =========================================================================
-    // UTILITÁRIO DE SEGURANÇA (Zero XSS — escapeHtml obrigatório)
+    // SEGURANÇA (Zero XSS — escapeHtml obrigatório)
     // =========================================================================
     function escapeHtml(value) {
       return String(value ?? '')
@@ -131,13 +151,13 @@
     }
 
     // =========================================================================
-    // TEMA CLARO / ESCURO (Claro por padrão)
+    // TEMA CLARO / ESCURO (Claro como padrão)
     // =========================================================================
     function applyTheme(theme) {
       const safeTheme = theme === 'dark' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', safeTheme);
       const btn = document.getElementById('btnToggleTheme');
-      if (btn) btn.textContent = safeTheme === 'dark' ? '☀ Claro' : '🌙 Escuro';
+      if (btn) btn.textContent = safeTheme === 'dark' ? '☀ Modo Claro' : '🌙 Modo Escuro';
       try { localStorage.setItem('atendebase_theme', safeTheme); } catch (_) {}
     }
 
@@ -151,7 +171,7 @@
     }
 
     // =========================================================================
-    // DADOS FICTÍCIOS MULTI-TENANT (LGPD — 100% fictício)
+    // DADOS 100% FICTÍCIOS MULTI-COMÉRCIO (LGPD)
     // =========================================================================
     const TENANTS = {
       imobiliaria: {
@@ -170,12 +190,12 @@
         staleAlert: {
           active: true,
           collection: 'Imóveis Disponíveis',
-          detail: 'Última atualização há 52h (limite configurado: 48h). Recomenda-se sincronizar antes de responder novos leads.'
+          detail: 'Esta tabela não é atualizada há 2 dias. Recomendamos conferir antes que novos interessados consultem.'
         },
         customers: [
-          { id: 'cus_01', name: 'Maria Souza', phone: '+55 11 99999-0001', cpfLast4: '7735', email: 'maria.demo@exemplo.com', active: true },
-          { id: 'cus_02', name: 'João Pereira', phone: '+55 11 99999-0002', cpfLast4: '1234', email: 'joao.demo@exemplo.com', active: true },
-          { id: 'cus_03', name: 'Carla Lima', phone: '+55 11 99999-0003', cpfLast4: '9876', email: 'carla.demo@exemplo.com', active: true }
+          { id: 'cus_01', name: 'Maria Souza', phone: '+55 11 99999-0001', cpfLast4: '7735', email: 'maria.demo@exemplo.com', desc: 'Inquilina · 2 imóveis alugados' },
+          { id: 'cus_02', name: 'João Pereira', phone: '+55 11 99999-0002', cpfLast4: '1234', email: 'joao.demo@exemplo.com', desc: 'Inquilino · 1 imóvel alugado' },
+          { id: 'cus_03', name: 'Carla Lima', phone: '+55 11 99999-0003', cpfLast4: '9876', email: 'carla.demo@exemplo.com', desc: 'Inquilina · 1 imóvel alugado' }
         ],
         collections: [
           {
@@ -183,15 +203,15 @@
             slug: 'contratos_locacao',
             name: 'Contratos de Locação',
             visibility: 'PRIVATE',
-            source: 'GOOGLE_SHEETS',
-            lastSynced: '23/11 às 09:15',
+            sourceLabel: 'Planilha Google Sheets',
+            lastSynced: 'Hoje às 09:15',
             stale: false,
             titleField: 'imovel',
             fields: [
-              { key: 'imovel', label: 'Imóvel', type: 'text', required: true, inTemplate: true },
-              { key: 'valor_aluguel', label: 'Valor do Aluguel', type: 'currency_brl', required: true, inTemplate: true },
-              { key: 'vencimento', label: 'Vencimento', type: 'date', required: true, inTemplate: true },
-              { key: 'status_parcela', label: 'Status', type: 'enum', required: true, inTemplate: true }
+              { key: 'imovel', label: 'Imóvel', type: 'text', inTemplate: true },
+              { key: 'valor_aluguel', label: 'Valor do Aluguel', type: 'currency_brl', inTemplate: true },
+              { key: 'vencimento', label: 'Vencimento', type: 'date', inTemplate: true },
+              { key: 'status_parcela', label: 'Situação', type: 'enum', inTemplate: true }
             ],
             records: [
               { id: 'rec_101', customerId: 'cus_01', data: { imovel: 'Apt 302 — Ed. Ipê', valor_aluguel: 1850, vencimento: '05/12/2026', status_parcela: 'Em aberto' } },
@@ -205,15 +225,15 @@
             slug: 'imoveis_disponiveis',
             name: 'Imóveis Disponíveis',
             visibility: 'PUBLIC',
-            source: 'CSV_IMPORT',
-            lastSynced: '21/11 às 05:10',
+            sourceLabel: 'Arquivo CSV',
+            lastSynced: 'Há 2 dias',
             stale: true,
             titleField: 'titulo',
             fields: [
-              { key: 'titulo', label: 'Título', type: 'text', required: true, inTemplate: true },
-              { key: 'bairro', label: 'Bairro', type: 'text', required: true, inTemplate: true },
-              { key: 'valor', label: 'Aluguel mensal', type: 'currency_brl', required: true, inTemplate: true },
-              { key: 'quartos', label: 'Quartos', type: 'number', required: false, inTemplate: true }
+              { key: 'titulo', label: 'Imóvel', type: 'text', inTemplate: true },
+              { key: 'bairro', label: 'Bairro', type: 'text', inTemplate: true },
+              { key: 'valor', label: 'Aluguel mensal', type: 'currency_brl', inTemplate: true },
+              { key: 'quartos', label: 'Quartos', type: 'number', inTemplate: true }
             ],
             records: [
               { id: 'pub_01', customerId: null, data: { titulo: 'Apt 2 quartos c/ garagem', bairro: 'Jardim América', valor: 1950, quartos: 2 } },
@@ -228,26 +248,29 @@
             id: 'int_aluguel',
             code: 'consultar_aluguel',
             title: 'Meu aluguel',
+            subtitle: 'Informa valor, vencimento e Pix apenas ao inquilino dono do contrato',
             visibility: 'PRIVATE',
             actionType: 'CUSTOMER_RECORD_LOOKUP',
             collectionId: 'col_contratos',
             keywords: ['aluguel', 'valor', 'boleto'],
-            template: 'Olá {{cliente.nome}}!\n\nImóvel: {{registro.imovel}}\nAluguel atual: {{registro.valor_aluguel}}\nVencimento: {{registro.vencimento}}\nStatus: {{registro.status_parcela}}\n\nChave Pix: {{comercio.chave_pix}}\nAtualizado em {{colecao.atualizado_em}}.'
+            template: 'Olá, {{cliente.nome}}!\n\n📍 {{registro.imovel}}\n💰 Valor atual: {{registro.valor_aluguel}}\n📅 Vencimento: {{registro.vencimento}}\n📌 Situação: {{registro.status_parcela}}\n\nChave Pix: {{comercio.chave_pix}}'
           },
           {
             id: 'int_pix',
             code: 'ver_pix',
             title: 'Chave Pix',
+            subtitle: 'Envia a chave Pix oficial do comércio e horário de atendimento',
             visibility: 'PUBLIC',
             actionType: 'STATIC_MESSAGE',
             collectionId: null,
             keywords: ['pix', 'pagamento'],
-            template: 'Nossa chave Pix oficial ({{comercio.nome}}):\n{{comercio.chave_pix}}\n\nEnvie o comprovante no horário de atendimento ({{comercio.horario_atendimento}}).'
+            template: 'Chave Pix oficial da {{comercio.nome}}:\n\n{{comercio.chave_pix}}\n\nApós pagar, envie o comprovante por aqui ({{comercio.horario_atendimento}}).'
           },
           {
             id: 'int_imoveis',
             code: 'listar_imoveis',
             title: 'Imóveis disponíveis',
+            subtitle: 'Mostra a vitrine pública de imóveis para qualquer interessado',
             visibility: 'PUBLIC',
             actionType: 'PUBLIC_CATALOG_LIST',
             collectionId: 'col_imoveis',
@@ -258,16 +281,17 @@
             id: 'int_humano',
             code: 'falar_humano',
             title: 'Falar com atendente',
+            subtitle: 'Pausa o robô e avisa sua equipe para assumir a conversa',
             visibility: 'PUBLIC',
             actionType: 'HUMAN_HANDOFF',
             collectionId: null,
             keywords: ['atendente', 'humano'],
-            template: 'Certo! Pausamos o atendimento automático. Um atendente da {{comercio.nome}} continuará por aqui em breve ({{comercio.horario_atendimento}}).'
+            template: 'Tudo bem! Pausei o atendimento automático e avisei nossa equipe na {{comercio.nome}}. Já vamos te responder por aqui ({{comercio.horario_atendimento}}).'
           }
         ],
         handoffs: [
-          { id: 'hnd_01', phoneMasked: '+55 11 *****-8812', reason: 'Telefone não localizado no cadastro', since: 'Há 9 min', status: 'AGUARDANDO' },
-          { id: 'hnd_02', phoneMasked: '+55 11 *****-0003', reason: 'Cliente solicitou renegociação de contrato', since: 'Há 24 min', status: 'AGUARDANDO' }
+          { id: 'hnd_01', phoneMasked: '+55 11 *****-8812', reason: 'Número novo pediu atualização cadastral', since: 'Há 9 min' },
+          { id: 'hnd_02', phoneMasked: '+55 11 *****-0003', reason: 'Cliente pediu para negociar data de vencimento', since: 'Há 24 min' }
         ]
       },
 
@@ -286,24 +310,24 @@
         metrics: { today: 29, autoRate: '94%', handoffs: 1, freshness: 'Há 6 min' },
         staleAlert: { active: false },
         customers: [
-          { id: 'cus_21', name: 'Maria Souza', phone: '+55 11 99999-0001', cpfLast4: '7735', email: 'maria.demo@exemplo.com', active: true },
-          { id: 'cus_22', name: 'João Pereira', phone: '+55 11 99999-0002', cpfLast4: '1234', email: 'joao.demo@exemplo.com', active: true }
+          { id: 'cus_21', name: 'Maria Souza', phone: '+55 11 99999-0001', cpfLast4: '7735', email: 'maria.demo@exemplo.com', desc: 'Cliente · Sedan Prata na oficina' },
+          { id: 'cus_22', name: 'João Pereira', phone: '+55 11 99999-0002', cpfLast4: '1234', email: 'joao.demo@exemplo.com', desc: 'Cliente · Hatch Branco na oficina' }
         ],
         collections: [
           {
             id: 'col_os',
             slug: 'ordens_servico',
-            name: 'Ordens de Serviço',
+            name: 'Carros na Oficina (OS)',
             visibility: 'PRIVATE',
-            source: 'MANUAL',
-            lastSynced: '23/11 às 09:29',
+            sourceLabel: 'Painel Manual',
+            lastSynced: 'Hoje às 09:29',
             stale: false,
             titleField: 'veiculo',
             fields: [
-              { key: 'veiculo', label: 'Veículo / OS', type: 'text', required: true, inTemplate: true },
-              { key: 'status_servico', label: 'Etapa atual', type: 'enum', required: true, inTemplate: true },
-              { key: 'orcamento', label: 'Orçamento', type: 'currency_brl', required: true, inTemplate: true },
-              { key: 'previsao_entrega', label: 'Previsão', type: 'date', required: true, inTemplate: true }
+              { key: 'veiculo', label: 'Veículo / OS', type: 'text', inTemplate: true },
+              { key: 'status_servico', label: 'Etapa atual', type: 'enum', inTemplate: true },
+              { key: 'orcamento', label: 'Orçamento', type: 'currency_brl', inTemplate: true },
+              { key: 'previsao_entrega', label: 'Previsão de entrega', type: 'date', inTemplate: true }
             ],
             records: [
               { id: 'os_01', customerId: 'cus_21', data: { veiculo: 'OS #412 — Sedan Prata', status_servico: 'Pronto para retirada', orcamento: 890, previsao_entrega: '23/11/2026' } },
@@ -313,15 +337,15 @@
           {
             id: 'col_servicos',
             slug: 'servicos_tabela',
-            name: 'Serviços & Revisões',
+            name: 'Tabela de Revisões',
             visibility: 'PUBLIC',
-            source: 'MANUAL',
-            lastSynced: '22/11 às 16:00',
+            sourceLabel: 'Painel Manual',
+            lastSynced: 'Ontem às 16:00',
             stale: false,
             titleField: 'servico',
             fields: [
-              { key: 'servico', label: 'Serviço', type: 'text', required: true, inTemplate: true },
-              { key: 'valor', label: 'A partir de', type: 'currency_brl', required: true, inTemplate: true }
+              { key: 'servico', label: 'Serviço', type: 'text', inTemplate: true },
+              { key: 'valor', label: 'A partir de', type: 'currency_brl', inTemplate: true }
             ],
             records: [
               { id: 'srv_01', customerId: null, data: { servico: 'Troca de óleo + filtros', valor: 260 } },
@@ -335,16 +359,18 @@
             id: 'int_os',
             code: 'status_veiculo',
             title: 'Status do meu carro',
+            subtitle: 'Mostra etapa do conserto, orçamento aprovado e previsão ao dono do veículo',
             visibility: 'PRIVATE',
             actionType: 'CUSTOMER_RECORD_LOOKUP',
             collectionId: 'col_os',
             keywords: ['carro', 'os', 'pronto'],
-            template: 'Olá {{cliente.nome}}!\n\n{{registro.veiculo}}\nEtapa: {{registro.status_servico}}\nValor aprovado: {{registro.orcamento}}\nPrevisão: {{registro.previsao_entrega}}\n\nPix: {{comercio.chave_pix}}'
+            template: 'Olá, {{cliente.nome}}!\n\n🚗 {{registro.veiculo}}\n🔧 Etapa: {{registro.status_servico}}\n💰 Orçamento: {{registro.orcamento}}\n📅 Previsão: {{registro.previsao_entrega}}\n\nPix: {{comercio.chave_pix}}'
           },
           {
             id: 'int_srv',
             code: 'tabela_servicos',
             title: 'Serviços e valores',
+            subtitle: 'Lista pública de serviços básicos e revisões da oficina',
             visibility: 'PUBLIC',
             actionType: 'PUBLIC_CATALOG_LIST',
             collectionId: 'col_servicos',
@@ -354,22 +380,23 @@
           {
             id: 'int_humano_ofic',
             code: 'falar_mecanico',
-            title: 'Falar com atendente',
+            title: 'Falar com a oficina',
+            subtitle: 'Pausa o robô para um mecânico ou recepcionista responder',
             visibility: 'PUBLIC',
             actionType: 'HUMAN_HANDOFF',
             collectionId: null,
             keywords: ['atendente', 'humano'],
-            template: 'Bot pausado! Nossa equipe da {{comercio.nome}} vai responder em instantes ({{comercio.horario_atendimento}}).'
+            template: 'Atendimento automático pausado! Nossa equipe da {{comercio.nome}} vai falar com você em instantes ({{comercio.horario_atendimento}}).'
           }
         ],
         handoffs: [
-          { id: 'hnd_21', phoneMasked: '+55 11 *****-0002', reason: 'Cliente pediu orçamento extra de funilaria', since: 'Há 14 min', status: 'AGUARDANDO' }
+          { id: 'hnd_21', phoneMasked: '+55 11 *****-0002', reason: 'Cliente pediu orçamento adicional de funilaria', since: 'Há 14 min' }
         ]
       }
     };
 
     // =========================================================================
-    // ESTADO GLOBAL DA UI E DO SIMULADOR
+    // ESTADO DA APLICAÇÃO
     // =========================================================================
     const uiState = {
       tenantKey: 'imobiliaria',
@@ -377,6 +404,7 @@
       collectionTab: 'col_contratos',
       selectedIntentId: 'int_aluguel',
       simProfile: 'cus_01',
+      inspectorOpen: false,
       sim: null
     };
 
@@ -391,7 +419,6 @@
       uiState.sim = {
         state: 'IDLE',
         authenticatedCustomerId: null,
-        authExpiresAt: null,
         failedAttempts: 0,
         locked: false,
         pendingIntentId: null,
@@ -401,7 +428,7 @@
         logs: []
       };
       addAuditLog('SESSION_INIT', `tenant=${t.id} state=IDLE pii=REDACTED`);
-      simReceiveUser('Oi', 'TEXT', null, true);
+      simReceiveUser('Olá', 'TEXT', null, true);
     }
 
     function addAuditLog(code, meta) {
@@ -430,7 +457,7 @@
     }
 
     // =========================================================================
-    // MOTOR DETERMINÍSTICO DO SIMULADOR (ConversationEngine)
+    // MOTOR DETERMINÍSTICO DO SIMULADOR
     // =========================================================================
     function simPushBot(text, buttons = [], footer = '') {
       uiState.sim.messages.push({ from: 'bot', text, buttons, footer });
@@ -440,7 +467,7 @@
       return tenant.intents.map(i => ({
         id: `intent:${i.id}`,
         label: i.title,
-        tag: i.visibility === 'PRIVATE' ? '🔒' : '🌐'
+        tag: i.visibility === 'PRIVATE' ? '🔒' : ''
       }));
     }
 
@@ -450,20 +477,20 @@
       uiState.sim.pendingIntentId = null;
       uiState.sim.pendingRecords = [];
       simPushBot(
-        `${greetingPrefix}Olá! Sou o atendimento automático da ${t.name}. Escolha uma opção abaixo:`,
+        `${greetingPrefix}Olá! Bem-vindo ao autoatendimento da ${t.name}.\nComo posso ajudar você hoje?`,
         simMenuButtons(t),
-        'Digite "menu" a qualquer momento'
+        'Toque em uma opção abaixo'
       );
     }
 
     function simExecuteIntent(intent) {
       const t = currentTenant();
-      addAuditLog('INTENT_MATCH', `intent=${intent.code} visibility=${intent.visibility} resolver=DETERMINISTIC`);
+      addAuditLog('INTENT_MATCH', `intent=${intent.code} visibility=${intent.visibility}`);
 
       if (intent.actionType === 'HUMAN_HANDOFF') {
         uiState.sim.state = 'HANDOFF_HUMAN';
         const msg = renderSafeTemplate(intent.template, { tenant: t });
-        simPushBot(msg, [{ id: 'sys:resume', label: 'Reativar menu automático' }], 'Sessão em transbordo humano');
+        simPushBot(msg, [{ id: 'sys:resume', label: 'Voltar ao autoatendimento' }], 'Robô pausado para atendimento humano');
         addAuditLog('HANDOFF_OPENED', `tenant=${t.id} bot_paused=true`);
         return;
       }
@@ -472,7 +499,7 @@
         if (intent.actionType === 'STATIC_MESSAGE') {
           uiState.sim.state = 'PUBLIC_RESULT';
           const msg = renderSafeTemplate(intent.template, { tenant: t });
-          simPushBot(msg, [{ id: 'sys:menu', label: 'Voltar ao menu' }]);
+          simPushBot(msg, [{ id: 'sys:menu', label: 'Voltar ao início' }]);
           return;
         }
         if (intent.actionType === 'PUBLIC_CATALOG_LIST') {
@@ -484,10 +511,10 @@
           const lines = slice.map(r => renderSafeTemplate(intent.template, { tenant: t, collection: col, record: r }));
           const btns = [];
           if (start + pageSize < col.records.length) {
-            btns.push({ id: `sys:next_pub:${intent.id}`, label: `Ver mais (${col.records.length - (start + pageSize)})` });
+            btns.push({ id: `sys:next_pub:${intent.id}`, label: `Ver mais opções (${col.records.length - (start + pageSize)})` });
           }
-          btns.push({ id: 'sys:menu', label: 'Voltar ao menu' });
-          simPushBot(`${col.name} (pág. ${uiState.sim.publicPage + 1}):\n\n${lines.join('\n')}`, btns, `Atualizado em ${col.lastSynced}`);
+          btns.push({ id: 'sys:menu', label: 'Voltar ao início' });
+          simPushBot(`${col.name}:\n\n${lines.join('\n')}`, btns, `Atualizado: ${col.lastSynced}`);
           return;
         }
       }
@@ -497,20 +524,20 @@
         uiState.sim.state = 'HANDOFF_HUMAN';
         addAuditLog('AUTH_DENIED_UNREGISTERED', `tenant=${t.id} phone_match=false pii=REDACTED`);
         simPushBot(
-          `Este número de WhatsApp não está vinculado a nenhum cadastro na ${t.name}. Por segurança (LGPD), não liberamos dados privados apenas informando CPF.\n\nDeseja falar com um atendente para atualizar seu telefone?`,
+          `Este número de WhatsApp ainda não está vinculado a um cadastro na ${t.name}.\n\nPara proteger seus dados (LGPD), não informamos valores apenas pelo CPF em números desconhecidos.`,
           [
-            { id: 'sys:menu', label: 'Voltar ao menu público' },
-            { id: `intent:${t.intents.find(i => i.actionType === 'HUMAN_HANDOFF').id}`, label: 'Falar com atendente' }
+            { id: `intent:${t.intents.find(i => i.actionType === 'HUMAN_HANDOFF').id}`, label: 'Falar com atendente' },
+            { id: 'sys:menu', label: 'Ver opções públicas' }
           ],
-          'Bloqueio preventivo de privacidade'
+          'Proteção de privacidade ativa'
         );
         return;
       }
 
       if (uiState.sim.locked) {
         uiState.sim.state = 'AUTH_LOCKED';
-        simPushBot('Tentativas bloqueadas temporariamente por segurança (15 min). Você pode aguardar ou falar com um atendente.', [
-          { id: 'sys:menu', label: 'Voltar ao menu' }
+        simPushBot('Acesso privado bloqueado temporariamente após 3 tentativas incorretas. Aguarde 15 minutos ou fale com nossa equipe.', [
+          { id: 'sys:menu', label: 'Voltar ao início' }
         ]);
         return;
       }
@@ -520,12 +547,12 @@
         uiState.sim.pendingIntentId = intent.id;
         addAuditLog('AUTH_CHALLENGE_SENT', `tenant=${t.id} customer=${customer.id} factor=CPF_LAST4`);
         simPushBot(
-          `Identificamos seu número cadastrado, ${customer.name.split(' ')[0]}!\nPara sua segurança, informe os ${t.authHint} (teste: ${customer.cpfLast4}).`,
+          `Olá, ${customer.name.split(' ')[0]}! Reconheci seu número.\n\nPara confirmar sua identidade, digite os ${t.authHint}:`,
           [
-            { id: `sys:quick_auth:${customer.cpfLast4}`, label: `Atalho demo: enviar ${customer.cpfLast4}` },
+            { id: `sys:quick_auth:${customer.cpfLast4}`, label: `✨ Testar com 1 toque: enviar ${customer.cpfLast4}` },
             { id: 'sys:menu', label: 'Cancelar' }
           ],
-          'Sessão válida por 30 min após confirmar'
+          'Confirmação rápida de segurança'
         );
         return;
       }
@@ -536,14 +563,14 @@
 
       if (owned.length === 0) {
         uiState.sim.state = 'PRIVATE_RESULT';
-        simPushBot('Não encontramos registros ativos vinculados ao seu cadastro.', [{ id: 'sys:menu', label: 'Voltar ao menu' }]);
+        simPushBot('Não encontramos nenhum registro ativo vinculado ao seu cadastro no momento.', [{ id: 'sys:menu', label: 'Voltar ao início' }]);
         return;
       }
 
       if (owned.length === 1) {
         uiState.sim.state = 'PRIVATE_RESULT';
         const text = renderSafeTemplate(intent.template, { tenant: t, customer: { nome: customer.name }, collection: col, record: owned[0] });
-        simPushBot(text, [{ id: 'sys:menu', label: 'Voltar ao menu' }], `Atualizado em ${col.lastSynced}`);
+        simPushBot(text, [{ id: 'sys:menu', label: 'Voltar ao início' }], `Atualizado: ${col.lastSynced}`);
         return;
       }
 
@@ -551,8 +578,8 @@
       uiState.sim.pendingIntentId = intent.id;
       uiState.sim.pendingRecords = owned;
       const listBtns = owned.map((r, idx) => ({ id: `rec:${idx}`, label: String(r.data[col.titleField]) }));
-      listBtns.push({ id: 'sys:menu', label: 'Voltar ao menu' });
-      simPushBot(`Encontramos ${owned.length} registros ativos no seu cadastro. Qual você deseja consultar?`, listBtns, 'Seleção isolada ao seu cadastro');
+      listBtns.push({ id: 'sys:menu', label: 'Voltar ao início' });
+      simPushBot(`Você possui ${owned.length} cadastros ativos conosco. Qual deles deseja consultar?`, listBtns);
     }
 
     function simReceiveUser(displayText, kind = 'TEXT', selectedId = null, silent = false) {
@@ -569,7 +596,7 @@
 
       if (kind === 'UNSUPPORTED_MEDIA') {
         addAuditLog('UNSUPPORTED_MEDIA', `tenant=${t.id} kind=AUDIO`);
-        simPushBot('No momento, o atendimento automático responde apenas pelas opções do menu (sem áudio/imagem). Escolha uma opção abaixo:', simMenuButtons(t));
+        simPushBot('Por aqui consigo responder rapidinho quando você toca nos botões abaixo:', simMenuButtons(t));
         return;
       }
 
@@ -591,7 +618,7 @@
 
       if (uiState.sim.state === 'HANDOFF_HUMAN') {
         addAuditLog('HANDOFF_PASS_THROUGH', `tenant=${t.id} bot_ignored=true`);
-        simPushBot('(Bot em pausa — mensagem encaminhada à fila humana no painel.)', [{ id: 'sys:resume', label: 'Simular encerramento do humano' }]);
+        simPushBot('(Robô em pausa — sua mensagem foi entregue para o atendente humano.)', [{ id: 'sys:resume', label: 'Reativar robô (teste)' }]);
         return;
       }
 
@@ -599,7 +626,6 @@
         const customer = t.customers.find(c => c.id === uiState.simProfile);
         if (customer && norm === customer.cpfLast4) {
           uiState.sim.authenticatedCustomerId = customer.id;
-          uiState.sim.authExpiresAt = '+30 min';
           uiState.sim.failedAttempts = 0;
           addAuditLog('AUTH_SUCCESS', `tenant=${t.id} customer=${customer.id} ttl=30m`);
           const pending = t.intents.find(i => i.id === uiState.sim.pendingIntentId);
@@ -610,12 +636,15 @@
           if (uiState.sim.failedAttempts >= 3) {
             uiState.sim.locked = true;
             uiState.sim.state = 'AUTH_LOCKED';
-            simPushBot('Limite de 3 tentativas atingido. Acesso privado bloqueado por 15 minutos por segurança.', [
-              { id: 'sys:menu', label: 'Voltar ao menu público' },
+            simPushBot('Por segurança, bloqueamos novas tentativas por 15 minutos após 3 erros.', [
+              { id: 'sys:menu', label: 'Voltar ao início' },
               { id: `intent:${t.intents.find(i => i.actionType === 'HUMAN_HANDOFF').id}`, label: 'Falar com atendente' }
             ]);
           } else {
-            simPushBot(`Confirmação incorreta (tentativa ${uiState.sim.failedAttempts} de 3). Tente novamente os ${t.authHint}:`, [{ id: 'sys:menu', label: 'Cancelar' }]);
+            simPushBot(`Código não confere (tentativa ${uiState.sim.failedAttempts} de 3). Digite os ${t.authHint}:`, [
+              { id: `sys:quick_auth:${customer ? customer.cpfLast4 : '7735'}`, label: `✨ Testar código correto (${customer ? customer.cpfLast4 : '7735'})` },
+              { id: 'sys:menu', label: 'Cancelar' }
+            ]);
           }
         }
         return;
@@ -630,7 +659,7 @@
         if (rec && intent && customer && rec.customerId === customer.id) {
           uiState.sim.state = 'PRIVATE_RESULT';
           const text = renderSafeTemplate(intent.template, { tenant: t, customer: { nome: customer.name }, collection: col, record: rec });
-          simPushBot(text, [{ id: 'sys:menu', label: 'Voltar ao menu' }], `Atualizado em ${col.lastSynced}`);
+          simPushBot(text, [{ id: 'sys:menu', label: 'Voltar ao início' }], `Atualizado: ${col.lastSynced}`);
           addAuditLog('RECORD_RENDERED', `tenant=${t.id} col=${col.slug} record=${rec.id} pii=REDACTED`);
         }
         return;
@@ -650,16 +679,11 @@
         return;
       }
 
-      if (uiState.sim.state === 'IDLE') {
-        simSendMenu('');
-      } else {
-        addAuditLog('NO_MATCH_FALLBACK', `tenant=${t.id} resolver=DETERMINISTIC`);
-        simSendMenu('Não entendi esse comando na v1 (use os botões). ');
-      }
+      simSendMenu('');
     }
 
     // =========================================================================
-    // TOAST & MODAIS
+    // TOAST & MODAIS ESTILO macOS
     // =========================================================================
     function showToast(msg) {
       const el = document.getElementById('toast');
@@ -682,158 +706,299 @@
 
     function openCsvDryRunModal() {
       const body = `
-        <div class="p-3 rounded-lg border soft-primary">
-          <div class="font-semibold">Pré-visualização obrigatória (Dry-Run · RF-05)</div>
-          <p class="mt-1 opacity-90">Nenhum registro foi alterado ainda. Confira o mapeamento e os erros de validação antes de confirmar.</p>
+        <div class="p-3.5 rounded-2xl border soft-primary">
+          <div class="font-semibold">Conferência antes de salvar</div>
+          <p class="mt-1 opacity-90">Analisamos sua planilha antes de atualizar o atendimento. Confira o resumo abaixo:</p>
         </div>
-        <div class="grid grid-cols-3 gap-3">
-          <div class="p-3 rounded-lg border border-[var(--border)] bg-[var(--content)]">
-            <div class="text-[var(--muted-foreground)]">Linhas lidas</div>
-            <div class="text-lg font-bold mt-0.5">10</div>
+        <div class="grid grid-cols-3 gap-3 text-center">
+          <div class="apple-subcard p-3.5">
+            <div class="text-[var(--muted-foreground)]">Linhas na planilha</div>
+            <div class="text-xl font-bold mt-1">10</div>
           </div>
-          <div class="p-3 rounded-lg border soft-success">
-            <div>Válidas (Upsert)</div>
-            <div class="text-lg font-bold mt-0.5">8</div>
+          <div class="p-3.5 rounded-2xl border soft-success">
+            <div>Prontas para salvar</div>
+            <div class="text-xl font-bold mt-1">8</div>
           </div>
-          <div class="p-3 rounded-lg border soft-error">
-            <div>Com erro (Ignoradas)</div>
-            <div class="text-lg font-bold mt-0.5">2</div>
+          <div class="p-3.5 rounded-2xl border soft-error">
+            <div>Precisam de revisão</div>
+            <div class="text-xl font-bold mt-1">2</div>
           </div>
         </div>
-        <div class="border border-[var(--border)] rounded-lg overflow-hidden">
-          <div class="px-3 py-2 bg-[var(--content)] font-semibold border-b border-[var(--border)]">Relatório de erros (sem expor dados pessoais)</div>
+        <div class="apple-subcard overflow-hidden">
+          <div class="px-4 py-2.5 font-semibold border-b border-[var(--border)]">O que precisa de atenção (2 linhas ignoradas)</div>
           <div class="divide-y divide-[var(--border)]">
-            <div class="px-3 py-2 flex justify-between gap-2"><span>Linha 4 · campo <code class="font-mono">valor_aluguel</code></span><span class="text-[var(--error)] font-medium">Formato monetário inválido</span></div>
-            <div class="px-3 py-2 flex justify-between gap-2"><span>Linha 9 · campo <code class="font-mono">telefone</code></span><span class="text-[var(--error)] font-medium">Cliente não encontrado na base</span></div>
+            <div class="px-4 py-2.5 flex justify-between gap-2"><span>Linha 4 · Valor do Aluguel</span><span class="text-[var(--error)] font-medium">Valor inválido</span></div>
+            <div class="px-4 py-2.5 flex justify-between gap-2"><span>Linha 9 · Telefone WhatsApp</span><span class="text-[var(--error)] font-medium">Cliente não cadastrado</span></div>
           </div>
         </div>
       `;
       const footer = `
-        <button type="button" onclick="closeModal()" class="text-xs px-3 py-1.5 rounded-lg border border-[var(--border)]">Cancelar</button>
-        <button type="button" onclick="closeModal(); showToast('Importação aplicada: 8 registros atualizados com segurança.');" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">Confirmar importação (8 linhas)</button>
+        <button type="button" onclick="closeModal()" class="apple-btn-secondary text-xs px-4 py-2">Cancelar</button>
+        <button type="button" onclick="closeModal(); showToast('8 cadastros atualizados com sucesso.');" class="apple-btn-primary text-xs px-4 py-2">Atualizar 8 cadastros válidos</button>
       `;
-      openModal('Importar CSV — Dry-Run de Validação', body, footer);
+      openModal('Importar Planilha CSV', body, footer);
     }
 
     function openSheetsGuardModal() {
       const body = `
-        <div class="p-3.5 rounded-lg border soft-error space-y-1.5">
-          <div class="font-bold">⚠ Sincronização abortada pela Trava de Segurança (REJECTED_SAFETY_GUARD · RF-06)</div>
-          <p>A planilha conectada retornou <strong>0 linhas válidas</strong> (queda de 100%, acima do limite de segurança de 50%).</p>
-          <p class="opacity-90">Os 4 registros ativos anteriores foram <strong>preservados intactos</strong> para evitar que o atendimento responda dados vazios aos clientes.</p>
+        <div class="p-4 rounded-2xl border soft-error space-y-1.5">
+          <div class="font-semibold text-sm">Proteção ativada: evitamos apagar seus dados</div>
+          <p>A planilha do Google Sheets parece ter sido apagada ou teve as colunas renomeadas (0 linhas encontradas).</p>
+          <p class="opacity-90">Por segurança, <strong>mantivemos os dados anteriores funcionando</strong> para que seus clientes não fiquem sem resposta.</p>
         </div>
-        <div class="p-3 rounded-lg border border-[var(--border)] bg-[var(--content)] space-y-1">
-          <div class="font-semibold">Ações recomendadas</div>
-          <div>1. Verifique se a aba <code class="font-mono">Contratos_Ativos</code> foi renomeada ou limpa no Google Sheets.</div>
-          <div>2. Revise as permissões OAuth (escopo somente leitura).</div>
-          <div>3. Após corrigir a planilha, clique em <strong>Sincronizar agora</strong>.</div>
+        <div class="apple-subcard p-4 space-y-1.5">
+          <div class="font-semibold">Como resolver</div>
+          <div>1. Confira se a aba da planilha no Google Drive continua com os dados.</div>
+          <div>2. Depois, clique novamente em <strong>Sincronizar com Google Sheets</strong>.</div>
         </div>
       `;
       const footer = `
-        <button type="button" onclick="closeModal()" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">Entendido (manter snapshot atual)</button>
+        <button type="button" onclick="closeModal()" class="apple-btn-primary text-xs px-5 py-2">Entendi, manter dados atuais</button>
       `;
-      openModal('Google Sheets Sync — Demonstração da Trava de Segurança', body, footer);
+      openModal('Proteção Automática da Planilha', body, footer);
     }
 
     // =========================================================================
-    // RENDERIZAÇÃO DAS 5 TELAS
+    // COMPONENTE REUTILIZÁVEL: MOLDURA iPHONE (Usado em Respostas e no Simulador)
+    // =========================================================================
+    function renderIPhoneMockup(t, mode = 'interactive') {
+      if (!uiState.sim) resetSimulator();
+      const s = uiState.sim;
+
+      if (mode === 'preview') {
+        const intent = t.intents.find(i => i.id === uiState.selectedIntentId) || t.intents[0];
+        const col = t.collections.find(c => c.id === intent.collectionId);
+        const sampleCustomer = t.customers[0];
+        const sampleRecord = col ? col.records[0] : null;
+        const preview = renderSafeTemplate(intent.template, {
+          tenant: t,
+          customer: { nome: sampleCustomer.name },
+          collection: col,
+          record: sampleRecord
+        });
+
+        return `
+          <div data-component="WhatsAppPreviewCard (Novo)" class="iphone-shell max-w-[330px] w-full mx-auto flex flex-col" style="height: 540px;">
+            <span class="comp-tag">WhatsAppPreviewCard · Novo</span>
+            <div class="pt-2.5 pb-2 bg-[var(--wa-header)]">
+              <div class="iphone-island"></div>
+              <div class="px-4 pt-2.5 flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center text-xs font-bold">${escapeHtml(t.name.slice(0, 2).toUpperCase())}</div>
+                <div class="min-w-0">
+                  <div class="text-xs font-semibold truncate">${escapeHtml(t.name)}</div>
+                  <div class="text-[11px] text-[var(--muted-foreground)]">Exemplo com ${escapeHtml(sampleCustomer.name)}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-1 p-3.5 chat-surface overflow-y-auto custom-scroll space-y-3 flex flex-col justify-end">
+              <div class="flex justify-end">
+                <div class="bubble-user px-3 py-2 text-xs max-w-[82%]">${escapeHtml(intent.title)}</div>
+              </div>
+              <div class="flex justify-start">
+                <div class="w-full max-w-[92%] space-y-1.5">
+                  <div class="bubble-bot px-3.5 py-2.5 text-xs whitespace-pre-line leading-relaxed">
+                    ${escapeHtml(preview)}
+                    ${col ? `<div class="mt-2 pt-1.5 border-t border-[var(--border)] text-[11px] text-[var(--muted-foreground)]">Atualizado: ${escapeHtml(col.lastSynced)}</div>` : ''}
+                  </div>
+                  <div class="wa-quick-btn py-2 px-3 text-center text-xs">Voltar ao início</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-2.5 bg-[var(--card)] border-t border-[var(--border)] text-center">
+              <button type="button" onclick="switchView('simulator')" class="text-xs font-semibold text-[var(--primary)] hover:underline">
+                Interagir com este fluxo no iPhone →
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      // Modo interativo completo
+      return `
+        <div data-component="ChatSimulator (Novo)" class="iphone-shell max-w-[370px] w-full mx-auto flex flex-col" style="height: 610px;">
+          <span class="comp-tag">ChatSimulator · Novo</span>
+          <div class="pt-2.5 pb-2.5 wa-topbar">
+            <div class="iphone-island"></div>
+            <div class="px-4 pt-3 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-8 h-8 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center text-xs font-bold shrink-0">${escapeHtml(t.name.slice(0, 2).toUpperCase())}</div>
+                <div class="min-w-0">
+                  <div class="text-xs font-semibold truncate">${escapeHtml(t.name)}</div>
+                  <div class="text-[11px] text-[var(--success-ink)] font-medium">● Conta Comercial · Automático</div>
+                </div>
+              </div>
+              <button type="button" onclick="resetSimulator(); render();" class="apple-btn-secondary text-[11px] px-2.5 py-1 shrink-0" title="Recomeçar conversa">
+                Recomeçar
+              </button>
+            </div>
+          </div>
+
+          <div id="chatMessages" class="flex-1 p-3.5 chat-surface overflow-y-auto custom-scroll space-y-3">
+            ${s.messages.map(m => `
+              <div class="flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}">
+                <div class="max-w-[90%] space-y-1.5">
+                  <div class="${m.from === 'user' ? 'bubble-user' : 'bubble-bot'} px-3.5 py-2.5 text-xs whitespace-pre-line leading-relaxed">
+                    ${escapeHtml(m.text)}
+                    ${m.footer ? `<div class="mt-2 pt-1.5 border-t border-[var(--border)] text-[11px] opacity-70">${escapeHtml(m.footer)}</div>` : ''}
+                  </div>
+                  ${m.buttons && m.buttons.length ? `
+                    <div class="flex flex-col gap-1.5">
+                      ${m.buttons.map(b => `
+                        <button type="button" data-sim-reply="${escapeHtml(b.id)}" data-sim-label="${escapeHtml(b.label)}" class="wa-quick-btn w-full text-center text-xs py-2 px-3">
+                          ${b.tag ? `${b.tag} ` : ''}${escapeHtml(b.label)}
+                        </button>
+                      `).join('')}
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <form onsubmit="handleChatSubmit(event)" class="p-2.5 bg-[var(--card)] border-t border-[var(--border)] flex gap-2">
+            <input id="chatInput" type="text" placeholder="Digite ou toque nos botões acima..." class="flex-1 text-xs px-3.5 py-2 rounded-full bg-[var(--content)] border border-[var(--border)] focus:outline-none focus:border-[var(--primary)]" />
+            <button type="submit" class="apple-btn-primary text-xs px-4 py-2">Enviar</button>
+          </form>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // TELAS PRINCIPAIS (Design Limpo e Intuitivo estilo Apple)
     // =========================================================================
     function renderDashboard(t) {
       const staleBanner = t.staleAlert.active ? `
-        <div data-component="SyncGuardBanner (Novo)" class="p-4 rounded-xl border soft-warning flex flex-wrap items-center justify-between gap-3">
+        <div data-component="SyncGuardBanner (Novo)" class="apple-card p-4 border-l-4 border-l-[var(--warning)] flex flex-wrap items-center justify-between gap-3">
           <span class="comp-tag">SyncGuardBanner · Novo</span>
           <div class="space-y-0.5 text-xs">
-            <div class="font-bold">⚠ Base potencialmente desatualizada: ${escapeHtml(t.staleAlert.collection)}</div>
-            <div>${escapeHtml(t.staleAlert.detail)}</div>
+            <div class="font-semibold text-[var(--warning-ink)]">Atenção: a tabela "${escapeHtml(t.staleAlert.collection)}" está há 2 dias sem atualização</div>
+            <div class="text-[var(--muted-foreground)]">${escapeHtml(t.staleAlert.detail)}</div>
           </div>
-          <button type="button" onclick="switchView('collections')" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] font-semibold">
-            Atualizar base agora
+          <button type="button" onclick="switchView('collections')" class="apple-btn-secondary text-xs px-3.5 py-1.5">
+            Revisar tabela
           </button>
         </div>
       ` : '';
 
       return `
-        ${staleBanner}
-        <section data-component="SummaryCardGrid (Novo)" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-          <span class="comp-tag">SummaryCardGrid · Novo</span>
-          <div class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-            <div class="text-xs text-[var(--muted-foreground)]">Atendimentos hoje</div>
-            <div class="text-2xl font-bold mt-1 tabular-nums">${t.metrics.today}</div>
-            <div class="text-xs text-[var(--success)] mt-1">Janela gratuita Meta (reativo)</div>
+        <!-- Guia Intuitivo em 3 Passos (Onboarding estilo Apple) -->
+        <section class="apple-card p-5 sm:p-6 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--primary)]">Como funciona</span>
+              <h2 class="text-base font-semibold apple-title mt-0.5">Seu atendimento personalizado em 3 passos simples</h2>
+            </div>
+            <span class="text-xs text-[var(--muted-foreground)]">Sem inteligência artificial inventando valores</span>
           </div>
-          <div class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-            <div class="text-xs text-[var(--muted-foreground)]">Resolvidos 100% automático</div>
-            <div class="text-2xl font-bold mt-1 tabular-nums">${t.metrics.autoRate}</div>
-            <div class="text-xs text-[var(--muted-foreground)] mt-1">Custo de IA: R$ 0,00 (v1)</div>
-          </div>
-          <div class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-            <div class="text-xs text-[var(--muted-foreground)]">Transbordos humanos</div>
-            <div class="text-2xl font-bold mt-1 tabular-nums">${t.handoffs.length}</div>
-            <div class="text-xs text-[var(--warning)] mt-1">Aguardando retorno</div>
-          </div>
-          <div class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-            <div class="text-xs text-[var(--muted-foreground)]">Último sync da base</div>
-            <div class="text-2xl font-bold mt-1">${escapeHtml(t.metrics.freshness)}</div>
-            <div class="text-xs text-[var(--muted-foreground)] mt-1">Trava anti-perda ativa</div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <button type="button" onclick="switchView('collections')" class="apple-subcard p-4 text-left hover:border-[var(--primary)] transition-all group">
+              <div class="flex items-center justify-between">
+                <span class="w-6 h-6 rounded-full soft-primary text-xs font-bold flex items-center justify-center">1</span>
+                <span class="text-xs text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity">Abrir →</span>
+              </div>
+              <div class="font-semibold text-xs mt-3">Conecte seus dados</div>
+              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Importe sua planilha do Google Sheets ou cadastre clientes, valores e itens disponíveis.</p>
+            </button>
+
+            <button type="button" onclick="switchView('intents')" class="apple-subcard p-4 text-left hover:border-[var(--primary)] transition-all group">
+              <div class="flex items-center justify-between">
+                <span class="w-6 h-6 rounded-full soft-primary text-xs font-bold flex items-center justify-center">2</span>
+                <span class="text-xs text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity">Personalizar →</span>
+              </div>
+              <div class="font-semibold text-xs mt-3">Monte as respostas</div>
+              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Clique nas etiquetas como <span class="font-medium text-[var(--foreground)]">+ Valor do Aluguel</span> para puxar o dado exato de cada cliente.</p>
+            </button>
+
+            <button type="button" onclick="switchView('simulator')" class="apple-subcard p-4 text-left hover:border-[var(--primary)] transition-all group">
+              <div class="flex items-center justify-between">
+                <span class="w-6 h-6 rounded-full soft-primary text-xs font-bold flex items-center justify-center">3</span>
+                <span class="text-xs text-[var(--primary)] opacity-0 group-hover:opacity-100 transition-opacity">Simular →</span>
+              </div>
+              <div class="font-semibold text-xs mt-3">Teste no iPhone virtual</div>
+              <p class="text-xs text-[var(--muted-foreground)] mt-1 leading-relaxed">Veja como o cliente confirma os 4 últimos dígitos do CPF e recebe apenas o que é dele.</p>
+            </button>
           </div>
         </section>
 
+        ${staleBanner}
+
+        <!-- Resumo do Dia -->
+        <section data-component="SummaryCardGrid (Novo)" class="grid grid-cols-2 xl:grid-cols-4 gap-4">
+          <span class="comp-tag">SummaryCardGrid · Novo</span>
+          <div class="apple-card p-5">
+            <div class="text-xs text-[var(--muted-foreground)]">Conversas hoje</div>
+            <div class="text-2xl font-semibold apple-title mt-1.5 tabular-nums">${t.metrics.today}</div>
+            <div class="text-xs text-[var(--success-ink)] mt-1">Atendimento instantâneo</div>
+          </div>
+          <div class="apple-card p-5">
+            <div class="text-xs text-[var(--muted-foreground)]">Resolvidas sem humano</div>
+            <div class="text-2xl font-semibold apple-title mt-1.5 tabular-nums">${t.metrics.autoRate}</div>
+            <div class="text-xs text-[var(--muted-foreground)] mt-1">Zero custo de IA por mensagem</div>
+          </div>
+          <div class="apple-card p-5">
+            <div class="text-xs text-[var(--muted-foreground)]">Aguardando atendente</div>
+            <div class="text-2xl font-semibold apple-title mt-1.5 tabular-nums">${t.handoffs.length}</div>
+            <div class="text-xs text-[var(--warning-ink)] mt-1">Robô pausado nessas conversas</div>
+          </div>
+          <div class="apple-card p-5">
+            <div class="text-xs text-[var(--muted-foreground)]">Sincronização dos dados</div>
+            <div class="text-2xl font-semibold apple-title mt-1.5">${escapeHtml(t.metrics.freshness)}</div>
+            <div class="text-xs text-[var(--muted-foreground)] mt-1">Proteção anti-apagamento ativa</div>
+          </div>
+        </section>
+
+        <!-- Tabelas do Comércio + Demonstrações de Segurança -->
         <section class="grid grid-cols-1 xl:grid-cols-3 gap-4">
-          <div data-component="DataTable (Novo)" class="xl:col-span-2 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+          <div data-component="DataTable (Novo)" class="xl:col-span-2 apple-card p-5 space-y-4">
             <span class="comp-tag">DataTable · Novo</span>
             <div class="flex items-center justify-between gap-2">
-              <h2 class="text-sm font-bold">Coleções ativas de ${escapeHtml(t.name)}</h2>
-              <button type="button" onclick="switchView('collections')" class="text-xs text-[var(--primary)] font-medium hover:underline">Gerenciar coleções →</button>
+              <div>
+                <h2 class="text-sm font-semibold apple-title">Tabelas conectadas em ${escapeHtml(t.name)}</h2>
+                <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Tabelas privadas exigem confirmação do cliente; tabelas públicas ficam abertas a interessados.</p>
+              </div>
+              <button type="button" onclick="switchView('collections')" class="apple-btn-secondary text-xs px-3 py-1.5 shrink-0">Ver dados</button>
             </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-xs text-left border-collapse">
-                <thead>
-                  <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
-                    <th class="py-2 pr-3 font-medium">Coleção</th>
-                    <th class="py-2 px-3 font-medium">Escopo</th>
-                    <th class="py-2 px-3 font-medium">Origem</th>
-                    <th class="py-2 px-3 font-medium">Linhas</th>
-                    <th class="py-2 pl-3 font-medium">Frescor</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-[var(--border)]">
-                  ${t.collections.map(c => `
-                    <tr>
-                      <td class="py-2.5 pr-3 font-semibold">${escapeHtml(c.name)}</td>
-                      <td class="py-2.5 px-3">
-                        <span class="px-2 py-0.5 rounded-full border ${c.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'} font-medium whitespace-nowrap">
-                          ${c.visibility === 'PRIVATE' ? '🔒 Privada' : '🌐 Pública'}
-                        </span>
-                      </td>
-                      <td class="py-2.5 px-3 text-[var(--muted-foreground)]">${escapeHtml(c.source)}</td>
-                      <td class="py-2.5 px-3 tabular-nums">${c.records.length}</td>
-                      <td class="py-2.5 pl-3 whitespace-nowrap">
-                        <span class="${c.stale ? 'text-[var(--warning)] font-semibold' : 'text-[var(--muted-foreground)]'}">
-                          ${c.stale ? '⚠ ' : ''}${escapeHtml(c.lastSynced)}
-                        </span>
-                      </td>
-                    </tr>
-                  `).join('')}
-                </tbody>
-              </table>
+
+            <div class="divide-y divide-[var(--border)]">
+              ${t.collections.map(c => `
+                <div class="py-3.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                      <span class="font-semibold text-sm">${escapeHtml(c.name)}</span>
+                      <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium ${c.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'}">
+                        ${c.visibility === 'PRIVATE' ? '🔒 Só o próprio cliente vê' : '🌐 Aberta ao público'}
+                      </span>
+                    </div>
+                    <div class="text-[var(--muted-foreground)]">Fonte: ${escapeHtml(c.sourceLabel)} · ${c.records.length} registros ativos</div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="${c.stale ? 'text-[var(--warning-ink)] font-medium' : 'text-[var(--muted-foreground)]'}">
+                      ${c.stale ? '⚠ ' : 'Atualizado: '}${escapeHtml(c.lastSynced)}
+                    </span>
+                    <button type="button" onclick="uiState.collectionTab='${c.id}'; switchView('collections');" class="text-[var(--primary)] font-semibold hover:underline">Abrir →</button>
+                  </div>
+                </div>
+              `).join('')}
             </div>
           </div>
 
-          <div data-component="ActionCard (Novo)" class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+          <div data-component="ActionCard (Novo)" class="apple-card p-5 space-y-3.5">
             <span class="comp-tag">ActionCard · Novo</span>
-            <h2 class="text-sm font-bold">Atalhos operacionais</h2>
-            <div class="space-y-2">
-              <button type="button" onclick="switchView('simulator')" class="w-full text-left p-3 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] transition-colors">
-                <div class="text-xs font-semibold">▶ Testar atendimento no Simulador</div>
-                <div class="text-xs text-[var(--muted-foreground)] mt-0.5">Simule cliente cadastrado ou visitante antes de publicar.</div>
+            <div>
+              <h2 class="text-sm font-semibold apple-title">Experimente as travas de segurança</h2>
+              <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Simule o que acontece quando uma planilha tem erros.</p>
+            </div>
+            <div class="space-y-2.5">
+              <button type="button" onclick="openCsvDryRunModal()" class="w-full text-left apple-subcard p-3.5 hover:border-[var(--primary)] transition-colors">
+                <div class="text-xs font-semibold">Conferência prévia de planilha (CSV)</div>
+                <div class="text-xs text-[var(--muted-foreground)] mt-1">Mostra quais linhas estão certas e quais têm erro antes de salvar.</div>
               </button>
-              <button type="button" onclick="openCsvDryRunModal()" class="w-full text-left p-3 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] transition-colors">
-                <div class="text-xs font-semibold">⇪ Importar CSV com Dry-Run</div>
-                <div class="text-xs text-[var(--muted-foreground)] mt-0.5">Valida linha a linha antes de gravar na base.</div>
-              </button>
-              <button type="button" onclick="openSheetsGuardModal()" class="w-full text-left p-3 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] transition-colors">
-                <div class="text-xs font-semibold">🛡 Simular Trava Google Sheets</div>
-                <div class="text-xs text-[var(--muted-foreground)] mt-0.5">Veja como o sistema impede apagamento acidental.</div>
+              <button type="button" onclick="openSheetsGuardModal()" class="w-full text-left apple-subcard p-3.5 hover:border-[var(--primary)] transition-colors">
+                <div class="text-xs font-semibold">Proteção contra planilha apagada</div>
+                <div class="text-xs text-[var(--muted-foreground)] mt-1">Se alguém apagar o Google Sheets sem querer, o sistema preserva os dados antigos.</div>
               </button>
             </div>
           </div>
@@ -847,41 +1012,44 @@
       }
 
       const tabs = [
-        { id: 'customers', label: `Clientes (${t.customers.length})`, badge: 'Mestre' },
-        ...t.collections.map(c => ({ id: c.id, label: `${c.name} (${c.records.length})`, badge: c.visibility === 'PRIVATE' ? '🔒 Privada' : '🌐 Pública' }))
+        { id: 'customers', label: `Clientes cadastrados (${t.customers.length})` },
+        ...t.collections.map(c => ({ id: c.id, label: `${c.name} (${c.records.length})` }))
       ];
 
       let contentHtml = '';
       if (uiState.collectionTab === 'customers') {
         contentHtml = `
-          <div data-component="DataTable (Novo)" class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+          <div data-component="DataTable (Novo)" class="apple-card p-5 sm:p-6 space-y-4">
             <span class="comp-tag">DataTable · Novo</span>
-            <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 class="text-sm font-bold">Cadastro Mestre de Clientes</h2>
-                <p class="text-xs text-[var(--muted-foreground)]">Chave de verificação guardada apenas em hash (nunca em texto aberto).</p>
+                <h2 class="text-sm font-semibold apple-title">Clientes autorizados a consultar dados privados</h2>
+                <p class="text-xs text-[var(--muted-foreground)] mt-0.5">O sistema reconhece o cliente pelo número do WhatsApp + uma confirmação rápida (ex.: 4 últimos dígitos do CPF).</p>
               </div>
-              <button type="button" onclick="showToast('Mockup: formulário de novo cliente com telefone E.164 e confirmação.')" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">+ Novo cliente</button>
+              <button type="button" onclick="showToast('Em produção: abre formulário para cadastrar novo cliente.')" class="apple-btn-primary text-xs px-4 py-2">+ Novo cliente</button>
             </div>
+
             <div class="overflow-x-auto">
               <table class="w-full text-xs text-left border-collapse">
                 <thead>
                   <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
-                    <th class="py-2 pr-3 font-medium">Nome</th>
-                    <th class="py-2 px-3 font-medium">WhatsApp autorizado (E.164)</th>
-                    <th class="py-2 px-3 font-medium">Fator de confirmação</th>
-                    <th class="py-2 px-3 font-medium">E-mail (OTP)</th>
-                    <th class="py-2 pl-3 font-medium">Status</th>
+                    <th class="py-2.5 pr-3 font-medium">Cliente</th>
+                    <th class="py-2.5 px-3 font-medium">WhatsApp cadastrado</th>
+                    <th class="py-2.5 px-3 font-medium">Código de confirmação (teste)</th>
+                    <th class="py-2.5 px-3 font-medium">Vínculo</th>
+                    <th class="py-2.5 pl-3 font-medium text-right">Ação</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-[var(--border)]">
                   ${t.customers.map(c => `
                     <tr>
-                      <td class="py-2.5 pr-3 font-semibold">${escapeHtml(c.name)}</td>
-                      <td class="py-2.5 px-3 font-mono whitespace-nowrap">${escapeHtml(c.phone)}</td>
-                      <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded border soft-muted font-mono">sha256(***${escapeHtml(c.cpfLast4.slice(-2))})</span></td>
-                      <td class="py-2.5 px-3 text-[var(--muted-foreground)]">${escapeHtml(c.email)}</td>
-                      <td class="py-2.5 pl-3"><span class="px-2 py-0.5 rounded-full border soft-success">Ativo</span></td>
+                      <td class="py-3 pr-3 font-semibold">${escapeHtml(c.name)}</td>
+                      <td class="py-3 px-3 font-mono whitespace-nowrap">${escapeHtml(c.phone)}</td>
+                      <td class="py-3 px-3"><span class="px-2.5 py-1 rounded-lg soft-muted font-mono">Final CPF: <strong>${escapeHtml(c.cpfLast4)}</strong></span></td>
+                      <td class="py-3 px-3 text-[var(--muted-foreground)]">${escapeHtml(c.desc)}</td>
+                      <td class="py-3 pl-3 text-right">
+                        <button type="button" onclick="uiState.simProfile='${c.id}'; resetSimulator(); switchView('simulator');" class="text-[var(--primary)] font-semibold hover:underline">Simular conversa →</button>
+                      </td>
                     </tr>
                   `).join('')}
                 </tbody>
@@ -893,77 +1061,77 @@
         const col = t.collections.find(c => c.id === uiState.collectionTab);
         const customerName = id => t.customers.find(c => c.id === id)?.name || '—';
         contentHtml = `
-          <div class="grid grid-cols-1 xl:grid-cols-4 gap-4">
-            <div data-component="SchemaFieldList (Novo)" class="p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
-              <span class="comp-tag">SchemaFieldList · Novo</span>
-              <div class="flex items-center justify-between">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--muted-foreground)]">Campos da coleção</h3>
-                <span class="text-xs px-2 py-0.5 rounded-full border ${col.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'}">
-                  ${col.visibility === 'PRIVATE' ? 'Privada' : 'Pública'}
-                </span>
+          <div class="apple-card p-5 sm:p-6 space-y-5">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2.5 flex-wrap">
+                  <h2 class="text-base font-semibold apple-title">${escapeHtml(col.name)}</h2>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-medium ${col.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'}">
+                    ${col.visibility === 'PRIVATE' ? '🔒 Privada (só o cliente dono da linha pode consultar)' : '🌐 Pública (qualquer pessoa pode consultar)'}
+                  </span>
+                </div>
+                <p class="text-xs text-[var(--muted-foreground)]">Fonte: <strong>${escapeHtml(col.sourceLabel)}</strong> · Atualizado: <strong>${escapeHtml(col.lastSynced)}</strong></p>
               </div>
-              <div class="space-y-2">
-                ${col.fields.map(f => `
-                  <div class="p-2.5 rounded-lg border border-[var(--border)] bg-[var(--content)] text-xs flex items-start justify-between gap-2">
-                    <div>
-                      <div class="font-semibold">${escapeHtml(f.label)}</div>
-                      <div class="font-mono text-[var(--muted-foreground)] mt-0.5">{{registro.${escapeHtml(f.key)}}} · ${escapeHtml(f.type)}</div>
-                    </div>
-                    ${f.inTemplate ? `<span title="Campo em uso em template ativo — exclusão bloqueada" class="text-xs px-1.5 py-0.5 rounded border soft-warning shrink-0">🔒 Em uso</span>` : ''}
-                  </div>
-                `).join('')}
+
+              <div class="flex items-center gap-2 flex-wrap">
+                <button type="button" onclick="openCsvDryRunModal()" class="apple-btn-secondary text-xs px-3.5 py-1.5">Importar planilha CSV</button>
+                <button type="button" onclick="openSheetsGuardModal()" class="apple-btn-secondary text-xs px-3.5 py-1.5">Sincronizar Google Sheets</button>
+                <button type="button" onclick="showToast('Em produção: adiciona nova linha diretamente na tabela.')" class="apple-btn-primary text-xs px-4 py-1.5">+ Adicionar linha</button>
               </div>
-              <button type="button" onclick="showToast('Mockup: adicionar novo campo tipado (text, currency_brl, date, enum...).')" class="w-full text-xs py-1.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)]">+ Adicionar campo</button>
             </div>
 
-            <div data-component="DataTable (Novo)" class="xl:col-span-3 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
-              <span class="comp-tag">DataTable · Novo</span>
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <h2 class="text-sm font-bold">${escapeHtml(col.name)}</h2>
-                  <p class="text-xs text-[var(--muted-foreground)]">Origem: <strong>${escapeHtml(col.source)}</strong> · Última atualização: <strong>${escapeHtml(col.lastSynced)}</strong></p>
-                </div>
-                <div class="flex items-center gap-2 flex-wrap">
-                  <button type="button" onclick="openCsvDryRunModal()" class="text-xs px-3 py-1.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)]">⇪ Importar CSV</button>
-                  <button type="button" onclick="openSheetsGuardModal()" class="text-xs px-3 py-1.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)]">↻ Sync Google Sheets</button>
-                  <button type="button" onclick="showToast('Mockup: inserir nova linha manual validada pelo schema.')" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">+ Nova linha</button>
-                </div>
+            <!-- Colunas / Etiquetas disponíveis -->
+            <div data-component="SchemaFieldList (Novo)" class="apple-subcard p-3.5 flex flex-wrap items-center justify-between gap-2">
+              <span class="comp-tag">SchemaFieldList · Novo</span>
+              <div class="flex items-center gap-2 flex-wrap text-xs">
+                <span class="text-[var(--muted-foreground)] font-medium">Colunas desta tabela (viram etiquetas nas mensagens):</span>
+                ${col.fields.map(f => `
+                  <span class="px-2.5 py-1 rounded-lg bg-[var(--card)] border border-[var(--border)] font-medium">
+                    ${escapeHtml(f.label)}
+                  </span>
+                `).join('')}
               </div>
+              <button type="button" onclick="showToast('Você pode criar novas colunas personalizadas para o seu negócio.')" class="text-xs text-[var(--primary)] font-semibold hover:underline">+ Nova coluna</button>
+            </div>
 
-              <div class="overflow-x-auto">
-                <table class="w-full text-xs text-left border-collapse">
-                  <thead>
-                    <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
-                      ${col.visibility === 'PRIVATE' ? '<th class="py-2 pr-3 font-medium">Cliente vinculado</th>' : ''}
-                      ${col.fields.map(f => `<th class="py-2 px-3 font-medium">${escapeHtml(f.label)}</th>`).join('')}
+            <!-- Tabela de Dados -->
+            <div data-component="DataTable (Novo)" class="overflow-x-auto">
+              <span class="comp-tag">DataTable · Novo</span>
+              <table class="w-full text-xs text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
+                    ${col.visibility === 'PRIVATE' ? '<th class="py-2.5 pr-3 font-medium">Pertence ao cliente</th>' : ''}
+                    ${col.fields.map(f => `<th class="py-2.5 px-3 font-medium">${escapeHtml(f.label)}</th>`).join('')}
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[var(--border)]">
+                  ${col.records.map(r => `
+                    <tr>
+                      ${col.visibility === 'PRIVATE' ? `<td class="py-3 pr-3 font-semibold whitespace-nowrap">${escapeHtml(customerName(r.customerId))}</td>` : ''}
+                      ${col.fields.map(f => {
+                        const raw = r.data[f.key];
+                        const formatted = f.type === 'currency_brl' ? formatBRL(raw) : String(raw ?? '—');
+                        return `<td class="py-3 px-3">${escapeHtml(formatted)}</td>`;
+                      }).join('')}
                     </tr>
-                  </thead>
-                  <tbody class="divide-y divide-[var(--border)]">
-                    ${col.records.map(r => `
-                      <tr>
-                        ${col.visibility === 'PRIVATE' ? `<td class="py-2.5 pr-3 font-semibold whitespace-nowrap">${escapeHtml(customerName(r.customerId))}</td>` : ''}
-                        ${col.fields.map(f => {
-                          const raw = r.data[f.key];
-                          const formatted = f.type === 'currency_brl' ? formatBRL(raw) : String(raw ?? '—');
-                          return `<td class="py-2.5 px-3">${escapeHtml(formatted)}</td>`;
-                        }).join('')}
-                      </tr>
-                    `).join('')}
-                  </tbody>
-                </table>
-              </div>
+                  `).join('')}
+                </tbody>
+              </table>
             </div>
           </div>
         `;
       }
 
       return `
-        <div class="flex items-center gap-2 flex-wrap">
-          ${tabs.map(tb => `
-            <button type="button" onclick="uiState.collectionTab='${tb.id}'; render();" class="text-xs px-3 py-2 rounded-lg border transition-colors ${uiState.collectionTab === tb.id ? 'soft-primary font-semibold' : 'bg-[var(--card)] border-[var(--border)] hover:border-[var(--primary)]'}">
-              ${escapeHtml(tb.label)} <span class="opacity-75 ml-1">· ${escapeHtml(tb.badge)}</span>
-            </button>
-          `).join('')}
+        <!-- Segmented Control estilo macOS / iOS -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="segmented-control flex-wrap">
+            ${tabs.map(tb => `
+              <button type="button" onclick="uiState.collectionTab='${tb.id}'; render();" class="segmented-item ${uiState.collectionTab === tb.id ? 'segmented-item-active' : ''}">
+                ${escapeHtml(tb.label)}
+              </button>
+            `).join('')}
+          </div>
         </div>
         ${contentHtml}
       `;
@@ -975,95 +1143,78 @@
       }
       const intent = t.intents.find(i => i.id === uiState.selectedIntentId);
       const col = t.collections.find(c => c.id === intent.collectionId);
-      const sampleCustomer = t.customers[0];
-      const sampleRecord = col ? col.records[0] : null;
-      const preview = renderSafeTemplate(intent.template, {
-        tenant: t,
-        customer: { nome: sampleCustomer.name },
-        collection: col,
-        record: sampleRecord
-      });
 
-      const vars = [
-        '{{comercio.nome}}', '{{comercio.chave_pix}}', '{{comercio.horario_atendimento}}',
-        ...(intent.visibility === 'PRIVATE' ? ['{{cliente.nome}}'] : []),
-        ...(col ? col.fields.map(f => `{{registro.${f.key}}}`).concat(['{{colecao.atualizado_em}}']) : [])
+      // Etiquetas com nomes humanos amigáveis!
+      const friendlyVars = [
+        { token: '{{comercio.nome}}', label: 'Nome do Comércio' },
+        { token: '{{comercio.chave_pix}}', label: 'Chave Pix' },
+        { token: '{{comercio.horario_atendimento}}', label: 'Horário' },
+        ...(intent.visibility === 'PRIVATE' ? [{ token: '{{cliente.nome}}', label: 'Nome do Cliente' }] : []),
+        ...(col ? col.fields.map(f => ({ token: `{{registro.${f.key}}}`, label: f.label })) : [])
       ];
 
       return `
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-4">
-          <div data-component="IntentMenuList (Novo)" class="xl:col-span-4 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+          <!-- Coluna 1: Botões que aparecem no WhatsApp -->
+          <div data-component="IntentMenuList (Novo)" class="xl:col-span-3 apple-card p-4 space-y-3">
             <span class="comp-tag">IntentMenuList · Novo</span>
-            <div class="flex items-center justify-between">
-              <h2 class="text-sm font-bold">Opções do Menu (v1)</h2>
-              <button type="button" onclick="showToast('Mockup: adicionar nova opção determinística ao menu.')" class="text-xs px-2.5 py-1 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">+ Opção</button>
+            <div class="flex items-center justify-between px-1">
+              <h2 class="text-sm font-semibold apple-title">Opções do Menu</h2>
+              <button type="button" onclick="showToast('Em produção: cria um novo botão no menu do WhatsApp.')" class="text-xs font-semibold text-[var(--primary)] hover:underline">+ Nova</button>
             </div>
             <div class="space-y-2">
               ${t.intents.map((it, idx) => `
-                <button type="button" onclick="uiState.selectedIntentId='${it.id}'; render();" class="w-full text-left p-3 rounded-lg border transition-colors ${it.id === intent.id ? 'soft-primary' : 'bg-[var(--content)] border-[var(--border)] hover:border-[var(--primary)]'}">
+                <button type="button" onclick="uiState.selectedIntentId='${it.id}'; render();" class="w-full text-left p-3 rounded-2xl border transition-all ${it.id === intent.id ? 'soft-primary font-semibold' : 'apple-subcard hover:border-[var(--primary)]'}">
                   <div class="flex items-center justify-between gap-2">
-                    <span class="text-xs font-bold">${idx + 1}. ${escapeHtml(it.title)}</span>
-                    <span class="text-xs px-1.5 py-0.5 rounded border ${it.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'}">${it.visibility === 'PRIVATE' ? '🔒 Privada' : '🌐 Pública'}</span>
+                    <span class="text-xs font-semibold">${idx + 1}. ${escapeHtml(it.title)}</span>
+                    <span class="text-[11px] px-2 py-0.5 rounded-full ${it.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'}">
+                      ${it.visibility === 'PRIVATE' ? '🔒 Privada' : '🌐 Pública'}
+                    </span>
                   </div>
-                  <div class="text-xs text-[var(--muted-foreground)] mt-1 flex items-center justify-between">
-                    <span class="font-mono">${escapeHtml(it.code)}</span>
-                    <span>${it.title.length}/20 chars WhatsApp</span>
-                  </div>
+                  <p class="text-[11px] text-[var(--muted-foreground)] font-normal mt-1 leading-snug">${escapeHtml(it.subtitle)}</p>
                 </button>
               `).join('')}
             </div>
-
-            <div class="p-3 rounded-lg border border-[var(--border)] bg-[var(--content)] space-y-1.5 opacity-85">
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-semibold">Classificador IA texto livre</span>
-                <span class="px-2 py-0.5 rounded-full border soft-muted">v2 · Off</span>
-              </div>
-              <p class="text-xs text-[var(--muted-foreground)]">Contrato <code>IntentResolver</code> pronto. Na v2, a IA só escolhe o código da opção — nunca lê os dados.</p>
-            </div>
           </div>
 
-          <div data-component="TemplateEditor (Novo)" class="xl:col-span-5 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+          <!-- Coluna 2: Editor Intuitivo com Etiquetas Amigáveis -->
+          <div data-component="TemplateEditor (Novo)" class="xl:col-span-5 apple-card p-5 sm:p-6 space-y-4">
             <span class="comp-tag">TemplateEditor · Novo</span>
-            <div class="flex items-center justify-between">
-              <h2 class="text-sm font-bold">Editor de Template Seguro</h2>
-              <span class="text-xs text-[var(--muted-foreground)]">Zero <code>eval</code> · Variáveis validadas</span>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--primary)]">Personalizar resposta</span>
+                <h2 class="text-base font-semibold apple-title mt-0.5">Quando o cliente tocar em "${escapeHtml(intent.title)}"</h2>
+              </div>
+              <span class="text-xs px-2.5 py-1 rounded-full ${intent.visibility === 'PRIVATE' ? 'soft-primary' : 'soft-success'} font-medium">
+                ${intent.visibility === 'PRIVATE' ? '🔒 Exige confirmar identidade' : '🌐 Resposta imediata'}
+              </span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div>
-                <label class="block text-[var(--muted-foreground)] mb-1">Texto do botão (máx. 20)</label>
-                <input type="text" maxlength="20" value="${escapeHtml(intent.title)}" oninput="updateIntentField('title', this.value)" class="w-full px-2.5 py-1.5 rounded-lg bg-[var(--content)] border border-[var(--border)]" />
-              </div>
-              <div>
-                <label class="block text-[var(--muted-foreground)] mb-1">Tipo de ação</label>
-                <input type="text" disabled value="${escapeHtml(intent.actionType)}" class="w-full px-2.5 py-1.5 rounded-lg bg-[var(--content)] border border-[var(--border)] font-mono opacity-75" />
-              </div>
+            <div>
+              <label class="block text-xs font-medium text-[var(--muted-foreground)] mb-1.5">Nome do botão no WhatsApp (até 20 letras)</label>
+              <input type="text" maxlength="20" value="${escapeHtml(intent.title)}" oninput="updateIntentField('title', this.value)" class="w-full px-3.5 py-2 rounded-xl bg-[var(--content)] border border-[var(--border)] text-xs font-semibold focus:outline-none focus:border-[var(--primary)]" />
             </div>
 
-            <div class="space-y-1.5">
-              <div class="text-xs text-[var(--muted-foreground)]">Clique para inserir variável desta coleção:</div>
+            <div class="space-y-2">
+              <div class="text-xs font-medium text-[var(--muted-foreground)]">Toque em uma etiqueta para inserir um dado automático da tabela:</div>
               <div class="flex flex-wrap gap-1.5">
-                ${vars.map(v => `
-                  <button type="button" data-insert-var="${escapeHtml(v)}" class="text-xs font-mono px-2 py-1 rounded-md border soft-primary hover:opacity-80">${escapeHtml(v)}</button>
+                ${friendlyVars.map(v => `
+                  <button type="button" data-insert-var="${escapeHtml(v.token)}" class="text-xs px-3 py-1.5 rounded-full border soft-primary font-medium hover:opacity-85 transition-opacity">
+                    + ${escapeHtml(v.label)}
+                  </button>
                 `).join('')}
               </div>
             </div>
 
             <div>
-              <label for="tplArea" class="block text-xs text-[var(--muted-foreground)] mb-1">Mensagem de resposta (edite e veja o preview ao vivo)</label>
-              <textarea id="tplArea" rows="7" oninput="updateIntentField('template', this.value)" class="w-full p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] text-xs font-mono leading-relaxed focus:outline-none focus:border-[var(--primary)]">${escapeHtml(intent.template)}</textarea>
+              <label for="tplArea" class="block text-xs font-medium text-[var(--muted-foreground)] mb-1.5">Texto da mensagem (o iPhone ao lado atualiza na hora)</label>
+              <textarea id="tplArea" rows="7" oninput="updateIntentField('template', this.value)" class="w-full p-3.5 rounded-2xl bg-[var(--content)] border border-[var(--border)] text-xs leading-relaxed focus:outline-none focus:border-[var(--primary)]">${escapeHtml(intent.template)}</textarea>
             </div>
           </div>
 
-          <div data-component="WhatsAppPreviewCard (Novo)" class="xl:col-span-3 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3 flex flex-col">
-            <span class="comp-tag">WhatsAppPreviewCard · Novo</span>
-            <h2 class="text-sm font-bold">Preview com linha real</h2>
-            <p class="text-xs text-[var(--muted-foreground)]">Simulando com <strong>${escapeHtml(sampleCustomer.name)}</strong> (dados fictícios).</p>
-            <div class="flex-1 rounded-xl p-3 chat-surface border border-[var(--border)] flex flex-col justify-between gap-3">
-              <div class="bubble-bot rounded-xl p-3 text-xs whitespace-pre-line leading-relaxed">${escapeHtml(preview)}</div>
-              <div class="text-center text-xs py-1.5 rounded-lg border border-[var(--border)] bg-[var(--card)] font-medium text-[var(--primary)]">Voltar ao menu</div>
-            </div>
-            <button type="button" onclick="switchView('simulator')" class="w-full text-xs py-2 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">Abrir no Simulador completo</button>
+          <!-- Coluna 3: iPhone Ao Vivo -->
+          <div class="xl:col-span-4">
+            ${renderIPhoneMockup(t, 'preview')}
           </div>
         </div>
       `;
@@ -1086,126 +1237,102 @@
       if (!uiState.sim) resetSimulator();
       const s = uiState.sim;
       const profiles = [
-        ...t.customers.map(c => {
-          const privCol = t.collections.find(col => col.visibility === 'PRIVATE');
-          const count = privCol ? privCol.records.filter(r => r.customerId === c.id).length : 0;
-          return { id: c.id, label: `${c.name} (${count} reg · CPF fim ${c.cpfLast4})`, phone: c.phone };
-        }),
-        { id: 'unknown', label: 'Visitante não cadastrado (bloqueio LGPD)', phone: '+55 11 98888-0000' }
+        ...t.customers.map(c => ({
+          id: c.id,
+          name: c.name,
+          badge: `Final CPF: ${c.cpfLast4}`,
+          desc: c.desc,
+          phone: c.phone
+        })),
+        {
+          id: 'unknown',
+          name: 'Visitante não cadastrado',
+          badge: 'Teste de Segurança',
+          desc: 'Testa vitrine pública e bloqueio de dados privados (LGPD)',
+          phone: '+55 11 98888-0000'
+        }
       ];
 
+      const inspectorPanel = uiState.inspectorOpen ? `
+        <div data-component="SessionAuditInspector (Novo)" class="apple-card p-5 space-y-4">
+          <span class="comp-tag">SessionAuditInspector · Novo</span>
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-sm font-semibold apple-title">Bastidores Técnicos (SDD &amp; LGPD)</h3>
+              <p class="text-xs text-[var(--muted-foreground)]">Os logs registram o atendimento sem guardar CPF, telefone nem valores.</p>
+            </div>
+            <span class="text-xs px-2.5 py-0.5 rounded-full soft-success font-semibold">LGPD OK</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2.5 text-xs">
+            <div class="apple-subcard p-2.5">
+              <div class="text-[var(--muted-foreground)]">Estado</div>
+              <div class="font-mono font-bold mt-0.5">${escapeHtml(s.state)}</div>
+            </div>
+            <div class="apple-subcard p-2.5">
+              <div class="text-[var(--muted-foreground)]">Identidade</div>
+              <div class="font-semibold mt-0.5 ${s.authenticatedCustomerId ? 'text-[var(--success-ink)]' : 'text-[var(--muted-foreground)]'}">
+                ${s.authenticatedCustomerId ? 'Confirmada' : 'Pública'}
+              </div>
+            </div>
+            <div class="apple-subcard p-2.5">
+              <div class="text-[var(--muted-foreground)]">Tentativas erradas</div>
+              <div class="font-mono font-bold mt-0.5">${s.failedAttempts} / 3</div>
+            </div>
+          </div>
+
+          <div class="apple-subcard p-3 font-mono text-[11px] space-y-1.5 max-h-48 overflow-y-auto custom-scroll">
+            ${s.logs.map(l => `
+              <div>
+                <span class="text-[var(--muted-foreground)]">[${l.ts}]</span>
+                <span class="font-semibold text-[var(--primary)]">${escapeHtml(l.code)}</span>
+                <span class="text-[var(--muted-foreground)]"> · ${escapeHtml(l.meta)}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : '';
+
       return `
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-4 items-start">
-          <!-- Controles do Simulador -->
-          <div data-component="SimulatorControls (Novo)" class="xl:col-span-3 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-4">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+          <!-- Coluna Esquerda: Quem está mandando mensagem? -->
+          <div data-component="SimulatorControls (Novo)" class="xl:col-span-5 space-y-4">
             <span class="comp-tag">SimulatorControls · Novo</span>
-            <div>
-              <h2 class="text-sm font-bold">Perfil de teste</h2>
-              <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Executa o mesmo <code>ConversationEngine</code> do WhatsApp.</p>
-            </div>
-
-            <div class="space-y-2">
-              ${profiles.map(p => `
-                <button type="button" onclick="uiState.simProfile='${p.id}'; resetSimulator(); render();" class="w-full text-left p-2.5 rounded-lg border text-xs transition-colors ${uiState.simProfile === p.id ? 'soft-primary font-semibold' : 'bg-[var(--content)] border-[var(--border)] hover:border-[var(--primary)]'}">
-                  <div>${escapeHtml(p.label)}</div>
-                  <div class="font-mono opacity-75 mt-0.5">${escapeHtml(p.phone)}</div>
-                </button>
-              `).join('')}
-            </div>
-
-            <div class="pt-2 border-t border-[var(--border)] space-y-2">
-              <div class="text-xs font-semibold">Testar casos de borda</div>
-              <button type="button" onclick="simReceiveUser('[Áudio 0:08]', 'UNSUPPORTED_MEDIA'); render();" class="w-full text-xs py-1.5 px-2.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] text-left">🎤 Simular envio de áudio</button>
-              <button type="button" onclick="resetSimulator(); render();" class="w-full text-xs py-1.5 px-2.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] text-left">↺ Reiniciar sessão (limpar auth)</button>
-            </div>
-          </div>
-
-          <!-- Celular WhatsApp Simulado (primeiro no mobile!) -->
-          <div data-component="ChatSimulator (Novo)" class="order-first xl:order-none xl:col-span-5 rounded-2xl bg-[var(--card)] border border-[var(--border)] overflow-hidden flex flex-col" style="height: 560px;">
-            <span class="comp-tag">ChatSimulator · Novo</span>
-            <div class="px-4 py-3 border-b border-[var(--border)] bg-[var(--sidebar)] flex items-center justify-between gap-2">
-              <div class="flex items-center gap-2.5 min-w-0">
-                <div class="w-8 h-8 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] flex items-center justify-center text-xs font-bold shrink-0">${escapeHtml(t.name.slice(0, 2).toUpperCase())}</div>
-                <div class="min-w-0">
-                  <div class="text-xs font-bold truncate">${escapeHtml(t.name)}</div>
-                  <div class="text-xs text-[var(--success)]">Conta oficial · Automático</div>
-                </div>
+            <div class="apple-card p-5 space-y-4">
+              <div>
+                <span class="text-[11px] font-semibold uppercase tracking-wider text-[var(--primary)]">Simulador interativo</span>
+                <h2 class="text-base font-semibold apple-title mt-0.5">Com qual cliente você quer testar agora?</h2>
+                <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Escolha uma pessoa abaixo e toque nos botões da tela do iPhone.</p>
               </div>
-              <span class="text-xs font-mono px-2 py-0.5 rounded border border-[var(--border)] shrink-0">${escapeHtml(s.state)}</span>
-            </div>
 
-            <div id="chatMessages" class="flex-1 p-4 chat-surface overflow-y-auto custom-scroll space-y-3">
-              ${s.messages.map(m => `
-                <div class="flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}">
-                  <div class="max-w-[90%] space-y-1.5">
-                    <div class="${m.from === 'user' ? 'bubble-user' : 'bubble-bot'} rounded-xl px-3.5 py-2.5 text-xs whitespace-pre-line leading-relaxed">
-                      ${escapeHtml(m.text)}
-                      ${m.footer ? `<div class="mt-2 pt-1.5 border-t border-[var(--border)] text-[var(--muted-foreground)]">${escapeHtml(m.footer)}</div>` : ''}
+              <div class="space-y-2.5">
+                ${profiles.map(p => `
+                  <button type="button" onclick="uiState.simProfile='${p.id}'; resetSimulator(); render();" class="w-full text-left p-3.5 rounded-2xl border transition-all ${uiState.simProfile === p.id ? 'soft-primary' : 'apple-subcard hover:border-[var(--primary)]'}">
+                    <div class="flex items-center justify-between gap-2">
+                      <span class="text-xs font-semibold">${escapeHtml(p.name)}</span>
+                      <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-[var(--card)] border border-[var(--border)] font-medium">${escapeHtml(p.badge)}</span>
                     </div>
-                    ${m.buttons && m.buttons.length ? `
-                      <div class="flex flex-col gap-1.5">
-                        ${m.buttons.map(b => `
-                          <button type="button" data-sim-reply="${escapeHtml(b.id)}" data-sim-label="${escapeHtml(b.label)}" class="w-full text-center text-xs font-semibold py-2 px-3 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--primary)] hover:border-[var(--primary)] transition-colors">
-                            ${b.tag ? `${b.tag} ` : ''}${escapeHtml(b.label)}
-                          </button>
-                        `).join('')}
-                      </div>
-                    ` : ''}
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-
-            <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-[var(--border)] bg-[var(--card)] flex gap-2">
-              <input id="chatInput" type="text" placeholder="Digite (ex.: 7735, pix, menu) ou clique..." class="flex-1 text-xs px-3 py-2 rounded-lg bg-[var(--content)] border border-[var(--border)] focus:outline-none focus:border-[var(--primary)]" />
-              <button type="submit" class="text-xs px-4 py-2 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">Enviar</button>
-            </form>
-          </div>
-
-          <!-- Inspetor de Sessão + Logs Sanitizados LGPD -->
-          <div data-component="SessionAuditInspector (Novo)" class="xl:col-span-4 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-4">
-            <span class="comp-tag">SessionAuditInspector · Novo</span>
-            <div>
-              <h2 class="text-sm font-bold">Inspetor de Estado &amp; LGPD</h2>
-              <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Prova de isolamento e logs sem dados pessoais.</p>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2 text-xs">
-              <div class="p-2.5 rounded-lg bg-[var(--content)] border border-[var(--border)]">
-                <div class="text-[var(--muted-foreground)]">Estado</div>
-                <div class="font-mono font-bold mt-0.5">${escapeHtml(s.state)}</div>
-              </div>
-              <div class="p-2.5 rounded-lg bg-[var(--content)] border border-[var(--border)]">
-                <div class="text-[var(--muted-foreground)]">Tenant ativo</div>
-                <div class="font-mono font-bold mt-0.5">${escapeHtml(t.id)}</div>
-              </div>
-              <div class="p-2.5 rounded-lg bg-[var(--content)] border border-[var(--border)]">
-                <div class="text-[var(--muted-foreground)]">Sessão privada</div>
-                <div class="font-semibold mt-0.5 ${s.authenticatedCustomerId ? 'text-[var(--success)]' : 'text-[var(--muted-foreground)]'}">
-                  ${s.authenticatedCustomerId ? `Autenticada (${escapeHtml(s.authenticatedCustomerId)})` : 'Não autenticada'}
-                </div>
-              </div>
-              <div class="p-2.5 rounded-lg bg-[var(--content)] border border-[var(--border)]">
-                <div class="text-[var(--muted-foreground)]">Falhas auth</div>
-                <div class="font-mono font-bold mt-0.5 ${s.failedAttempts > 0 ? 'text-[var(--error)]' : ''}">${s.failedAttempts} / 3</div>
-              </div>
-            </div>
-
-            <div class="space-y-1.5">
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-semibold">Logs sanitizados (zero CPF/valor)</span>
-                <span class="px-2 py-0.5 rounded-full border soft-success">LGPD OK</span>
-              </div>
-              <div class="rounded-lg bg-[var(--content)] border border-[var(--border)] p-2.5 font-mono text-xs space-y-1.5 max-h-64 overflow-y-auto custom-scroll">
-                ${s.logs.map(l => `
-                  <div class="leading-snug">
-                    <span class="text-[var(--muted-foreground)]">[${l.ts}]</span>
-                    <span class="font-semibold text-[var(--primary)]">${escapeHtml(l.code)}</span>
-                    <div class="text-[var(--muted-foreground)] break-all">${escapeHtml(l.meta)}</div>
-                  </div>
+                    <div class="text-xs text-[var(--muted-foreground)] mt-1">${escapeHtml(p.desc)}</div>
+                  </button>
                 `).join('')}
               </div>
+
+              <div class="pt-3 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-2">
+                <button type="button" onclick="simReceiveUser('[Áudio de voz 0:08]', 'UNSUPPORTED_MEDIA'); render();" class="apple-btn-secondary text-xs px-3.5 py-1.5">
+                  🎤 Simular cliente mandando áudio
+                </button>
+                <button type="button" onclick="uiState.inspectorOpen = !uiState.inspectorOpen; render();" class="text-xs font-medium text-[var(--primary)] hover:underline">
+                  ${uiState.inspectorOpen ? 'Ocultar bastidores técnicos' : 'Ver bastidores (Segurança & LGPD)'}
+                </button>
+              </div>
             </div>
+
+            ${inspectorPanel}
+          </div>
+
+          <!-- Coluna Direita: iPhone Centralizado (aparece primeiro no celular!) -->
+          <div class="order-first xl:order-none xl:col-span-7 flex justify-center">
+            ${renderIPhoneMockup(t, 'interactive')}
           </div>
         </div>
       `;
@@ -1225,27 +1352,27 @@
 
     function renderHandoff(t) {
       return `
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-4">
-          <div data-component="HandoffQueueCard (Novo)" class="xl:col-span-7 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-3">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+          <div data-component="HandoffQueueCard (Novo)" class="xl:col-span-7 apple-card p-5 sm:p-6 space-y-4">
             <span class="comp-tag">HandoffQueueCard · Novo</span>
             <div>
-              <h2 class="text-sm font-bold">Fila de Transbordo Humano (RF-13)</h2>
-              <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Sessões onde o bot foi pausado aguardando um operador assumir no WhatsApp Business.</p>
+              <h2 class="text-base font-semibold apple-title">Clientes aguardando um atendente humano</h2>
+              <p class="text-xs text-[var(--muted-foreground)] mt-0.5">Quando o cliente pede para falar com alguém, o robô pausa sozinho para você conversar normalmente no WhatsApp.</p>
             </div>
             ${t.handoffs.length === 0 ? `
-              <div class="p-6 text-center rounded-lg border border-[var(--border)] bg-[var(--content)] text-xs text-[var(--muted-foreground)]">
-                Nenhum transbordo pendente no momento.
+              <div class="apple-subcard p-8 text-center text-xs text-[var(--muted-foreground)]">
+                Tudo em dia! Nenhum cliente aguardando atendimento humano agora.
               </div>
             ` : `
-              <div class="space-y-2.5">
+              <div class="space-y-3">
                 ${t.handoffs.map(h => `
-                  <div class="p-3.5 rounded-lg border border-[var(--border)] bg-[var(--content)] flex flex-wrap items-center justify-between gap-3">
-                    <div class="space-y-0.5 text-xs">
-                      <div class="font-bold font-mono">${escapeHtml(h.phoneMasked)} <span class="font-sans font-normal text-[var(--muted-foreground)]">· ${escapeHtml(h.since)}</span></div>
-                      <div>${escapeHtml(h.reason)}</div>
+                  <div class="apple-subcard p-4 flex flex-wrap items-center justify-between gap-3">
+                    <div class="space-y-1 text-xs">
+                      <div class="font-semibold">${escapeHtml(h.phoneMasked)} <span class="font-normal text-[var(--muted-foreground)]">· ${escapeHtml(h.since)}</span></div>
+                      <div class="text-[var(--muted-foreground)]">${escapeHtml(h.reason)}</div>
                     </div>
-                    <button type="button" onclick="resolveHandoff('${h.id}')" class="text-xs px-3 py-1.5 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold">
-                      Encerrar e reativar bot
+                    <button type="button" onclick="resolveHandoff('${h.id}')" class="apple-btn-primary text-xs px-4 py-2">
+                      Concluir e reativar robô
                     </button>
                   </div>
                 `).join('')}
@@ -1253,33 +1380,29 @@
             `}
           </div>
 
-          <div data-component="ChannelConfigCard (Novo)" class="xl:col-span-5 p-4 rounded-xl bg-[var(--card)] border border-[var(--border)] space-y-4">
+          <div data-component="ChannelConfigCard (Novo)" class="xl:col-span-5 apple-card p-5 sm:p-6 space-y-4">
             <span class="comp-tag">ChannelConfigCard · Novo</span>
             <div class="flex items-center justify-between">
-              <h2 class="text-sm font-bold">Canal &amp; Regras de Segurança</h2>
-              <span class="text-xs px-2 py-0.5 rounded-full border soft-success">Webhook HMAC OK</span>
+              <h2 class="text-base font-semibold apple-title">Dados gerais do comércio</h2>
+              <span class="text-xs px-2.5 py-0.5 rounded-full soft-success font-medium">Ativo</span>
             </div>
 
             <div class="space-y-2.5 text-xs">
-              <div class="p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] flex justify-between gap-2">
-                <span class="text-[var(--muted-foreground)]">Adaptador ativo</span>
-                <span class="font-mono font-semibold">WhatsAppCloudAdapter</span>
+              <div class="apple-subcard p-3.5 flex justify-between gap-2">
+                <span class="text-[var(--muted-foreground)]">Chave Pix oficial</span>
+                <span class="font-mono font-semibold truncate">${escapeHtml(t.globals.chave_pix)}</span>
               </div>
-              <div class="p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] flex justify-between gap-2">
-                <span class="text-[var(--muted-foreground)]">Chave Pix global</span>
-                <span class="font-mono truncate">${escapeHtml(t.globals.chave_pix)}</span>
+              <div class="apple-subcard p-3.5 flex justify-between gap-2">
+                <span class="text-[var(--muted-foreground)]">Horário de atendimento</span>
+                <span class="font-semibold">${escapeHtml(t.globals.horario_atendimento)}</span>
               </div>
-              <div class="p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] flex justify-between gap-2">
-                <span class="text-[var(--muted-foreground)]">Desafio privado padrão</span>
+              <div class="apple-subcard p-3.5 flex justify-between gap-2">
+                <span class="text-[var(--muted-foreground)]">Confirmação de segurança</span>
                 <span class="font-semibold">${escapeHtml(t.authHint)}</span>
               </div>
-              <div class="p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] flex justify-between gap-2">
-                <span class="text-[var(--muted-foreground)]">TTL sessão autenticada</span>
+              <div class="apple-subcard p-3.5 flex justify-between gap-2">
+                <span class="text-[var(--muted-foreground)]">Duração do acesso confirmado</span>
                 <span class="font-semibold">${t.sessionTtlMin} minutos</span>
-              </div>
-              <div class="p-3 rounded-lg bg-[var(--content)] border border-[var(--border)] flex justify-between gap-2">
-                <span class="text-[var(--muted-foreground)]">Idempotência de webhook</span>
-                <span class="text-[var(--success)] font-semibold">Ativa (7 dias)</span>
               </div>
             </div>
           </div>
@@ -1290,19 +1413,19 @@
     function resolveHandoff(id) {
       const t = currentTenant();
       t.handoffs = t.handoffs.filter(h => h.id !== id);
-      showToast('Transbordo encerrado: atendimento automático reativado para este contato.');
+      showToast('Atendimento automático reativado para este cliente.');
       render();
     }
 
     // =========================================================================
-    // ROTEAMENTO E EVENTOS
+    // NAVEGAÇÃO E EVENTOS
     // =========================================================================
     const VIEW_META = {
-      dashboard:   { title: 'Visão Geral', subtitle: 'Saúde do atendimento determinístico, frescor das bases e atalhos rápidos.' },
-      collections: { title: 'Coleções & Dados (Rows)', subtitle: 'Gerencie clientes, coleções públicas/privadas, CSV com dry-run e sync Google Sheets.' },
-      intents:     { title: 'Menus & Templates', subtitle: 'Configure botões/listas do WhatsApp e variáveis {{escopo.campo}} com preview ao vivo.' },
-      simulator:   { title: 'Simulador WhatsApp (Core Real)', subtitle: 'Teste todos os fluxos, autenticação por telefone + CPF e logs higienizados.' },
-      handoff:     { title: 'Transbordos & Canal', subtitle: 'Fila de atendimento humano e status do adaptador WhatsApp Cloud API.' }
+      dashboard:   { title: 'Início', subtitle: 'Resumo do seu autoatendimento e acesso rápido às configurações.' },
+      collections: { title: 'Cadastros e Tabelas', subtitle: 'Seus clientes e as tabelas que alimentam as respostas automáticas.' },
+      intents:     { title: 'Respostas do WhatsApp', subtitle: 'Personalize os botões do menu e veja como a mensagem fica no iPhone.' },
+      simulator:   { title: 'Testar no iPhone', subtitle: 'Simule a experiência real do seu cliente antes de ativar.' },
+      handoff:     { title: 'Atendimento Humano', subtitle: 'Conversas onde o robô foi pausado para sua equipe responder.' }
     };
 
     function switchView(view) {
@@ -1354,12 +1477,14 @@
       uiState.simProfile = currentTenant().customers[0].id;
       resetSimulator();
       render();
-      showToast(`Comércio alternado para: ${currentTenant().name}`);
+      showToast(`Exibindo agora: ${currentTenant().name}`);
     });
-    const compToggle = document.getElementById('toggleComponents');
-    if (compToggle) {
-      compToggle.addEventListener('change', e => {
+    const inspToggle = document.getElementById('toggleInspector');
+    if (inspToggle) {
+      inspToggle.addEventListener('change', e => {
+        uiState.inspectorOpen = e.target.checked;
         document.body.classList.toggle('show-components', e.target.checked);
+        render();
       });
     }
     document.getElementById('mainContent').addEventListener('click', e => {

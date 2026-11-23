@@ -1,145 +1,331 @@
 /* ==========================================================================
-   AtendeBase — Tokens de Cores Centralizados (Tema Claro padrão + Escuro)
-   Nenhuma cor literal deve existir fora deste arquivo.
+   AtendeBase — Apple HIG Inspired Token System (macOS Sequoia / iOS 18)
+   Todas as cores e superfícies vivem exclusivamente neste arquivo.
    ========================================================================== */
 
 :root {
-  --background: #f4f6f9;
-  --content: #eef2f6;
+  --background: #f5f5f7;
+  --content: #ebebf0;
   --card: #ffffff;
-  --sidebar: #ffffff;
-  --border: #dce3ec;
-  --card-border: #dce3ec;
-  --foreground: #0f172a;
-  --muted-foreground: #526074;
+  --card-elevated: rgba(255, 255, 255, 0.86);
+  --sidebar: rgba(245, 245, 247, 0.78);
+  --topbar: rgba(255, 255, 255, 0.76);
 
-  --primary: #0f766e;
+  --border: rgba(0, 0, 0, 0.08);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --divider: rgba(0, 0, 0, 0.06);
+
+  --foreground: #1d1d1f;
+  --muted-foreground: #6e6e73;
+  --subtle-foreground: #86868b;
+
+  --primary: #0071e3;
+  --primary-hover: #0077ed;
   --primary-foreground: #ffffff;
-  --secondary: #1e293b;
+
+  --secondary: #1d1d1f;
   --secondary-foreground: #ffffff;
-  --accent: #0d9488;
+  --accent: #0071e3;
 
-  --success: #15803d;
-  --warning: #b45309;
-  --error: #b91c1c;
+  --success: #28cd41;
+  --success-ink: #147d25;
+  --warning: #ff9500;
+  --warning-ink: #a65c00;
+  --error: #ff3b30;
+  --error-ink: #c91f16;
 
-  --backdrop: rgba(15, 23, 42, 0.55);
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.16);
+  --segment-track: rgba(118, 118, 128, 0.12);
+  --segment-pill: #ffffff;
+  --segment-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.08);
+
+  --phone-frame: #1d1d1f;
+  --phone-bezel: #3a3a3c;
+  --chat-wallpaper: #efeae2;
+  --bubble-user-bg: #d9fdd3;
+  --bubble-user-ink: #111b21;
+  --bubble-bot-bg: #ffffff;
+  --bubble-bot-ink: #111b21;
+  --wa-header: #f0f2f5;
+
+  --backdrop: rgba(29, 29, 31, 0.38);
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.03), 0 0 1px rgba(0, 0, 0, 0.06);
+  --shadow-float: 0 20px 50px rgba(0, 0, 0, 0.14), 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
 [data-theme="dark"] {
-  --background: #0b1120;
-  --content: #111827;
-  --card: #162033;
-  --sidebar: #0f172a;
-  --border: #263449;
-  --card-border: #263449;
-  --foreground: #f1f5f9;
-  --muted-foreground: #94a3b8;
+  --background: #000000;
+  --content: #121214;
+  --card: #1c1c1e;
+  --card-elevated: rgba(28, 28, 30, 0.88);
+  --sidebar: rgba(22, 22, 24, 0.78);
+  --topbar: rgba(28, 28, 30, 0.76);
 
-  --primary: #14b8a6;
-  --primary-foreground: #042f2e;
-  --secondary: #334155;
-  --secondary-foreground: #f8fafc;
-  --accent: #2dd4bf;
+  --border: rgba(255, 255, 255, 0.11);
+  --card-border: rgba(255, 255, 255, 0.09);
+  --divider: rgba(255, 255, 255, 0.08);
 
-  --success: #4ade80;
-  --warning: #fbbf24;
-  --error: #f87171;
+  --foreground: #f5f5f7;
+  --muted-foreground: #a1a1a6;
+  --subtle-foreground: #6e6e73;
 
-  --backdrop: rgba(2, 6, 23, 0.72);
-  --shadow-sm: 0 1px 2px rgba(2, 6, 23, 0.35);
-  --shadow-lg: 0 18px 40px rgba(2, 6, 23, 0.55);
+  --primary: #0a84ff;
+  --primary-hover: #409cff;
+  --primary-foreground: #ffffff;
+
+  --secondary: #2c2c2e;
+  --secondary-foreground: #f5f5f7;
+  --accent: #0a84ff;
+
+  --success: #30d158;
+  --success-ink: #4ae06e;
+  --warning: #ff9f0a;
+  --warning-ink: #ffb340;
+  --error: #ff453a;
+  --error-ink: #ff6961;
+
+  --segment-track: rgba(118, 118, 128, 0.28);
+  --segment-pill: #3a3a3c;
+  --segment-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+
+  --phone-frame: #2c2c2e;
+  --phone-bezel: #48484a;
+  --chat-wallpaper: #0b141a;
+  --bubble-user-bg: #005c4b;
+  --bubble-user-ink: #e9edef;
+  --bubble-bot-bg: #202c33;
+  --bubble-bot-ink: #e9edef;
+  --wa-header: #202c33;
+
+  --backdrop: rgba(0, 0, 0, 0.65);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.35), 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-float: 0 24px 60px rgba(0, 0, 0, 0.65);
 }
 
 /* ==========================================================================
-   Classes semânticas derivadas exclusivamente dos tokens acima
+   Base Tipográfica e Superfícies Estilo Apple
    ========================================================================== */
 
 * {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif;
   background-color: var(--background);
   color: var(--foreground);
+  letter-spacing: -0.011em;
 }
 
+h1, h2, h3, .apple-title {
+  letter-spacing: -0.022em;
+}
+
+.apple-glass-sidebar {
+  background: var(--sidebar);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+.apple-glass-topbar {
+  background: var(--topbar);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.apple-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-card);
+  border-radius: 18px;
+}
+
+.apple-subcard {
+  background: var(--content);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.apple-btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: transform 0.12s ease, background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.apple-btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.apple-btn-primary:active {
+  transform: scale(0.98);
+}
+
+.apple-btn-secondary {
+  background: var(--segment-track);
+  color: var(--foreground);
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+}
+
+.apple-btn-secondary:hover {
+  background: color-mix(in srgb, var(--foreground) 12%, transparent);
+}
+
+/* Segmented Control (Pílula estilo iOS / macOS) */
+.segmented-control {
+  background: var(--segment-track);
+  padding: 3px;
+  border-radius: 11px;
+  display: inline-flex;
+  gap: 2px;
+}
+
+.segmented-item {
+  padding: 6px 13px;
+  border-radius: 8.5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: all 0.16s ease;
+}
+
+.segmented-item-active {
+  background: var(--segment-pill);
+  color: var(--foreground);
+  font-weight: 600;
+  box-shadow: var(--segment-shadow);
+}
+
+/* Badges suaves */
 .soft-primary {
   background: color-mix(in srgb, var(--primary) 12%, transparent);
   color: var(--primary);
-  border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+  border-color: color-mix(in srgb, var(--primary) 24%, transparent);
 }
 
 .soft-success {
-  background: color-mix(in srgb, var(--success) 12%, transparent);
-  color: var(--success);
-  border-color: color-mix(in srgb, var(--success) 32%, transparent);
+  background: color-mix(in srgb, var(--success) 14%, transparent);
+  color: var(--success-ink);
+  border-color: color-mix(in srgb, var(--success) 28%, transparent);
 }
 
 .soft-warning {
-  background: color-mix(in srgb, var(--warning) 13%, transparent);
-  color: var(--warning);
-  border-color: color-mix(in srgb, var(--warning) 34%, transparent);
+  background: color-mix(in srgb, var(--warning) 15%, transparent);
+  color: var(--warning-ink);
+  border-color: color-mix(in srgb, var(--warning) 30%, transparent);
 }
 
 .soft-error {
-  background: color-mix(in srgb, var(--error) 12%, transparent);
-  color: var(--error);
-  border-color: color-mix(in srgb, var(--error) 34%, transparent);
+  background: color-mix(in srgb, var(--error) 13%, transparent);
+  color: var(--error-ink);
+  border-color: color-mix(in srgb, var(--error) 28%, transparent);
 }
 
 .soft-muted {
-  background: color-mix(in srgb, var(--muted-foreground) 12%, transparent);
+  background: var(--segment-track);
   color: var(--muted-foreground);
   border-color: var(--border);
 }
 
-.chat-surface {
-  background: color-mix(in srgb, var(--content) 88%, var(--background));
-}
-
-.bubble-bot {
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  box-shadow: var(--shadow-sm);
-}
-
-.bubble-user {
-  background: color-mix(in srgb, var(--primary) 16%, var(--card));
-  border: 1px solid color-mix(in srgb, var(--primary) 36%, transparent);
-}
-
-.modal-overlay {
-  background: var(--backdrop);
-}
-
-.surface-shadow {
-  box-shadow: var(--shadow-lg);
-}
-
+/* Navegação lateral macOS */
 .nav-active {
-  background: color-mix(in srgb, var(--primary) 14%, transparent);
+  background: color-mix(in srgb, var(--primary) 13%, transparent);
   color: var(--primary);
   font-weight: 600;
 }
 
-.nav-idle:hover {
-  background: color-mix(in srgb, var(--foreground) 6%, transparent);
+.nav-idle {
+  color: var(--foreground);
 }
 
+.nav-idle:hover {
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+}
+
+/* Moldura iPhone realista */
+.iphone-shell {
+  background: var(--phone-frame);
+  border: 6px solid var(--phone-bezel);
+  border-radius: 44px;
+  box-shadow: var(--shadow-float);
+  overflow: hidden;
+  position: relative;
+}
+
+.iphone-island {
+  width: 92px;
+  height: 22px;
+  background: #000000;
+  border-radius: 999px;
+  margin: 0 auto;
+}
+
+.wa-topbar {
+  background: var(--wa-header);
+  border-bottom: 1px solid var(--border);
+}
+
+.chat-surface {
+  background: var(--chat-wallpaper);
+}
+
+.bubble-bot {
+  background: var(--bubble-bot-bg);
+  color: var(--bubble-bot-ink);
+  border-radius: 16px 16px 16px 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.bubble-user {
+  background: var(--bubble-user-bg);
+  color: var(--bubble-user-ink);
+  border-radius: 16px 16px 4px 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.wa-quick-btn {
+  background: var(--card);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.wa-quick-btn:hover {
+  background: color-mix(in srgb, var(--primary) 8%, var(--card));
+}
+
+.wa-quick-btn:active {
+  transform: scale(0.985);
+}
+
+.modal-overlay {
+  background: var(--backdrop);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.surface-shadow {
+  box-shadow: var(--shadow-float);
+}
+
+/* Marcação Component-First (Modo Inspetor SDD) */
 .comp-tag {
   display: none;
   position: absolute;
   top: -10px;
-  right: 8px;
+  right: 12px;
   z-index: 20;
   font-size: 10px;
   font-weight: 700;
-  padding: 1px 6px;
-  border-radius: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
   background: var(--primary);
   color: var(--primary-foreground);
   letter-spacing: 0.02em;
@@ -147,7 +333,7 @@ body {
 }
 
 body.show-components [data-component] {
-  outline: 1.5px dashed color-mix(in srgb, var(--primary) 72%, transparent);
+  outline: 1.5px dashed color-mix(in srgb, var(--primary) 70%, transparent);
   outline-offset: 2px;
   position: relative;
 }
